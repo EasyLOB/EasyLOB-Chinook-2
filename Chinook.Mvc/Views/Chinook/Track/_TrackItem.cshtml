@@ -1,0 +1,187 @@
+﻿@model TrackItemModel
+
+@{
+    string CSHTML = "_TrackItem.cshtml";
+    string albumText = Model.Track == null ? "" : (Model.Track.AlbumLookupText ?? "");
+    string genreText = Model.Track == null ? "" : (Model.Track.GenreLookupText ?? "");
+    string mediaTypeText = Model.Track == null ? "" : (Model.Track.MediaTypeLookupText ?? "");
+}
+
+<div id="Item_Track">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.ControllerAction, new { id = "Track_Item_ControllerAction" })
+    @Html.ZHiddenFor(model => model.IsReadOnly, "Track_Item_IsReadOnly")
+    @Html.ZHiddenFor(model => model.IsSave, "Track_Item_IsSave")
+    @Html.HiddenFor(model => model.MasterAlbumId, new { id = "Track_Item_MasterAlbumId" })
+    @Html.HiddenFor(model => model.MasterGenreId, new { id = "Track_Item_MasterGenreId" })
+    @Html.HiddenFor(model => model.MasterMediaTypeId, new { id = "Track_Item_MasterMediaTypeId" })
+
+    @{Html.EJ().Tab("Tab_Track")
+        .ClientSideEvents(clientEvent => clientEvent
+            .ItemActive("itemActive_Tab_Track")
+        )
+        //.EnablePersistence()
+        .Items(data =>
+        {
+            data.Add().ID("TabSheet_Track_Track").Text(TrackResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
+                
+                <div id="Group_Track_TrackId" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("TrackId")">
+                    @Html.LabelFor(model => model.Track.TrackId, new { @class = AppDefaults.CssClassLabelRequired })
+                    @Html.EditorFor(model => model.Track.TrackId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_TrackId" } })
+                    @* @Html.ValidationMessageFor(model => model.Track.TrackId, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_Track_Name" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("Name")">
+                    @Html.LabelFor(model => model.Track.Name, new { @class = AppDefaults.CssClassLabelRequired })
+                    @Html.EditorFor(model => model.Track.Name, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_Name" } })
+                    @* @Html.ValidationMessageFor(model => model.Track.Name, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_Track_AlbumId" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("AlbumLookupText")">
+                    @Html.LabelFor(model => model.Track.AlbumId, new { @class = AppDefaults.CssClassLabel })
+                    @Html.EditorFor(model => model.Track.AlbumId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_AlbumId" } })
+                    @{
+                        Html.RenderAction("Lookup", "Album", new
+                        {
+                            Text = albumText,
+                            ValueId = "Track_AlbumId"
+                        });
+                    }
+                    @* @Html.ValidationMessageFor(model => model.Track.AlbumId, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_Track_MediaTypeId" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("MediaTypeLookupText")">
+                    @Html.LabelFor(model => model.Track.MediaTypeId, new { @class = AppDefaults.CssClassLabelRequired })
+                    @Html.EditorFor(model => model.Track.MediaTypeId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_MediaTypeId" } })
+                    @{
+                        Html.RenderAction("Lookup", "MediaType", new
+                        {
+                            Text = mediaTypeText,
+                            ValueId = "Track_MediaTypeId"
+                        });
+                    }
+                    @* @Html.ValidationMessageFor(model => model.Track.MediaTypeId, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_Track_GenreId" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("GenreLookupText")">
+                    @Html.LabelFor(model => model.Track.GenreId, new { @class = AppDefaults.CssClassLabel })
+                    @Html.EditorFor(model => model.Track.GenreId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_GenreId" } })
+                    @{
+                        Html.RenderAction("Lookup", "Genre", new
+                        {
+                            Text = genreText,
+                            ValueId = "Track_GenreId"
+                        });
+                    }
+                    @* @Html.ValidationMessageFor(model => model.Track.GenreId, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_Track_Composer" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("Composer")">
+                    @Html.LabelFor(model => model.Track.Composer, new { @class = AppDefaults.CssClassLabel })
+                    @Html.EditorFor(model => model.Track.Composer, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_Composer" } })
+                    @* @Html.ValidationMessageFor(model => model.Track.Composer, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_Track_Milliseconds" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("Milliseconds")">
+                    @Html.LabelFor(model => model.Track.Milliseconds, new { @class = AppDefaults.CssClassLabelRequired })
+                    @Html.EditorFor(model => model.Track.Milliseconds, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_Milliseconds" } })
+                    @* @Html.ValidationMessageFor(model => model.Track.Milliseconds, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_Track_Bytes" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("Bytes")">
+                    @Html.LabelFor(model => model.Track.Bytes, new { @class = AppDefaults.CssClassLabel })
+                    @Html.EditorFor(model => model.Track.Bytes, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_Bytes" } })
+                    @* @Html.ValidationMessageFor(model => model.Track.Bytes, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_Track_UnitPrice" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("UnitPrice")">
+                    @Html.LabelFor(model => model.Track.UnitPrice, new { @class = AppDefaults.CssClassLabelRequired })
+                    @Html.EditorFor(model => model.Track.UnitPrice, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_UnitPrice" } })
+                    @* @Html.ValidationMessageFor(model => model.Track.UnitPrice, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+
+            </div>);
+            data.Add().ID("TabSheet_Track_InvoiceLines").Text(InvoiceLineResources.EntityPlural).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">    
+                <div id="Ajax_Track_InvoiceLines"></div>
+            </div>);
+            data.Add().ID("TabSheet_Track_PlaylistTracks").Text(PlaylistTrackResources.EntityPlural).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">    
+                <div id="Ajax_Track_PlaylistTracks"></div>
+            </div>);
+        })
+        .Render();
+    }
+</div>
+
+<script>
+    // Validate hidden fields
+    $.validator.setDefaults({ ignore: null });
+    // Parse validators
+    $.validator.unobtrusive.parse($("#ZAjax"));
+
+    $(function () {
+        try {
+            ej.widget.init($("#Item_Track"));
+
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Track.DataProfile));
+            var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
+
+            var ajaxUrl = "";
+            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "InvoiceLines")) {
+                // InvoiceLines
+                zUrlDictionaryWrite("InvoiceLine", "@Context.Request.Url.AbsoluteUri");
+                ajaxUrl = "@(Html.Raw(Url.Action("Search", "InvoiceLine", new { MasterControllerAction = Model.ControllerAction, MasterTrackId = Model.Track.TrackId })))";
+                zAjaxLoadSync("Ajax_Track_InvoiceLines", ajaxUrl);
+            }
+            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "PlaylistTracks")) {
+                // PlaylistTracks
+                zUrlDictionaryWrite("PlaylistTrack", "@Context.Request.Url.AbsoluteUri");
+                ajaxUrl = "@(Html.Raw(Url.Action("Search", "PlaylistTrack", new { MasterControllerAction = Model.ControllerAction, MasterTrackId = Model.Track.TrackId })))";
+                zAjaxLoadSync("Ajax_Track_PlaylistTracks", ajaxUrl);
+            }
+
+            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+                $("#Group_Track_TrackId").hide();
+            }
+
+            // Associations (FK)
+            // Album
+            if (model.MasterAlbumId != null) {
+                $("#Track_AlbumId").val(model.MasterAlbumId);
+                $("#Group_Track_AlbumId").hide();            
+            }
+            // Genre
+            if (model.MasterGenreId != null) {
+                $("#Track_GenreId").val(model.MasterGenreId);
+                $("#Group_Track_GenreId").hide();            
+            }
+            // MediaType
+            if (model.MasterMediaTypeId != null) {
+                $("#Track_MediaTypeId").val(model.MasterMediaTypeId);
+                $("#Group_Track_MediaTypeId").hide();            
+            }
+
+            zOnItemView(model, dataProfile);        
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception));
+        }
+    });    
+
+    function itemActive_Tab_Track(args) {
+        zTabDictionaryWrite("Track", args.model.selectedItemIndex);
+
+        try {
+            switch(args.model.selectedItemIndex) {
+                case 1:
+                    zGridDataSource("Grid_InvoiceLine", "@Url.Action("DataSource", "InvoiceLine")");
+                    break;
+                case 2:
+                    zGridDataSource("Grid_PlaylistTrack", "@Url.Action("DataSource", "PlaylistTrack")");
+                    break;
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "itemActive_Tab_Track", exception));
+        }
+    }
+</script>

@@ -1,0 +1,282 @@
+﻿@model InvoiceLineCollectionModel
+
+@{
+    string CSHTML = "_InvoiceLineCollection.cshtml";
+
+    string query = "";
+    if (Model.MasterInvoiceId != null)
+    {
+        query = String.Format("ej.Query().where(\"InvoiceId\", ej.FilterOperators.equal, {0})", Model.MasterInvoiceId);
+    }
+    else if (Model.MasterTrackId != null)
+    {
+        query = String.Format("ej.Query().where(\"TrackId\", ej.FilterOperators.equal, {0})", Model.MasterTrackId);
+    }
+}
+
+<div id="Collection_InvoiceLine">
+    @(Html.EJ().Grid<InvoiceLine>("Grid_InvoiceLine")
+        //.Datasource(datasource => datasource
+        //    .Adaptor(AdaptorType.UrlAdaptor)
+        //    .URL(Url.Action("DataSource", "InvoiceLine"))
+        //)
+        .Query(query)        
+        .AllowFiltering()
+        .AllowGrouping()
+        .AllowPaging()
+        .AllowReordering()
+        //.AllowResizeToFit()
+        .AllowResizing()
+        //.AllowScrolling()
+        .AllowSearching()
+        .AllowSorting()
+        .AllowTextWrap()
+        .TextWrapSettings(wrap =>
+        {
+            wrap.WrapMode(WrapMode.Both);
+        })                    
+        .ClientSideEvents(clientEvent => clientEvent
+            .ActionBegin("actionBegin_Grid_InvoiceLine")
+            .ActionFailure("actionFailure_Grid_InvoiceLine")
+            .Load("load_Grid_InvoiceLine")
+            .ToolbarClick("toolbarClick_Grid_InvoiceLine")
+        )
+        .Columns(column =>
+        {
+            column.Field("InvoiceLineId")
+                .AllowEditing(false)
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(InvoiceLineResources.PropertyInvoiceLineId)
+                .IsIdentity(true)
+                .IsPrimaryKey(true)
+                .TextAlign(TextAlign.Right)
+                .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("InvoiceLineId"))
+                .Width(InvoiceLine.DataProfile.GridWidthFor("InvoiceLineId"))
+                .Add();
+            column.Field("InvoiceId")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(InvoiceLineResources.PropertyInvoiceId)
+                .TextAlign(TextAlign.Right)
+                .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("InvoiceId"))
+                .Width(InvoiceLine.DataProfile.GridWidthFor("InvoiceId"))
+                .Add();
+            column.Field("InvoiceLookupText")
+                .AllowEditing(false)
+                .HeaderText(InvoiceResources.EntitySingular)
+                .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("InvoiceLookupText"))
+                .Width(InvoiceLine.DataProfile.GridWidthFor("InvoiceLookupText"))
+                .Add();
+            column.Field("TrackId")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(InvoiceLineResources.PropertyTrackId)
+                .TextAlign(TextAlign.Right)
+                .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("TrackId"))
+                .Width(InvoiceLine.DataProfile.GridWidthFor("TrackId"))
+                .Add();
+            column.Field("TrackLookupText")
+                .AllowEditing(false)
+                .HeaderText(TrackResources.EntitySingular)
+                .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("TrackLookupText"))
+                .Width(InvoiceLine.DataProfile.GridWidthFor("TrackLookupText"))
+                .Add();
+            column.Field("UnitPrice")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Float)
+                .HeaderText(InvoiceLineResources.PropertyUnitPrice)
+                .TextAlign(TextAlign.Right)
+                .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("UnitPrice"))
+                .Width(InvoiceLine.DataProfile.GridWidthFor("UnitPrice"))
+                .Add();
+            column.Field("Quantity")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(InvoiceLineResources.PropertyQuantity)
+                .TextAlign(TextAlign.Right)
+                .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("Quantity"))
+                .Width(InvoiceLine.DataProfile.GridWidthFor("Quantity"))
+                .Add();
+        })
+        .EditSettings(edit => edit
+            .AllowAdding()
+            .AllowDeleting()
+            .AllowEditing()
+            .AllowEditOnDblClick(false)
+        )
+        //.EnablePersistence()
+        .IsResponsive()
+        .FilterSettings(filter => filter
+            .EnableCaseSensitivity(false)
+            .FilterType(FilterType.Excel)
+            .MaxFilterChoices(AppDefaults.SyncfusionRecordsForFiltering)
+        )
+        //.Mappers(map => map
+        //    .ExportToExcelAction(Url.Content("~/InvoiceLine/ExportToExcel"))
+        //    .ExportToPdfAction(Url.Content("~/InvoiceLine/ExportToPdf"))
+        //    .ExportToWordAction(Url.Content("~/InvoiceLine/ExportToWord"))
+        //)
+        .PageSettings(page => page
+            .PageSize(AppDefaults.SyncfusionRecordsByPage)
+        )
+        @*
+        .SearchSettings(search =>
+        {
+            search.Fields(field =>
+            {
+                field.Add("InvoiceLineId");
+                //field.Add("InvoiceId");
+                field.Add("InvoiceLookupText");
+                //field.Add("TrackId");
+                field.Add("TrackLookupText");
+                //field.Add("UnitPrice");
+                //field.Add("Quantity");
+            });
+        })
+        *@
+        .ShowColumnChooser()
+        .ToolbarSettings(toolbar => toolbar
+            .CustomToolbarItems(new List<object>() {
+                new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Grid_InvoiceLine_Toolbar" }
+            })
+            .ShowToolbar()
+            .ToolbarItems(items =>
+            {
+                items.AddTool(ToolBarItems.Search);
+                items.AddTool(ToolBarItems.Add);
+                items.AddTool(ToolBarItems.Edit);
+                items.AddTool(ToolBarItems.Delete);
+                //items.AddTool(ToolBarItems.ExcelExport);
+                //items.AddTool(ToolBarItems.PdfExport);
+                //items.AddTool(ToolBarItems.WordExport);
+            })
+        )
+    )
+</div>
+
+<script type="text/x-jsrender" id="Grid_InvoiceLine_Toolbar">
+    <div id="Grid_InvoiceLine_Toolbar_Refresh" class="e-toolbaricons e-icon e-reload" title="@PresentationResources.Refresh"></div>
+    <div id="Grid_InvoiceLine_Toolbar_Read" class="e-toolbaricons e-icon e-document" title="@PresentationResources.Read"></div>
+</script>
+
+<script>
+    $(function () {
+        try {
+            ej.widget.init($("#Collection_InvoiceLine"));
+
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(InvoiceLine.DataProfile));
+
+            zOnCollectionView(model, dataProfile, "@Url.Action("DataSource", "InvoiceLine")");
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception));
+        }                
+    });
+    
+    function actionBegin_Grid_InvoiceLine(args) {
+        try {
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var masterControllerAction = model.MasterControllerAction == null ? "" : model.MasterControllerAction.toLowerCase();
+    
+            // Associations (FK)
+            var url = "";
+            // Invoice
+            if (model.MasterInvoiceId != null) {
+                url = url + (url == "" ? "" : "&") + "MasterInvoiceId=" + String(model.MasterInvoiceId);
+            }
+            // Track
+            if (model.MasterTrackId != null) {
+                url = url + (url == "" ? "" : "&") + "MasterTrackId=" + String(model.MasterTrackId);
+            }
+
+            if (masterControllerAction == "" || masterControllerAction == "update") {
+                switch(args.requestType) {
+                    case "searching":
+                        // Search
+                        zSearchDictionaryWrite("InvoiceLine", args.keyValue);
+                        break;
+                    case "add":
+                        // Create
+                        if (model.ActivityOperations.IsCreate) {
+                            $("#ZAjax").load("@(Url.Action("Create", "InvoiceLine", null, Request.Url.Scheme))" +
+                                (url == "" ? "" : "?") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                        }
+                        break;
+                    case "read":
+                        // Read
+                        if (model.ActivityOperations.IsRead) {
+                            var data = args.data;
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Read", "InvoiceLine", null, Request.Url.Scheme))?InvoiceLineId=" + String(data.InvoiceLineId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;                        
+                    case "beginedit":
+                        // Update
+                        if (model.ActivityOperations.IsUpdate) {
+                            var data = this.model.currentViewData[args.rowIndex];
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Update", "InvoiceLine", null, Request.Url.Scheme))?InvoiceLineId=" + String(data.InvoiceLineId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;
+                    case "delete":
+                        // Delete
+                        if (model.ActivityOperations.IsDelete) {
+                            var data = args.data;
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Delete", "InvoiceLine", null, Request.Url.Scheme))?InvoiceLineId=" + String(data.InvoiceLineId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;
+                }
+            }
+
+            if (args.requestType == "add" || args.requestType == "beginedit" || args.requestType == "delete") {
+                args.cancel = true;
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "actionBegin_Grid_InvoiceLine", exception));
+        }            
+    }
+    
+    function actionFailure_Grid_InvoiceLine(args) {
+        try {
+            zAlert(args.error.responseText);
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "actionFailure_Grid_InvoiceLine", exception));
+        }
+    }    
+
+    function load_Grid_InvoiceLine(args) {
+        try {            
+            var culture = "@System.Globalization.CultureInfo.CurrentCulture.Name";
+            this.model.locale = culture;
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "load_Grid_InvoiceLine", exception));
+        }
+    }
+
+    function toolbarClick_Grid_InvoiceLine(sender) {
+        try {
+            var toolbar = $(sender.target);
+            var ejGrid = $("#Grid_InvoiceLine").data("ejGrid");
+
+            if (toolbar.prop("id") == "Grid_InvoiceLine_Toolbar_Refresh") {
+                ejGrid.refreshContent();
+            } else if (toolbar.prop("id") == "Grid_InvoiceLine_Toolbar_Read") {
+                var records = ejGrid.getSelectedRecords();
+                if (records.length == 1) {
+                    var args = { requestType: "read", data: records[0] };
+                    actionBegin_Grid_InvoiceLine(args)
+                }
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "toolbarClick_Grid_InvoiceLine", exception));
+        }
+    }
+</script>

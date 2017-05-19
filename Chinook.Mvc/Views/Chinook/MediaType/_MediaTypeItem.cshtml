@@ -1,0 +1,91 @@
+﻿@model MediaTypeItemModel
+
+@{
+    string CSHTML = "_MediaTypeItem.cshtml";
+}
+
+<div id="Item_MediaType">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.ControllerAction, new { id = "MediaType_Item_ControllerAction" })
+    @Html.ZHiddenFor(model => model.IsReadOnly, "MediaType_Item_IsReadOnly")
+    @Html.ZHiddenFor(model => model.IsSave, "MediaType_Item_IsSave")
+
+    @{Html.EJ().Tab("Tab_MediaType")
+        .ClientSideEvents(clientEvent => clientEvent
+            .ItemActive("itemActive_Tab_MediaType")
+        )
+        //.EnablePersistence()
+        .Items(data =>
+        {
+            data.Add().ID("TabSheet_MediaType_MediaType").Text(MediaTypeResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
+                
+                <div id="Group_MediaType_MediaTypeId" class="@AppDefaults.CssClassGroup @MediaType.DataProfile.EditWidthCSSFor("MediaTypeId")">
+                    @Html.LabelFor(model => model.MediaType.MediaTypeId, new { @class = AppDefaults.CssClassLabelRequired })
+                    @Html.EditorFor(model => model.MediaType.MediaTypeId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "MediaType_MediaTypeId" } })
+                    @* @Html.ValidationMessageFor(model => model.MediaType.MediaTypeId, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_MediaType_Name" class="@AppDefaults.CssClassGroup @MediaType.DataProfile.EditWidthCSSFor("Name")">
+                    @Html.LabelFor(model => model.MediaType.Name, new { @class = AppDefaults.CssClassLabel })
+                    @Html.EditorFor(model => model.MediaType.Name, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "MediaType_Name" } })
+                    @* @Html.ValidationMessageFor(model => model.MediaType.Name, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+
+            </div>);
+            data.Add().ID("TabSheet_MediaType_Tracks").Text(TrackResources.EntityPlural).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">    
+                <div id="Ajax_MediaType_Tracks"></div>
+            </div>);
+        })
+        .Render();
+    }
+</div>
+
+<script>
+    // Validate hidden fields
+    $.validator.setDefaults({ ignore: null });
+    // Parse validators
+    $.validator.unobtrusive.parse($("#ZAjax"));
+
+    $(function () {
+        try {
+            ej.widget.init($("#Item_MediaType"));
+
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(MediaType.DataProfile));
+            var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
+
+            var ajaxUrl = "";
+            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "Tracks")) {
+                // Tracks
+                zUrlDictionaryWrite("Track", "@Context.Request.Url.AbsoluteUri");
+                ajaxUrl = "@(Html.Raw(Url.Action("Search", "Track", new { MasterControllerAction = Model.ControllerAction, MasterMediaTypeId = Model.MediaType.MediaTypeId })))";
+                zAjaxLoadSync("Ajax_MediaType_Tracks", ajaxUrl);
+            }
+
+            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+                $("#Group_MediaType_MediaTypeId").hide();
+            }
+
+            // Associations (FK)
+
+            zOnItemView(model, dataProfile);        
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception));
+        }
+    });    
+
+    function itemActive_Tab_MediaType(args) {
+        zTabDictionaryWrite("MediaType", args.model.selectedItemIndex);
+
+        try {
+            switch(args.model.selectedItemIndex) {
+                case 1:
+                    zGridDataSource("Grid_Track", "@Url.Action("DataSource", "Track")");
+                    break;
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "itemActive_Tab_MediaType", exception));
+        }
+    }
+</script>

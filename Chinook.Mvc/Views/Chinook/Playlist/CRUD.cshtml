@@ -1,0 +1,47 @@
+﻿@model PlaylistItemModel
+
+@{
+    string CSHTML = "Playlist - CRUD.cshtml";
+
+    string controllerAction = Model.ControllerAction.ToLower();
+    string controllerActionResource = PresentationResources.ResourceManager.GetString(Model.ControllerAction);
+
+    string pageTitle = AppHelper.PageTitle(PlaylistResources.EntitySingular, controllerAction, controllerActionResource, Model.IsMasterDetail);
+    string documentTitle = AppHelper.DocumentTitle(pageTitle, Model.IsMasterDetail);
+}
+
+@using (Ajax.BeginForm(Model.ControllerAction, "Playlist", AppHelper.AjaxOptions, new { id = "Form_Playlist", style = "display: none;" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h4>@pageTitle</h4>
+
+    <div class="@AppDefaults.CssClassForm">
+        @{ Html.RenderPartial("_PlaylistItem", Model); }
+    </div>
+
+    <div class="@AppDefaults.CssClassFormButtons">
+        @Ajax.ZImageLink("Button_Cancel", Url.Action("Search", "Playlist"), "ZAjax", "z-buttonCancel", PresentationResources.Cancel)
+        @Html.ZImageInput("Button_Save", "btn z-buttonSave", PresentationResources.Save, "$('#Playlist_Item_IsSave').val('True');")
+        @Html.ZImageInput("Button_OK", "btn z-buttonOk", controllerActionResource)        
+    </div> 
+}
+
+<script>
+    $(function () {
+        try {
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+
+            var url = zUrlDictionaryRead("Playlist");
+            if (url) {
+                $("#Button_Cancel").attr("href", url);
+            }            
+
+            $(document).prop("title", "@Html.Raw(documentTitle)");
+            
+            zOnCRUDView(model);
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception.message));
+        }
+    });
+</script>

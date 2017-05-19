@@ -1,0 +1,296 @@
+﻿@model CustomerDocumentCollectionModel
+
+@{
+    string CSHTML = "_CustomerDocumentCollection.cshtml";
+
+    string query = "";
+    if (Model.MasterCustomerId != null)
+    {
+        query = String.Format("ej.Query().where(\"CustomerId\", ej.FilterOperators.equal, {0})", Model.MasterCustomerId);
+    }
+}
+
+<div id="Collection_CustomerDocument">
+    @(Html.EJ().Grid<CustomerDocument>("Grid_CustomerDocument")
+        //.Datasource(datasource => datasource
+        //    .Adaptor(AdaptorType.UrlAdaptor)
+        //    .URL(Url.Action("DataSource", "CustomerDocument"))
+        //)
+        .Query(query)        
+        .AllowFiltering()
+        .AllowGrouping()
+        .AllowPaging()
+        .AllowReordering()
+        //.AllowResizeToFit()
+        .AllowResizing()
+        //.AllowScrolling()
+        .AllowSearching()
+        .AllowSorting()
+        .AllowTextWrap()
+        .TextWrapSettings(wrap =>
+        {
+            wrap.WrapMode(WrapMode.Both);
+        })                    
+        .ClientSideEvents(clientEvent => clientEvent
+            .ActionBegin("actionBegin_Grid_CustomerDocument")
+            .ActionFailure("actionFailure_Grid_CustomerDocument")
+            .Load("load_Grid_CustomerDocument")
+            .ToolbarClick("toolbarClick_Grid_CustomerDocument")
+            .ActionComplete("actionComplete_Grid_CustomerDocument") // !!! EDM
+        )
+        .Columns(column =>
+        {
+            column.Field("CustomerDocumentId")
+                .AllowEditing(false)
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(CustomerDocumentResources.PropertyCustomerDocumentId)
+                .IsIdentity(true)
+                .IsPrimaryKey(true)
+                .TextAlign(TextAlign.Right)
+                .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("CustomerDocumentId"))
+                .Width(CustomerDocument.DataProfile.GridWidthFor("CustomerDocumentId"))
+                .Add();
+            column.Field("CustomerId")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(CustomerDocumentResources.PropertyCustomerId)
+                .TextAlign(TextAlign.Right)
+                .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("CustomerId"))
+                .Width(CustomerDocument.DataProfile.GridWidthFor("CustomerId"))
+                .Add();
+            column.Field("CustomerLookupText")
+                .AllowEditing(false)
+                .HeaderText(CustomerResources.EntitySingular)
+                .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("CustomerLookupText"))
+                .Width(CustomerDocument.DataProfile.GridWidthFor("CustomerLookupText"))
+                .Add();
+            column.Field("Description")
+                .EditType(EditingType.String)
+                .HeaderText(CustomerDocumentResources.PropertyDescription)
+                .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("Description"))
+                .Width(CustomerDocument.DataProfile.GridWidthFor("Description"))
+                .Add();
+            column.Field("FileName")
+                .EditType(EditingType.String)
+                .HeaderText(CustomerDocumentResources.PropertyFileName)
+                .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("FileName"))
+                .Width(CustomerDocument.DataProfile.GridWidthFor("FileName"))
+                .Add();
+            column.Field("FileAcronym")
+                .EditType(EditingType.String)
+                .HeaderText(CustomerDocumentResources.PropertyFileAcronym)
+                .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("FileAcronym"))
+                .Width(CustomerDocument.DataProfile.GridWidthFor("FileAcronym"))
+                .Add();
+        })
+        .EditSettings(edit => edit
+            .AllowAdding()
+            .AllowDeleting()
+            .AllowEditing()
+            .AllowEditOnDblClick(false)
+        )
+        //.EnablePersistence()
+        .IsResponsive()
+        .FilterSettings(filter => filter
+            .EnableCaseSensitivity(false)
+            .FilterType(FilterType.Excel)
+            .MaxFilterChoices(AppDefaults.SyncfusionRecordsForFiltering)
+        )
+        //.Mappers(map => map
+        //    .ExportToExcelAction(Url.Content("~/CustomerDocument/ExportToExcel"))
+        //    .ExportToPdfAction(Url.Content("~/CustomerDocument/ExportToPdf"))
+        //    .ExportToWordAction(Url.Content("~/CustomerDocument/ExportToWord"))
+        //)
+        .PageSettings(page => page
+            .PageSize(AppDefaults.SyncfusionRecordsByPage)
+        )
+        @*
+        .SearchSettings(search =>
+        {
+            search.Fields(field =>
+            {
+                field.Add("CustomerDocumentId");
+                //field.Add("CustomerId");
+                field.Add("CustomerLookupText");
+                field.Add("Description");
+                field.Add("FileName");
+                field.Add("FileAcronym");
+            });
+        })
+        *@
+        .ShowColumnChooser()
+        .ToolbarSettings(toolbar => toolbar
+            .CustomToolbarItems(new List<object>() {
+                new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Grid_CustomerDocument_Toolbar" }
+            })
+            .ShowToolbar()
+            .ToolbarItems(items =>
+            {
+                items.AddTool(ToolBarItems.Search);
+                items.AddTool(ToolBarItems.Add);
+                items.AddTool(ToolBarItems.Edit);
+                items.AddTool(ToolBarItems.Delete);
+                //items.AddTool(ToolBarItems.ExcelExport);
+                //items.AddTool(ToolBarItems.PdfExport);
+                //items.AddTool(ToolBarItems.WordExport);
+            })
+        )
+    )
+</div>
+
+<script type="text/x-jsrender" id="Grid_CustomerDocument_Toolbar">
+    <div id="Grid_CustomerDocument_Toolbar_Refresh" class="e-toolbaricons e-icon e-reload" title="@PresentationResources.Refresh"></div>
+    <div id="Grid_CustomerDocument_Toolbar_Read" class="e-toolbaricons e-icon e-document" title="@PresentationResources.Read"></div>
+</script>
+
+<script>
+    $(function () {
+        try {
+            ej.widget.init($("#Collection_CustomerDocument"));
+
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(CustomerDocument.DataProfile));
+
+            zOnCollectionView(model, dataProfile, "@Url.Action("DataSource", "CustomerDocument")");
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception));
+        }
+    });
+
+    function actionBegin_Grid_CustomerDocument(args) {
+        try {
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var masterControllerAction = model.MasterControllerAction == null ? "" : model.MasterControllerAction.toLowerCase();
+
+            // Associations (FK)
+            var url = "";
+            // Customer
+            if (model.MasterCustomerId != null) {
+                url = url + (url == "" ? "" : "&") + "MasterCustomerId=" + String(model.MasterCustomerId);
+            }
+
+            if (masterControllerAction == "" || masterControllerAction == "update") {
+                switch(args.requestType) {
+                    case "searching":
+                        // Search
+                        zSearchDictionaryWrite("CustomerDocument", args.keyValue);
+                        break;
+                    case "add":
+                        // Create
+                        if (model.ActivityOperations.IsCreate) {
+                            $("#ZAjax").load("@(Url.Action("Create", "CustomerDocument", null, Request.Url.Scheme))" +
+                                (url == "" ? "" : "?") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                        }
+                        break;
+                    case "read":
+                        // Read
+                        if (model.ActivityOperations.IsRead) {
+                            var data = args.data;
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Read", "CustomerDocument", null, Request.Url.Scheme))?CustomerDocumentId=" + String(data.CustomerDocumentId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;
+                    case "beginedit":
+                        // Update
+                        if (model.ActivityOperations.IsUpdate) {
+                            var data = this.model.currentViewData[args.rowIndex];
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Update", "CustomerDocument", null, Request.Url.Scheme))?CustomerDocumentId=" + String(data.CustomerDocumentId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;
+                    case "delete":
+                        // Delete
+                        if (model.ActivityOperations.IsDelete) {
+                            var data = args.data;
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Delete", "CustomerDocument", null, Request.Url.Scheme))?CustomerDocumentId=" + String(data.CustomerDocumentId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;
+                }
+            }
+
+            if (args.requestType == "add" || args.requestType == "beginedit" || args.requestType == "delete") {
+                args.cancel = true;
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "actionBegin_Grid_CustomerDocument", exception));
+        }
+    }
+
+    function actionFailure_Grid_CustomerDocument(args) {
+        try {
+            zAlert(args.error.responseText);
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "actionFailure_Grid_CustomerDocument", exception));
+        }
+    }
+
+    function load_Grid_CustomerDocument(args) {
+        try {
+            var culture = "@System.Globalization.CultureInfo.CurrentCulture.Name";
+            this.model.locale = culture;
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "load_Grid_CustomerDocument", exception));
+        }
+    }
+
+    function toolbarClick_Grid_CustomerDocument(sender) {
+        try {
+            var toolbar = $(sender.target);
+            var ejGrid = $("#Grid_CustomerDocument").data("ejGrid");
+
+            if (toolbar.prop("id") == "Grid_CustomerDocument_Toolbar_Refresh") {
+                ejGrid.refreshContent();
+            } else if (toolbar.prop("id") == "Grid_CustomerDocument_Toolbar_Read") {
+                var records = ejGrid.getSelectedRecords();
+                if (records.length == 1) {
+                    var args = { requestType: "read", data: records[0] };
+                    actionBegin_Grid_CustomerDocument(args)
+                }
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "toolbarClick_Grid_CustomerDocument", exception));
+        }
+    }
+
+    function actionComplete_Grid_CustomerDocument(args) { // !!! EDM
+        try {
+            if (args.type == "actionComplete") {
+                var gridRows = this.getRows();
+                if (gridRows != null) {
+                    var idIndex = this.getColumnIndexByField("CustomerDocumentId");
+                    var fileAcronymIndex = this.getColumnIndexByField("FileAcronym");
+                    for (var i = 0; i < gridRows.length; i++) {
+                        var fileAcronym = gridRows[i].children[fileAcronymIndex].innerHTML.trim();
+                        if (fileAcronym.startsWith("<img")) {
+                            break;
+                        }
+
+                        var id = gridRows[i].children[idIndex].innerHTML.trim();
+                        var cssClass = zEDMCssClass(fileAcronym);
+                        var html = "<img class=\"" + cssClass +
+                            "\" onclick=\"onclick_Grid_CustomerDocument(" + id + ", '" + fileAcronym + "')\"></img>";
+                        $(gridRows[i].children[fileAcronymIndex]).html(html);
+                    }
+                }
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "actionComplete_Grid_CustomerDocument", exception));
+        }
+    }
+
+    function onclick_Grid_CustomerDocument(id, acronym) { // !!! EDM
+        try {
+            window.location = "@Url.Content("~/EDM")/Read?EntityName=CustomerDocument&Id=" + id + "&Acronym=" + acronym;
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "onclick_Grid_CustomerDocument(id)", exception));
+        }
+    }
+</script>

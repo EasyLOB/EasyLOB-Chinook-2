@@ -1,0 +1,24 @@
+[
+  {
+    "Name": "Chinook",
+    "Description": "Chinook",
+    "Connections": [
+      {
+        "Name": "Chinook",
+        "ConnectionName": "Chinook"
+      },
+      {
+        "Name": "Activity",
+        "ConnectionName": "Activity"
+      },
+      {
+        "Name": "AuditTrail",
+        "ConnectionName": "AuditTrail"
+      },
+      {
+        "Name": "Identity",
+        "ConnectionName": "Identity"
+      }
+    ]
+  }
+]

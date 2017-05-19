@@ -1,0 +1,19 @@
+﻿@model InvoiceCollectionModel
+
+@{
+    string CSHTML = "Invoice - Index.cshtml";
+}
+
+<div id="ZAjax"></div>
+
+<script>
+    $(function () {
+        try {
+            zUrlDictionaryClear();
+
+            $("#ZAjax").load("@(Url.Action("Search", "Invoice", null, Request.Url.Scheme))", function(responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception.message));
+        }
+    });
+</script>

@@ -1,0 +1,247 @@
+﻿@model AlbumCollectionModel
+
+@{
+    string CSHTML = "_AlbumCollection.cshtml";
+
+    string query = "";
+    if (Model.MasterArtistId != null)
+    {
+        query = String.Format("ej.Query().where(\"ArtistId\", ej.FilterOperators.equal, {0})", Model.MasterArtistId);
+    }
+}
+
+<div id="Collection_Album">
+    @(Html.EJ().Grid<Album>("Grid_Album")
+        //.Datasource(datasource => datasource
+        //    .Adaptor(AdaptorType.UrlAdaptor)
+        //    .URL(Url.Action("DataSource", "Album"))
+        //)
+        .Query(query)        
+        .AllowFiltering()
+        .AllowGrouping()
+        .AllowPaging()
+        .AllowReordering()
+        //.AllowResizeToFit()
+        .AllowResizing()
+        //.AllowScrolling()
+        .AllowSearching()
+        .AllowSorting()
+        .AllowTextWrap()
+        .TextWrapSettings(wrap =>
+        {
+            wrap.WrapMode(WrapMode.Both);
+        })                    
+        .ClientSideEvents(clientEvent => clientEvent
+            .ActionBegin("actionBegin_Grid_Album")
+            .ActionFailure("actionFailure_Grid_Album")
+            .Load("load_Grid_Album")
+            .ToolbarClick("toolbarClick_Grid_Album")
+        )
+        .Columns(column =>
+        {
+            column.Field("AlbumId")
+                .AllowEditing(false)
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(AlbumResources.PropertyAlbumId)
+                .IsIdentity(true)
+                .IsPrimaryKey(true)
+                .TextAlign(TextAlign.Right)
+                .Visible(Album.DataProfile.IsGridVisibleFor("AlbumId"))
+                .Width(Album.DataProfile.GridWidthFor("AlbumId"))
+                .Add();
+            column.Field("Title")
+                .EditType(EditingType.String)
+                .HeaderText(AlbumResources.PropertyTitle)
+                .Visible(Album.DataProfile.IsGridVisibleFor("Title"))
+                .Width(Album.DataProfile.GridWidthFor("Title"))
+                .Add();
+            column.Field("ArtistId")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(AlbumResources.PropertyArtistId)
+                .TextAlign(TextAlign.Right)
+                .Visible(Album.DataProfile.IsGridVisibleFor("ArtistId"))
+                .Width(Album.DataProfile.GridWidthFor("ArtistId"))
+                .Add();
+            column.Field("ArtistLookupText")
+                .AllowEditing(false)
+                .HeaderText(ArtistResources.EntitySingular)
+                .Visible(Album.DataProfile.IsGridVisibleFor("ArtistLookupText"))
+                .Width(Album.DataProfile.GridWidthFor("ArtistLookupText"))
+                .Add();
+        })
+        .EditSettings(edit => edit
+            .AllowAdding()
+            .AllowDeleting()
+            .AllowEditing()
+            .AllowEditOnDblClick(false)
+        )
+        //.EnablePersistence()
+        .IsResponsive()
+        .FilterSettings(filter => filter
+            .EnableCaseSensitivity(false)
+            .FilterType(FilterType.Excel)
+            .MaxFilterChoices(AppDefaults.SyncfusionRecordsForFiltering)
+        )
+        //.Mappers(map => map
+        //    .ExportToExcelAction(Url.Content("~/Album/ExportToExcel"))
+        //    .ExportToPdfAction(Url.Content("~/Album/ExportToPdf"))
+        //    .ExportToWordAction(Url.Content("~/Album/ExportToWord"))
+        //)
+        .PageSettings(page => page
+            .PageSize(AppDefaults.SyncfusionRecordsByPage)
+        )
+        @*
+        .SearchSettings(search =>
+        {
+            search.Fields(field =>
+            {
+                field.Add("AlbumId");
+                field.Add("Title");
+                //field.Add("ArtistId");
+                field.Add("ArtistLookupText");
+            });
+        })
+        *@
+        .ShowColumnChooser()
+        .ToolbarSettings(toolbar => toolbar
+            .CustomToolbarItems(new List<object>() {
+                new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Grid_Album_Toolbar" }
+            })
+            .ShowToolbar()
+            .ToolbarItems(items =>
+            {
+                items.AddTool(ToolBarItems.Search);
+                items.AddTool(ToolBarItems.Add);
+                items.AddTool(ToolBarItems.Edit);
+                items.AddTool(ToolBarItems.Delete);
+                //items.AddTool(ToolBarItems.ExcelExport);
+                //items.AddTool(ToolBarItems.PdfExport);
+                //items.AddTool(ToolBarItems.WordExport);
+            })
+        )
+    )
+</div>
+
+<script type="text/x-jsrender" id="Grid_Album_Toolbar">
+    <div id="Grid_Album_Toolbar_Refresh" class="e-toolbaricons e-icon e-reload" title="@PresentationResources.Refresh"></div>
+    <div id="Grid_Album_Toolbar_Read" class="e-toolbaricons e-icon e-document" title="@PresentationResources.Read"></div>
+</script>
+
+<script>
+    $(function () {
+        try {
+            ej.widget.init($("#Collection_Album"));
+
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Album.DataProfile));
+
+            zOnCollectionView(model, dataProfile, "@Url.Action("DataSource", "Album")");
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception));
+        }                
+    });
+    
+    function actionBegin_Grid_Album(args) {
+        try {
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var masterControllerAction = model.MasterControllerAction == null ? "" : model.MasterControllerAction.toLowerCase();
+    
+            // Associations (FK)
+            var url = "";
+            // Artist
+            if (model.MasterArtistId != null) {
+                url = url + (url == "" ? "" : "&") + "MasterArtistId=" + String(model.MasterArtistId);
+            }
+
+            if (masterControllerAction == "" || masterControllerAction == "update") {
+                switch(args.requestType) {
+                    case "searching":
+                        // Search
+                        zSearchDictionaryWrite("Album", args.keyValue);
+                        break;
+                    case "add":
+                        // Create
+                        if (model.ActivityOperations.IsCreate) {
+                            $("#ZAjax").load("@(Url.Action("Create", "Album", null, Request.Url.Scheme))" +
+                                (url == "" ? "" : "?") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                        }
+                        break;
+                    case "read":
+                        // Read
+                        if (model.ActivityOperations.IsRead) {
+                            var data = args.data;
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Read", "Album", null, Request.Url.Scheme))?AlbumId=" + String(data.AlbumId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;                        
+                    case "beginedit":
+                        // Update
+                        if (model.ActivityOperations.IsUpdate) {
+                            var data = this.model.currentViewData[args.rowIndex];
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Update", "Album", null, Request.Url.Scheme))?AlbumId=" + String(data.AlbumId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;
+                    case "delete":
+                        // Delete
+                        if (model.ActivityOperations.IsDelete) {
+                            var data = args.data;
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Delete", "Album", null, Request.Url.Scheme))?AlbumId=" + String(data.AlbumId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;
+                }
+            }
+
+            if (args.requestType == "add" || args.requestType == "beginedit" || args.requestType == "delete") {
+                args.cancel = true;
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "actionBegin_Grid_Album", exception));
+        }            
+    }
+    
+    function actionFailure_Grid_Album(args) {
+        try {
+            zAlert(args.error.responseText);
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "actionFailure_Grid_Album", exception));
+        }
+    }    
+
+    function load_Grid_Album(args) {
+        try {            
+            var culture = "@System.Globalization.CultureInfo.CurrentCulture.Name";
+            this.model.locale = culture;
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "load_Grid_Album", exception));
+        }
+    }
+
+    function toolbarClick_Grid_Album(sender) {
+        try {
+            var toolbar = $(sender.target);
+            var ejGrid = $("#Grid_Album").data("ejGrid");
+
+            if (toolbar.prop("id") == "Grid_Album_Toolbar_Refresh") {
+                ejGrid.refreshContent();
+            } else if (toolbar.prop("id") == "Grid_Album_Toolbar_Read") {
+                var records = ejGrid.getSelectedRecords();
+                if (records.length == 1) {
+                    var args = { requestType: "read", data: records[0] };
+                    actionBegin_Grid_Album(args)
+                }
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "toolbarClick_Grid_Album", exception));
+        }
+    }
+</script>

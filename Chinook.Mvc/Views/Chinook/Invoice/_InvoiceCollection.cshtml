@@ -1,0 +1,292 @@
+﻿@model InvoiceCollectionModel
+
+@{
+    string CSHTML = "_InvoiceCollection.cshtml";
+
+    string query = "";
+    if (Model.MasterCustomerId != null)
+    {
+        query = String.Format("ej.Query().where(\"CustomerId\", ej.FilterOperators.equal, {0})", Model.MasterCustomerId);
+    }
+}
+
+<div id="Collection_Invoice">
+    @(Html.EJ().Grid<Invoice>("Grid_Invoice")
+        //.Datasource(datasource => datasource
+        //    .Adaptor(AdaptorType.UrlAdaptor)
+        //    .URL(Url.Action("DataSource", "Invoice"))
+        //)
+        .Query(query)        
+        .AllowFiltering()
+        .AllowGrouping()
+        .AllowPaging()
+        .AllowReordering()
+        //.AllowResizeToFit()
+        .AllowResizing()
+        //.AllowScrolling()
+        .AllowSearching()
+        .AllowSorting()
+        .AllowTextWrap()
+        .TextWrapSettings(wrap =>
+        {
+            wrap.WrapMode(WrapMode.Both);
+        })                    
+        .ClientSideEvents(clientEvent => clientEvent
+            .ActionBegin("actionBegin_Grid_Invoice")
+            .ActionFailure("actionFailure_Grid_Invoice")
+            .Load("load_Grid_Invoice")
+            .ToolbarClick("toolbarClick_Grid_Invoice")
+        )
+        .Columns(column =>
+        {
+            column.Field("InvoiceId")
+                .AllowEditing(false)
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(InvoiceResources.PropertyInvoiceId)
+                .IsIdentity(true)
+                .IsPrimaryKey(true)
+                .TextAlign(TextAlign.Right)
+                .Visible(Invoice.DataProfile.IsGridVisibleFor("InvoiceId"))
+                .Width(Invoice.DataProfile.GridWidthFor("InvoiceId"))
+                .Add();
+            column.Field("CustomerId")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(InvoiceResources.PropertyCustomerId)
+                .TextAlign(TextAlign.Right)
+                .Visible(Invoice.DataProfile.IsGridVisibleFor("CustomerId"))
+                .Width(Invoice.DataProfile.GridWidthFor("CustomerId"))
+                .Add();
+            column.Field("CustomerLookupText")
+                .AllowEditing(false)
+                .HeaderText(CustomerResources.EntitySingular)
+                .Visible(Invoice.DataProfile.IsGridVisibleFor("CustomerLookupText"))
+                .Width(Invoice.DataProfile.GridWidthFor("CustomerLookupText"))
+                .Add();
+            column.Field("InvoiceDate")
+                .EditType(EditingType.DateTimePicker)
+                .Format(SyncfusionPatternResources.GridFormat_DateTime)
+                .HeaderText(InvoiceResources.PropertyInvoiceDate)
+                .Visible(Invoice.DataProfile.IsGridVisibleFor("InvoiceDate"))
+                .Width(Invoice.DataProfile.GridWidthFor("InvoiceDate"))
+                .Add();
+            column.Field("BillingAddress")
+                .EditType(EditingType.String)
+                .HeaderText(InvoiceResources.PropertyBillingAddress)
+                .Visible(Invoice.DataProfile.IsGridVisibleFor("BillingAddress"))
+                .Width(Invoice.DataProfile.GridWidthFor("BillingAddress"))
+                .Add();
+            column.Field("BillingCity")
+                .EditType(EditingType.String)
+                .HeaderText(InvoiceResources.PropertyBillingCity)
+                .Visible(Invoice.DataProfile.IsGridVisibleFor("BillingCity"))
+                .Width(Invoice.DataProfile.GridWidthFor("BillingCity"))
+                .Add();
+            column.Field("BillingState")
+                .EditType(EditingType.String)
+                .HeaderText(InvoiceResources.PropertyBillingState)
+                .Visible(Invoice.DataProfile.IsGridVisibleFor("BillingState"))
+                .Width(Invoice.DataProfile.GridWidthFor("BillingState"))
+                .Add();
+            column.Field("BillingCountry")
+                .EditType(EditingType.String)
+                .HeaderText(InvoiceResources.PropertyBillingCountry)
+                .Visible(Invoice.DataProfile.IsGridVisibleFor("BillingCountry"))
+                .Width(Invoice.DataProfile.GridWidthFor("BillingCountry"))
+                .Add();
+            column.Field("BillingPostalCode")
+                .EditType(EditingType.String)
+                .HeaderText(InvoiceResources.PropertyBillingPostalCode)
+                .Visible(Invoice.DataProfile.IsGridVisibleFor("BillingPostalCode"))
+                .Width(Invoice.DataProfile.GridWidthFor("BillingPostalCode"))
+                .Add();
+            column.Field("Total")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Float)
+                .HeaderText(InvoiceResources.PropertyTotal)
+                .TextAlign(TextAlign.Right)
+                .Visible(Invoice.DataProfile.IsGridVisibleFor("Total"))
+                .Width(Invoice.DataProfile.GridWidthFor("Total"))
+                .Add();
+        })
+        .EditSettings(edit => edit
+            .AllowAdding()
+            .AllowDeleting()
+            .AllowEditing()
+            .AllowEditOnDblClick(false)
+        )
+        //.EnablePersistence()
+        .IsResponsive()
+        .FilterSettings(filter => filter
+            .EnableCaseSensitivity(false)
+            .FilterType(FilterType.Excel)
+            .MaxFilterChoices(AppDefaults.SyncfusionRecordsForFiltering)
+        )
+        //.Mappers(map => map
+        //    .ExportToExcelAction(Url.Content("~/Invoice/ExportToExcel"))
+        //    .ExportToPdfAction(Url.Content("~/Invoice/ExportToPdf"))
+        //    .ExportToWordAction(Url.Content("~/Invoice/ExportToWord"))
+        //)
+        .PageSettings(page => page
+            .PageSize(AppDefaults.SyncfusionRecordsByPage)
+        )
+        @*
+        .SearchSettings(search =>
+        {
+            search.Fields(field =>
+            {
+                field.Add("InvoiceId");
+                //field.Add("CustomerId");
+                field.Add("CustomerLookupText");
+                //field.Add("InvoiceDate");
+                field.Add("BillingAddress");
+                field.Add("BillingCity");
+                field.Add("BillingState");
+                field.Add("BillingCountry");
+                field.Add("BillingPostalCode");
+                //field.Add("Total");
+            });
+        })
+        *@
+        .ShowColumnChooser()
+        .ToolbarSettings(toolbar => toolbar
+            .CustomToolbarItems(new List<object>() {
+                new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Grid_Invoice_Toolbar" }
+            })
+            .ShowToolbar()
+            .ToolbarItems(items =>
+            {
+                items.AddTool(ToolBarItems.Search);
+                items.AddTool(ToolBarItems.Add);
+                items.AddTool(ToolBarItems.Edit);
+                items.AddTool(ToolBarItems.Delete);
+                //items.AddTool(ToolBarItems.ExcelExport);
+                //items.AddTool(ToolBarItems.PdfExport);
+                //items.AddTool(ToolBarItems.WordExport);
+            })
+        )
+    )
+</div>
+
+<script type="text/x-jsrender" id="Grid_Invoice_Toolbar">
+    <div id="Grid_Invoice_Toolbar_Refresh" class="e-toolbaricons e-icon e-reload" title="@PresentationResources.Refresh"></div>
+    <div id="Grid_Invoice_Toolbar_Read" class="e-toolbaricons e-icon e-document" title="@PresentationResources.Read"></div>
+</script>
+
+<script>
+    $(function () {
+        try {
+            ej.widget.init($("#Collection_Invoice"));
+
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Invoice.DataProfile));
+
+            zOnCollectionView(model, dataProfile, "@Url.Action("DataSource", "Invoice")");
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception));
+        }                
+    });
+    
+    function actionBegin_Grid_Invoice(args) {
+        try {
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var masterControllerAction = model.MasterControllerAction == null ? "" : model.MasterControllerAction.toLowerCase();
+    
+            // Associations (FK)
+            var url = "";
+            // Customer
+            if (model.MasterCustomerId != null) {
+                url = url + (url == "" ? "" : "&") + "MasterCustomerId=" + String(model.MasterCustomerId);
+            }
+
+            if (masterControllerAction == "" || masterControllerAction == "update") {
+                switch(args.requestType) {
+                    case "searching":
+                        // Search
+                        zSearchDictionaryWrite("Invoice", args.keyValue);
+                        break;
+                    case "add":
+                        // Create
+                        if (model.ActivityOperations.IsCreate) {
+                            $("#ZAjax").load("@(Url.Action("Create", "Invoice", null, Request.Url.Scheme))" +
+                                (url == "" ? "" : "?") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                        }
+                        break;
+                    case "read":
+                        // Read
+                        if (model.ActivityOperations.IsRead) {
+                            var data = args.data;
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Read", "Invoice", null, Request.Url.Scheme))?InvoiceId=" + String(data.InvoiceId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;                        
+                    case "beginedit":
+                        // Update
+                        if (model.ActivityOperations.IsUpdate) {
+                            var data = this.model.currentViewData[args.rowIndex];
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Update", "Invoice", null, Request.Url.Scheme))?InvoiceId=" + String(data.InvoiceId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;
+                    case "delete":
+                        // Delete
+                        if (model.ActivityOperations.IsDelete) {
+                            var data = args.data;
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Delete", "Invoice", null, Request.Url.Scheme))?InvoiceId=" + String(data.InvoiceId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;
+                }
+            }
+
+            if (args.requestType == "add" || args.requestType == "beginedit" || args.requestType == "delete") {
+                args.cancel = true;
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "actionBegin_Grid_Invoice", exception));
+        }            
+    }
+    
+    function actionFailure_Grid_Invoice(args) {
+        try {
+            zAlert(args.error.responseText);
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "actionFailure_Grid_Invoice", exception));
+        }
+    }    
+
+    function load_Grid_Invoice(args) {
+        try {            
+            var culture = "@System.Globalization.CultureInfo.CurrentCulture.Name";
+            this.model.locale = culture;
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "load_Grid_Invoice", exception));
+        }
+    }
+
+    function toolbarClick_Grid_Invoice(sender) {
+        try {
+            var toolbar = $(sender.target);
+            var ejGrid = $("#Grid_Invoice").data("ejGrid");
+
+            if (toolbar.prop("id") == "Grid_Invoice_Toolbar_Refresh") {
+                ejGrid.refreshContent();
+            } else if (toolbar.prop("id") == "Grid_Invoice_Toolbar_Read") {
+                var records = ejGrid.getSelectedRecords();
+                if (records.length == 1) {
+                    var args = { requestType: "read", data: records[0] };
+                    actionBegin_Grid_Invoice(args)
+                }
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "toolbarClick_Grid_Invoice", exception));
+        }
+    }
+</script>

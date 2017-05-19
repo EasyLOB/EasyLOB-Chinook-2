@@ -1,0 +1,30 @@
+﻿@model AlbumCollectionModel
+
+@{
+    string CSHTML = "Album - Search.cshtml";
+
+    string controllerAction = Model.ControllerAction.ToLower();
+    string controllerActionResource = PresentationResources.ResourceManager.GetString(Model.ControllerAction);
+
+    string pageTitle = AppHelper.PageTitle(AlbumResources.EntitySingular, controllerAction, controllerActionResource, Model.IsMasterDetail);
+    string documentTitle = AppHelper.DocumentTitle(pageTitle, Model.IsMasterDetail);
+}
+
+<h4>@pageTitle</h4>
+
+<div class="form-inline" style = "display: none;">
+    @{ Html.RenderPartial("_AlbumCollection", Model); }
+</div>
+
+<script>
+    $(function () {
+        try {
+            var url = zUrlDictionaryRead("Album"); // Master-Detail
+            if (!url) {
+                zUrlDictionaryWrite("Album", "@Context.Request.Url.AbsoluteUri");
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception.message));
+        }
+    });
+</script>

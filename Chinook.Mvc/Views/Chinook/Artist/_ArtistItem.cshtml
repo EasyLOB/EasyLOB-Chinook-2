@@ -1,0 +1,91 @@
+﻿@model ArtistItemModel
+
+@{
+    string CSHTML = "_ArtistItem.cshtml";
+}
+
+<div id="Item_Artist">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.ControllerAction, new { id = "Artist_Item_ControllerAction" })
+    @Html.ZHiddenFor(model => model.IsReadOnly, "Artist_Item_IsReadOnly")
+    @Html.ZHiddenFor(model => model.IsSave, "Artist_Item_IsSave")
+
+    @{Html.EJ().Tab("Tab_Artist")
+        .ClientSideEvents(clientEvent => clientEvent
+            .ItemActive("itemActive_Tab_Artist")
+        )
+        //.EnablePersistence()
+        .Items(data =>
+        {
+            data.Add().ID("TabSheet_Artist_Artist").Text(ArtistResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
+                
+                <div id="Group_Artist_ArtistId" class="@AppDefaults.CssClassGroup @Artist.DataProfile.EditWidthCSSFor("ArtistId")">
+                    @Html.LabelFor(model => model.Artist.ArtistId, new { @class = AppDefaults.CssClassLabelRequired })
+                    @Html.EditorFor(model => model.Artist.ArtistId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Artist_ArtistId" } })
+                    @* @Html.ValidationMessageFor(model => model.Artist.ArtistId, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_Artist_Name" class="@AppDefaults.CssClassGroup @Artist.DataProfile.EditWidthCSSFor("Name")">
+                    @Html.LabelFor(model => model.Artist.Name, new { @class = AppDefaults.CssClassLabel })
+                    @Html.EditorFor(model => model.Artist.Name, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Artist_Name" } })
+                    @* @Html.ValidationMessageFor(model => model.Artist.Name, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+
+            </div>);
+            data.Add().ID("TabSheet_Artist_Albums").Text(AlbumResources.EntityPlural).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">    
+                <div id="Ajax_Artist_Albums"></div>
+            </div>);
+        })
+        .Render();
+    }
+</div>
+
+<script>
+    // Validate hidden fields
+    $.validator.setDefaults({ ignore: null });
+    // Parse validators
+    $.validator.unobtrusive.parse($("#ZAjax"));
+
+    $(function () {
+        try {
+            ej.widget.init($("#Item_Artist"));
+
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Artist.DataProfile));
+            var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
+
+            var ajaxUrl = "";
+            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "Albums")) {
+                // Albums
+                zUrlDictionaryWrite("Album", "@Context.Request.Url.AbsoluteUri");
+                ajaxUrl = "@(Html.Raw(Url.Action("Search", "Album", new { MasterControllerAction = Model.ControllerAction, MasterArtistId = Model.Artist.ArtistId })))";
+                zAjaxLoadSync("Ajax_Artist_Albums", ajaxUrl);
+            }
+
+            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+                $("#Group_Artist_ArtistId").hide();
+            }
+
+            // Associations (FK)
+
+            zOnItemView(model, dataProfile);        
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception));
+        }
+    });    
+
+    function itemActive_Tab_Artist(args) {
+        zTabDictionaryWrite("Artist", args.model.selectedItemIndex);
+
+        try {
+            switch(args.model.selectedItemIndex) {
+                case 1:
+                    zGridDataSource("Grid_Album", "@Url.Action("DataSource", "Album")");
+                    break;
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "itemActive_Tab_Artist", exception));
+        }
+    }
+</script>

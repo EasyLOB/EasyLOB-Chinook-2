@@ -1,0 +1,71 @@
+@model TaskSimpleViewModel
+
+@{
+    string CSHTML = "Simple.cshtml";
+    string pageTitle = Model.Task;
+    string documentTitle = AppHelper.DocumentTitle(pageTitle);
+}
+
+<div id="Form" style="display: none;">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <h4>@pageTitle</h4>
+
+        <div class="panel-body">
+
+            <div id="Group_XBoolean" class="@AppDefaults.CssClassGroup col-md-2">
+                @Html.LabelFor(model => model.XBoolean, new { @class = AppDefaults.CssClassLabel })
+                @Html.EditorFor(model => model.XBoolean, new { id = "XBoolean", htmlAttributes = new { @class = AppDefaults.CssClassEditor } })
+                @Html.ValidationMessageFor(model => model.XBoolean, "", new { @class = AppDefaults.CssClassValidator })
+            </div>
+
+            <div id="Group_XDateTime" class="@AppDefaults.CssClassGroup col-md-2">
+                @Html.LabelFor(model => model.XDateTime, new { @class = AppDefaults.CssClassLabel })
+                @Html.EditorFor(model => model.XDateTime, new { id = "XDateTime", htmlAttributes = new { @class = AppDefaults.CssClassEditor } })
+                @Html.ValidationMessageFor(model => model.XDateTime, "", new { @class = AppDefaults.CssClassValidator })
+            </div>
+
+            <div id="Group_XDouble" class="@AppDefaults.CssClassGroup col-md-2">
+                @Html.LabelFor(model => model.XDouble, new { @class = AppDefaults.CssClassLabel })
+                @Html.EditorFor(model => model.XDouble, new { id = "XDouble", htmlAttributes = new { @class = AppDefaults.CssClassEditor } })
+                @Html.ValidationMessageFor(model => model.XDouble, "", new { @class = AppDefaults.CssClassValidator })
+            </div>
+
+            <div id="Group_XInteger" class="@AppDefaults.CssClassGroup col-md-2">
+                @Html.LabelFor(model => model.XInteger, new { @class = AppDefaults.CssClassLabel })
+                @Html.EditorFor(model => model.XInteger, new { id = "XInteger", htmlAttributes = new { @class = AppDefaults.CssClassEditor } })
+                @Html.ValidationMessageFor(model => model.XInteger, "", new { @class = AppDefaults.CssClassValidator })
+            </div>
+
+            <div id="Group_XString" class="@AppDefaults.CssClassGroup col-md-2">
+                @Html.LabelFor(model => model.XString, new { @class = AppDefaults.CssClassLabel })
+                @Html.EditorFor(model => model.XString, new { id = "XString", htmlAttributes = new { @class = AppDefaults.CssClassEditor } })
+                @Html.ValidationMessageFor(model => model.XString, "", new { @class = AppDefaults.CssClassValidator })
+            </div>
+
+        </div>
+
+        <div class="z-formButtons">
+            <input type="image" class="btn z-buttonOk" title="@PresentationResources.OK" />
+        </div>
+    }
+</div>
+
+<script>
+    $(function () {
+        try {
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+
+            $(document).prop("title", "@Html.Raw(documentTitle)");
+            zShowOperationResult(model.OperationResult);
+
+            $("#Form").show();
+        } catch (exception) {
+            alert(zExceptionMessage("@CSHTML", "", exception));
+        }
+    });
+</script>

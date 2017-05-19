@@ -1,0 +1,91 @@
+﻿@model PlaylistItemModel
+
+@{
+    string CSHTML = "_PlaylistItem.cshtml";
+}
+
+<div id="Item_Playlist">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.ControllerAction, new { id = "Playlist_Item_ControllerAction" })
+    @Html.ZHiddenFor(model => model.IsReadOnly, "Playlist_Item_IsReadOnly")
+    @Html.ZHiddenFor(model => model.IsSave, "Playlist_Item_IsSave")
+
+    @{Html.EJ().Tab("Tab_Playlist")
+        .ClientSideEvents(clientEvent => clientEvent
+            .ItemActive("itemActive_Tab_Playlist")
+        )
+        //.EnablePersistence()
+        .Items(data =>
+        {
+            data.Add().ID("TabSheet_Playlist_Playlist").Text(PlaylistResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
+                
+                <div id="Group_Playlist_PlaylistId" class="@AppDefaults.CssClassGroup @Playlist.DataProfile.EditWidthCSSFor("PlaylistId")">
+                    @Html.LabelFor(model => model.Playlist.PlaylistId, new { @class = AppDefaults.CssClassLabelRequired })
+                    @Html.EditorFor(model => model.Playlist.PlaylistId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Playlist_PlaylistId" } })
+                    @* @Html.ValidationMessageFor(model => model.Playlist.PlaylistId, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_Playlist_Name" class="@AppDefaults.CssClassGroup @Playlist.DataProfile.EditWidthCSSFor("Name")">
+                    @Html.LabelFor(model => model.Playlist.Name, new { @class = AppDefaults.CssClassLabel })
+                    @Html.EditorFor(model => model.Playlist.Name, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Playlist_Name" } })
+                    @* @Html.ValidationMessageFor(model => model.Playlist.Name, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+
+            </div>);
+            data.Add().ID("TabSheet_Playlist_PlaylistTracks").Text(PlaylistTrackResources.EntityPlural).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">    
+                <div id="Ajax_Playlist_PlaylistTracks"></div>
+            </div>);
+        })
+        .Render();
+    }
+</div>
+
+<script>
+    // Validate hidden fields
+    $.validator.setDefaults({ ignore: null });
+    // Parse validators
+    $.validator.unobtrusive.parse($("#ZAjax"));
+
+    $(function () {
+        try {
+            ej.widget.init($("#Item_Playlist"));
+
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Playlist.DataProfile));
+            var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
+
+            var ajaxUrl = "";
+            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "PlaylistTracks")) {
+                // PlaylistTracks
+                zUrlDictionaryWrite("PlaylistTrack", "@Context.Request.Url.AbsoluteUri");
+                ajaxUrl = "@(Html.Raw(Url.Action("Search", "PlaylistTrack", new { MasterControllerAction = Model.ControllerAction, MasterPlaylistId = Model.Playlist.PlaylistId })))";
+                zAjaxLoadSync("Ajax_Playlist_PlaylistTracks", ajaxUrl);
+            }
+
+            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+                $("#Group_Playlist_PlaylistId").hide();
+            }
+
+            // Associations (FK)
+
+            zOnItemView(model, dataProfile);        
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception));
+        }
+    });    
+
+    function itemActive_Tab_Playlist(args) {
+        zTabDictionaryWrite("Playlist", args.model.selectedItemIndex);
+
+        try {
+            switch(args.model.selectedItemIndex) {
+                case 1:
+                    zGridDataSource("Grid_PlaylistTrack", "@Url.Action("DataSource", "PlaylistTrack")");
+                    break;
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "itemActive_Tab_Playlist", exception));
+        }
+    }
+</script>

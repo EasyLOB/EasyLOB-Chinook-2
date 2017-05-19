@@ -1,0 +1,106 @@
+﻿@model PlaylistTrackItemModel
+
+@{
+    string CSHTML = "_PlaylistTrackItem.cshtml";
+    string playlistText = Model.PlaylistTrack == null ? "" : (Model.PlaylistTrack.PlaylistLookupText ?? "");
+    string trackText = Model.PlaylistTrack == null ? "" : (Model.PlaylistTrack.TrackLookupText ?? "");
+}
+
+<div id="Item_PlaylistTrack">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.ControllerAction, new { id = "PlaylistTrack_Item_ControllerAction" })
+    @Html.ZHiddenFor(model => model.IsReadOnly, "PlaylistTrack_Item_IsReadOnly")
+    @Html.ZHiddenFor(model => model.IsSave, "PlaylistTrack_Item_IsSave")
+    @Html.HiddenFor(model => model.MasterPlaylistId, new { id = "PlaylistTrack_Item_MasterPlaylistId" })
+    @Html.HiddenFor(model => model.MasterTrackId, new { id = "PlaylistTrack_Item_MasterTrackId" })
+
+    @{Html.EJ().Tab("Tab_PlaylistTrack")
+        .ClientSideEvents(clientEvent => clientEvent
+            .ItemActive("itemActive_Tab_PlaylistTrack")
+        )
+        //.EnablePersistence()
+        .Items(data =>
+        {
+            data.Add().ID("TabSheet_PlaylistTrack_PlaylistTrack").Text(PlaylistTrackResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
+                
+                <div id="Group_PlaylistTrack_PlaylistId" class="@AppDefaults.CssClassGroup @PlaylistTrack.DataProfile.EditWidthCSSFor("PlaylistLookupText")">
+                    @Html.LabelFor(model => model.PlaylistTrack.PlaylistId, new { @class = AppDefaults.CssClassLabelRequired })
+                    @Html.EditorFor(model => model.PlaylistTrack.PlaylistId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "PlaylistTrack_PlaylistId" } })
+                    @{
+                        Html.RenderAction("Lookup", "Playlist", new
+                        {
+                            Text = playlistText,
+                            ValueId = "PlaylistTrack_PlaylistId"
+                        });
+                    }
+                    @* @Html.ValidationMessageFor(model => model.PlaylistTrack.PlaylistId, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_PlaylistTrack_TrackId" class="@AppDefaults.CssClassGroup @PlaylistTrack.DataProfile.EditWidthCSSFor("TrackLookupText")">
+                    @Html.LabelFor(model => model.PlaylistTrack.TrackId, new { @class = AppDefaults.CssClassLabelRequired })
+                    @Html.EditorFor(model => model.PlaylistTrack.TrackId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "PlaylistTrack_TrackId" } })
+                    @{
+                        Html.RenderAction("Lookup", "Track", new
+                        {
+                            Text = trackText,
+                            ValueId = "PlaylistTrack_TrackId"
+                        });
+                    }
+                    @* @Html.ValidationMessageFor(model => model.PlaylistTrack.TrackId, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+
+            </div>);
+        })
+        .Render();
+    }
+</div>
+
+<script>
+    // Validate hidden fields
+    $.validator.setDefaults({ ignore: null });
+    // Parse validators
+    $.validator.unobtrusive.parse($("#ZAjax"));
+
+    $(function () {
+        try {
+            ej.widget.init($("#Item_PlaylistTrack"));
+
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(PlaylistTrack.DataProfile));
+            var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
+
+            var ajaxUrl = "";
+
+            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+                $("#Group_PlaylistTrack_PlaylistId").hide();
+                $("#Group_PlaylistTrack_TrackId").hide();
+            }
+
+            // Associations (FK)
+            // Playlist
+            if (model.MasterPlaylistId != null) {
+                $("#PlaylistTrack_PlaylistId").val(model.MasterPlaylistId);
+                $("#Group_PlaylistTrack_PlaylistId").hide();            
+            }
+            // Track
+            if (model.MasterTrackId != null) {
+                $("#PlaylistTrack_TrackId").val(model.MasterTrackId);
+                $("#Group_PlaylistTrack_TrackId").hide();            
+            }
+
+            zOnItemView(model, dataProfile);        
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception));
+        }
+    });    
+
+    function itemActive_Tab_PlaylistTrack(args) {
+        zTabDictionaryWrite("PlaylistTrack", args.model.selectedItemIndex);
+
+        try {
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "itemActive_Tab_PlaylistTrack", exception));
+        }
+    }
+</script>

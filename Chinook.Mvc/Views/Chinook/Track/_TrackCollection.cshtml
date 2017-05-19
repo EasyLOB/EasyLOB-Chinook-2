@@ -1,0 +1,329 @@
+﻿@model TrackCollectionModel
+
+@{
+    string CSHTML = "_TrackCollection.cshtml";
+
+    string query = "";
+    if (Model.MasterAlbumId != null)
+    {
+        query = String.Format("ej.Query().where(\"AlbumId\", ej.FilterOperators.equal, {0})", Model.MasterAlbumId);
+    }
+    else if (Model.MasterGenreId != null)
+    {
+        query = String.Format("ej.Query().where(\"GenreId\", ej.FilterOperators.equal, {0})", Model.MasterGenreId);
+    }
+    else if (Model.MasterMediaTypeId != null)
+    {
+        query = String.Format("ej.Query().where(\"MediaTypeId\", ej.FilterOperators.equal, {0})", Model.MasterMediaTypeId);
+    }
+}
+
+<div id="Collection_Track">
+    @(Html.EJ().Grid<Track>("Grid_Track")
+        //.Datasource(datasource => datasource
+        //    .Adaptor(AdaptorType.UrlAdaptor)
+        //    .URL(Url.Action("DataSource", "Track"))
+        //)
+        .Query(query)        
+        .AllowFiltering()
+        .AllowGrouping()
+        .AllowPaging()
+        .AllowReordering()
+        //.AllowResizeToFit()
+        .AllowResizing()
+        //.AllowScrolling()
+        .AllowSearching()
+        .AllowSorting()
+        .AllowTextWrap()
+        .TextWrapSettings(wrap =>
+        {
+            wrap.WrapMode(WrapMode.Both);
+        })                    
+        .ClientSideEvents(clientEvent => clientEvent
+            .ActionBegin("actionBegin_Grid_Track")
+            .ActionFailure("actionFailure_Grid_Track")
+            .Load("load_Grid_Track")
+            .ToolbarClick("toolbarClick_Grid_Track")
+        )
+        .Columns(column =>
+        {
+            column.Field("TrackId")
+                .AllowEditing(false)
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(TrackResources.PropertyTrackId)
+                .IsIdentity(true)
+                .IsPrimaryKey(true)
+                .TextAlign(TextAlign.Right)
+                .Visible(Track.DataProfile.IsGridVisibleFor("TrackId"))
+                .Width(Track.DataProfile.GridWidthFor("TrackId"))
+                .Add();
+            column.Field("Name")
+                .EditType(EditingType.String)
+                .HeaderText(TrackResources.PropertyName)
+                .Visible(Track.DataProfile.IsGridVisibleFor("Name"))
+                .Width(Track.DataProfile.GridWidthFor("Name"))
+                .Add();
+            column.Field("AlbumId")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(TrackResources.PropertyAlbumId)
+                .TextAlign(TextAlign.Right)
+                .Visible(Track.DataProfile.IsGridVisibleFor("AlbumId"))
+                .Width(Track.DataProfile.GridWidthFor("AlbumId"))
+                .Add();
+            column.Field("AlbumLookupText")
+                .AllowEditing(false)
+                .HeaderText(AlbumResources.EntitySingular)
+                .Visible(Track.DataProfile.IsGridVisibleFor("AlbumLookupText"))
+                .Width(Track.DataProfile.GridWidthFor("AlbumLookupText"))
+                .Add();
+            column.Field("MediaTypeId")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(TrackResources.PropertyMediaTypeId)
+                .TextAlign(TextAlign.Right)
+                .Visible(Track.DataProfile.IsGridVisibleFor("MediaTypeId"))
+                .Width(Track.DataProfile.GridWidthFor("MediaTypeId"))
+                .Add();
+            column.Field("MediaTypeLookupText")
+                .AllowEditing(false)
+                .HeaderText(MediaTypeResources.EntitySingular)
+                .Visible(Track.DataProfile.IsGridVisibleFor("MediaTypeLookupText"))
+                .Width(Track.DataProfile.GridWidthFor("MediaTypeLookupText"))
+                .Add();
+            column.Field("GenreId")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(TrackResources.PropertyGenreId)
+                .TextAlign(TextAlign.Right)
+                .Visible(Track.DataProfile.IsGridVisibleFor("GenreId"))
+                .Width(Track.DataProfile.GridWidthFor("GenreId"))
+                .Add();
+            column.Field("GenreLookupText")
+                .AllowEditing(false)
+                .HeaderText(GenreResources.EntitySingular)
+                .Visible(Track.DataProfile.IsGridVisibleFor("GenreLookupText"))
+                .Width(Track.DataProfile.GridWidthFor("GenreLookupText"))
+                .Add();
+            column.Field("Composer")
+                .EditType(EditingType.String)
+                .HeaderText(TrackResources.PropertyComposer)
+                .Visible(Track.DataProfile.IsGridVisibleFor("Composer"))
+                .Width(Track.DataProfile.GridWidthFor("Composer"))
+                .Add();
+            column.Field("Milliseconds")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(TrackResources.PropertyMilliseconds)
+                .TextAlign(TextAlign.Right)
+                .Visible(Track.DataProfile.IsGridVisibleFor("Milliseconds"))
+                .Width(Track.DataProfile.GridWidthFor("Milliseconds"))
+                .Add();
+            column.Field("Bytes")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Integer)
+                .HeaderText(TrackResources.PropertyBytes)
+                .TextAlign(TextAlign.Right)
+                .Visible(Track.DataProfile.IsGridVisibleFor("Bytes"))
+                .Width(Track.DataProfile.GridWidthFor("Bytes"))
+                .Add();
+            column.Field("UnitPrice")
+                .EditType(EditingType.Numeric)
+                .Format(SyncfusionPatternResources.GridFormat_Float)
+                .HeaderText(TrackResources.PropertyUnitPrice)
+                .TextAlign(TextAlign.Right)
+                .Visible(Track.DataProfile.IsGridVisibleFor("UnitPrice"))
+                .Width(Track.DataProfile.GridWidthFor("UnitPrice"))
+                .Add();
+        })
+        .EditSettings(edit => edit
+            .AllowAdding()
+            .AllowDeleting()
+            .AllowEditing()
+            .AllowEditOnDblClick(false)
+        )
+        //.EnablePersistence()
+        .IsResponsive()
+        .FilterSettings(filter => filter
+            .EnableCaseSensitivity(false)
+            .FilterType(FilterType.Excel)
+            .MaxFilterChoices(AppDefaults.SyncfusionRecordsForFiltering)
+        )
+        //.Mappers(map => map
+        //    .ExportToExcelAction(Url.Content("~/Track/ExportToExcel"))
+        //    .ExportToPdfAction(Url.Content("~/Track/ExportToPdf"))
+        //    .ExportToWordAction(Url.Content("~/Track/ExportToWord"))
+        //)
+        .PageSettings(page => page
+            .PageSize(AppDefaults.SyncfusionRecordsByPage)
+        )
+        @*
+        .SearchSettings(search =>
+        {
+            search.Fields(field =>
+            {
+                field.Add("TrackId");
+                field.Add("Name");
+                //field.Add("AlbumId");
+                field.Add("AlbumLookupText");
+                //field.Add("MediaTypeId");
+                field.Add("MediaTypeLookupText");
+                //field.Add("GenreId");
+                field.Add("GenreLookupText");
+                field.Add("Composer");
+                //field.Add("Milliseconds");
+                //field.Add("Bytes");
+                //field.Add("UnitPrice");
+            });
+        })
+        *@
+        .ShowColumnChooser()
+        .ToolbarSettings(toolbar => toolbar
+            .CustomToolbarItems(new List<object>() {
+                new Syncfusion.JavaScript.Models.CustomToolbarItem() { TemplateID = "#Grid_Track_Toolbar" }
+            })
+            .ShowToolbar()
+            .ToolbarItems(items =>
+            {
+                items.AddTool(ToolBarItems.Search);
+                items.AddTool(ToolBarItems.Add);
+                items.AddTool(ToolBarItems.Edit);
+                items.AddTool(ToolBarItems.Delete);
+                //items.AddTool(ToolBarItems.ExcelExport);
+                //items.AddTool(ToolBarItems.PdfExport);
+                //items.AddTool(ToolBarItems.WordExport);
+            })
+        )
+    )
+</div>
+
+<script type="text/x-jsrender" id="Grid_Track_Toolbar">
+    <div id="Grid_Track_Toolbar_Refresh" class="e-toolbaricons e-icon e-reload" title="@PresentationResources.Refresh"></div>
+    <div id="Grid_Track_Toolbar_Read" class="e-toolbaricons e-icon e-document" title="@PresentationResources.Read"></div>
+</script>
+
+<script>
+    $(function () {
+        try {
+            ej.widget.init($("#Collection_Track"));
+
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Track.DataProfile));
+
+            zOnCollectionView(model, dataProfile, "@Url.Action("DataSource", "Track")");
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception));
+        }                
+    });
+    
+    function actionBegin_Grid_Track(args) {
+        try {
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var masterControllerAction = model.MasterControllerAction == null ? "" : model.MasterControllerAction.toLowerCase();
+    
+            // Associations (FK)
+            var url = "";
+            // Album
+            if (model.MasterAlbumId != null) {
+                url = url + (url == "" ? "" : "&") + "MasterAlbumId=" + String(model.MasterAlbumId);
+            }
+            // Genre
+            if (model.MasterGenreId != null) {
+                url = url + (url == "" ? "" : "&") + "MasterGenreId=" + String(model.MasterGenreId);
+            }
+            // MediaType
+            if (model.MasterMediaTypeId != null) {
+                url = url + (url == "" ? "" : "&") + "MasterMediaTypeId=" + String(model.MasterMediaTypeId);
+            }
+
+            if (masterControllerAction == "" || masterControllerAction == "update") {
+                switch(args.requestType) {
+                    case "searching":
+                        // Search
+                        zSearchDictionaryWrite("Track", args.keyValue);
+                        break;
+                    case "add":
+                        // Create
+                        if (model.ActivityOperations.IsCreate) {
+                            $("#ZAjax").load("@(Url.Action("Create", "Track", null, Request.Url.Scheme))" +
+                                (url == "" ? "" : "?") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                        }
+                        break;
+                    case "read":
+                        // Read
+                        if (model.ActivityOperations.IsRead) {
+                            var data = args.data;
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Read", "Track", null, Request.Url.Scheme))?TrackId=" + String(data.TrackId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;                        
+                    case "beginedit":
+                        // Update
+                        if (model.ActivityOperations.IsUpdate) {
+                            var data = this.model.currentViewData[args.rowIndex];
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Update", "Track", null, Request.Url.Scheme))?TrackId=" + String(data.TrackId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;
+                    case "delete":
+                        // Delete
+                        if (model.ActivityOperations.IsDelete) {
+                            var data = args.data;
+                            if (!ej.isNullOrUndefined(data)) {
+                                $("#ZAjax").load("@(Url.Action("Delete", "Track", null, Request.Url.Scheme))?TrackId=" + String(data.TrackId) +
+                                    (url == "" ? "" : "&") + url, function (responseText, textStatus, jqXHR) { zAjaxLoadComplete(responseText, textStatus, jqXHR); });
+                            }
+                        }
+                        break;
+                }
+            }
+
+            if (args.requestType == "add" || args.requestType == "beginedit" || args.requestType == "delete") {
+                args.cancel = true;
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "actionBegin_Grid_Track", exception));
+        }            
+    }
+    
+    function actionFailure_Grid_Track(args) {
+        try {
+            zAlert(args.error.responseText);
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "actionFailure_Grid_Track", exception));
+        }
+    }    
+
+    function load_Grid_Track(args) {
+        try {            
+            var culture = "@System.Globalization.CultureInfo.CurrentCulture.Name";
+            this.model.locale = culture;
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "load_Grid_Track", exception));
+        }
+    }
+
+    function toolbarClick_Grid_Track(sender) {
+        try {
+            var toolbar = $(sender.target);
+            var ejGrid = $("#Grid_Track").data("ejGrid");
+
+            if (toolbar.prop("id") == "Grid_Track_Toolbar_Refresh") {
+                ejGrid.refreshContent();
+            } else if (toolbar.prop("id") == "Grid_Track_Toolbar_Read") {
+                var records = ejGrid.getSelectedRecords();
+                if (records.length == 1) {
+                    var args = { requestType: "read", data: records[0] };
+                    actionBegin_Grid_Track(args)
+                }
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "toolbarClick_Grid_Track", exception));
+        }
+    }
+</script>

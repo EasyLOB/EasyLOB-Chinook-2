@@ -1,0 +1,91 @@
+﻿@model GenreItemModel
+
+@{
+    string CSHTML = "_GenreItem.cshtml";
+}
+
+<div id="Item_Genre">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.ControllerAction, new { id = "Genre_Item_ControllerAction" })
+    @Html.ZHiddenFor(model => model.IsReadOnly, "Genre_Item_IsReadOnly")
+    @Html.ZHiddenFor(model => model.IsSave, "Genre_Item_IsSave")
+
+    @{Html.EJ().Tab("Tab_Genre")
+        .ClientSideEvents(clientEvent => clientEvent
+            .ItemActive("itemActive_Tab_Genre")
+        )
+        //.EnablePersistence()
+        .Items(data =>
+        {
+            data.Add().ID("TabSheet_Genre_Genre").Text(GenreResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
+                
+                <div id="Group_Genre_GenreId" class="@AppDefaults.CssClassGroup @Genre.DataProfile.EditWidthCSSFor("GenreId")">
+                    @Html.LabelFor(model => model.Genre.GenreId, new { @class = AppDefaults.CssClassLabelRequired })
+                    @Html.EditorFor(model => model.Genre.GenreId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Genre_GenreId" } })
+                    @* @Html.ValidationMessageFor(model => model.Genre.GenreId, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+                
+                <div id="Group_Genre_Name" class="@AppDefaults.CssClassGroup @Genre.DataProfile.EditWidthCSSFor("Name")">
+                    @Html.LabelFor(model => model.Genre.Name, new { @class = AppDefaults.CssClassLabel })
+                    @Html.EditorFor(model => model.Genre.Name, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Genre_Name" } })
+                    @* @Html.ValidationMessageFor(model => model.Genre.Name, "", new { @class = AppDefaults.CssClassValidator }) *@
+                </div>
+
+            </div>);
+            data.Add().ID("TabSheet_Genre_Tracks").Text(TrackResources.EntityPlural).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">    
+                <div id="Ajax_Genre_Tracks"></div>
+            </div>);
+        })
+        .Render();
+    }
+</div>
+
+<script>
+    // Validate hidden fields
+    $.validator.setDefaults({ ignore: null });
+    // Parse validators
+    $.validator.unobtrusive.parse($("#ZAjax"));
+
+    $(function () {
+        try {
+            ej.widget.init($("#Item_Genre"));
+
+            var model = @Html.Raw(JsonConvert.SerializeObject(Model));
+            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Genre.DataProfile));
+            var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
+
+            var ajaxUrl = "";
+            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "Tracks")) {
+                // Tracks
+                zUrlDictionaryWrite("Track", "@Context.Request.Url.AbsoluteUri");
+                ajaxUrl = "@(Html.Raw(Url.Action("Search", "Track", new { MasterControllerAction = Model.ControllerAction, MasterGenreId = Model.Genre.GenreId })))";
+                zAjaxLoadSync("Ajax_Genre_Tracks", ajaxUrl);
+            }
+
+            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+                $("#Group_Genre_GenreId").hide();
+            }
+
+            // Associations (FK)
+
+            zOnItemView(model, dataProfile);        
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "function", exception));
+        }
+    });    
+
+    function itemActive_Tab_Genre(args) {
+        zTabDictionaryWrite("Genre", args.model.selectedItemIndex);
+
+        try {
+            switch(args.model.selectedItemIndex) {
+                case 1:
+                    zGridDataSource("Grid_Track", "@Url.Action("DataSource", "Track")");
+                    break;
+            }
+        } catch (exception) {
+            zAlert(zExceptionMessage("@CSHTML", "itemActive_Tab_Genre", exception));
+        }
+    }
+</script>
