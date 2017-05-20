@@ -321,8 +321,12 @@
     </Compile>
     <Compile Include="Models\Activity-Custom\CollectionModels\ActivityRoleCollectionModel.cs" />
     <Compile Include="Models\Activity-Custom\ItemModels\ActivityRoleItemModel.cs" />
+    <Compile Include="Models\Activity-Custom\ViewModels\ActivityViewModel.cs" />
     <Compile Include="Models\Activity\CollectionModels\ActivityCollectionModel.cs" />
     <Compile Include="Models\Activity\ItemModels\ActivityItemModel.cs" />
+    <Compile Include="Models\Activity\ViewModels\ActivityRoleViewModel.cs" />
+    <Compile Include="Models\AuditTrail-Custom\ViewModels\AuditTrailConfigurationViewModel.cs" />
+    <Compile Include="Models\AuditTrail-Custom\ViewModels\AuditTrailLogViewModel.cs" />
     <Compile Include="Models\AuditTrail\CollectionModels\AuditTrailConfigurationCollectionModel.cs" />
     <Compile Include="Models\AuditTrail\CollectionModels\AuditTrailLogCollectionModel.cs" />
     <Compile Include="Models\AuditTrail\ItemModels\AuditTrailConfigurationItemModel.cs" />
@@ -368,6 +372,8 @@
     <Compile Include="Models\Chinook\ViewModels\PlaylistViewModel.cs" />
     <Compile Include="Models\Chinook\ViewModels\TrackViewModel.cs" />
     <Compile Include="Models\CollectionModel.cs" />
+    <Compile Include="Models\Identity-Custom\ViewModels\RoleViewModel.cs" />
+    <Compile Include="Models\Identity-Custom\ViewModels\UserViewModel.cs" />
     <Compile Include="Models\Identity\CollectionModels\RoleCollectionModel.cs" />
     <Compile Include="Models\Identity\CollectionModels\UserClaimCollectionModel.cs" />
     <Compile Include="Models\Identity\CollectionModels\UserCollectionModel.cs" />
@@ -378,6 +384,9 @@
     <Compile Include="Models\Identity\ItemModels\UserItemModel.cs" />
     <Compile Include="Models\Identity\ItemModels\UserLoginItemModel.cs" />
     <Compile Include="Models\Identity\ItemModels\UserRoleItemModel.cs" />
+    <Compile Include="Models\Identity\ViewModels\UserClaimViewModel.cs" />
+    <Compile Include="Models\Identity\ViewModels\UserLoginViewModel.cs" />
+    <Compile Include="Models\Identity\ViewModels\UserRoleViewModel.cs" />
     <Compile Include="Models\ItemModel.cs" />
     <Compile Include="Models\Reports\ReportModelRDL.cs" />
     <Compile Include="Models\Reports\ReportModelRDLC.cs" />
@@ -1373,7 +1382,10 @@
     <Folder Include="Content\ej\web\responsive-css\" />
     <Folder Include="Content\ej\web\ribbon-css\" />
     <Folder Include="Controllers\Activity\" />
+    <Folder Include="Controllers\AuditTrail-Custom\" />
     <Folder Include="Controllers\ChinookAPI-Custom\" />
+    <Folder Include="Controllers\Identity-Custom\" />
+    <Folder Include="Models\AuditTrail\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">
