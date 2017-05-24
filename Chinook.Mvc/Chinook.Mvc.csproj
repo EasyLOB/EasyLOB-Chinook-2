@@ -1160,7 +1160,7 @@
     <Content Include="Views\Chinook\Employee\Index.cshtml" />
     <Content Include="Views\Chinook\Employee\Search.cshtml" />
     <Content Include="Views\Chinook\Employee\_EmployeeCollection.cshtml" />
-    <Content Include="Views\Chinook\Employee\_EmployeeItem.cshtml" />
+    <Content Include="Views\Chinook-Custom\Employee\_EmployeeItem.cshtml" />
     <Content Include="Views\Chinook\Employee\_EmployeeLookup.cshtml" />
     <Content Include="Views\Chinook\Genre\CRUD.cshtml" />
     <Content Include="Views\Chinook\Genre\Index.cshtml" />

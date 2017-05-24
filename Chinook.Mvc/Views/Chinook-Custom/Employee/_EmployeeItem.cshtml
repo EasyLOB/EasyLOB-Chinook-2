@@ -125,9 +125,11 @@
             data.Add().ID("TabSheet_Employee_Customers").Text(CustomerResources.EntityPlural).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">    
                 <div id="Ajax_Employee_Customers"></div>
             </div>);
+            @* !!!
             data.Add().ID("TabSheet_Employee_Employees").Text(EmployeeResources.EntityPlural).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">    
                 <div id="Ajax_Employee_Employees"></div>
             </div>);
+            *@
         })
         .Render();
     }
@@ -154,12 +156,14 @@
                 ajaxUrl = "@(Html.Raw(Url.Action("Search", "Customer", new { MasterControllerAction = Model.ControllerAction, MasterSupportRepId = Model.Employee.EmployeeId })))";
                 zAjaxLoadSync("Ajax_Employee_Customers", ajaxUrl);
             }
+            /* !!!
             if (controllerAction != "create" && zContains(dataProfile.EditCollections, "Employees")) {
                 // Employees
-                zUrlDictionaryWrite("Employee", "@Context.Request.Url.AbsoluteUri");
-                ajaxUrl = "@(Html.Raw(Url.Action("Search", "Employee", new { MasterControllerAction = Model.ControllerAction, MasterReportsTo = Model.Employee.EmployeeId })))";
+                zUrlDictionaryWrite("Employee", "Context.Request.Url.AbsoluteUri");
+                ajaxUrl = "(Html.Raw(Url.Action("Search", "Employee", new { MasterControllerAction = Model.ControllerAction, MasterReportsTo = Model.Employee.EmployeeId })))";
                 zAjaxLoadSync("Ajax_Employee_Employees", ajaxUrl);
             }
+            */
 
             if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
                 $("#Group_Employee_EmployeeId").hide();
@@ -186,9 +190,11 @@
                 case 1:
                     zGridDataSource("Grid_Customer", "@Url.Action("DataSource", "Customer")");
                     break;
+                /* !!!
                 case 2:
-                    zGridDataSource("Grid_Employee", "@Url.Action("DataSource", "Employee")");
+                    zGridDataSource("Grid_Employee", "Url.Action("DataSource", "Employee")");
                     break;
+                */
             }
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "itemActive_Tab_Employee", exception));
