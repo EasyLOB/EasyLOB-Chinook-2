@@ -54,7 +54,7 @@
     <Compile Include="DataProfiles\ArtistProfile.cs" />
     <Compile Include="DataProfiles-Custom\CustomerDocumentProfile.cs" />
     <Compile Include="DataProfiles\CustomerProfile.cs" />
-    <Compile Include="DataProfiles\EmployeeProfile.cs" />
+    <Compile Include="DataProfiles-Custom\EmployeeProfile.cs" />
     <Compile Include="DataProfiles\GenreProfile.cs" />
     <Compile Include="DataProfiles\InvoiceLineProfile.cs" />
     <Compile Include="DataProfiles\InvoiceProfile.cs" />

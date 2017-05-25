@@ -26,7 +26,7 @@ namespace Chinook.Data
                         CollectionsDictionary: new Dictionary<string, bool>
                         {
                             { "Customers", true },
-                            { "Employees", true }
+                            { "Employees", false } // !!!
                         },
                         LINQOrderBy: "LastName",
                         LINQWhere: "EmployeeId == @0"
