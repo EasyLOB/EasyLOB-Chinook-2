@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Http;
 
-namespace Chinook.Mvc
+namespace Chinook.WebApi
 {
     public class InvoiceAPIController : BaseApiControllerApplication<InvoiceDTO, Invoice>
     {
@@ -97,12 +97,9 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsValid(operationResult, invoiceDTO))
+                if (Application.Create(operationResult, invoiceDTO))
                 {
-                    if (Application.Create(operationResult, invoiceDTO))
-                    {
-                        return CreatedAtRoute("DefaultApi", new { invoiceDTO.InvoiceId }, invoiceDTO);
-                    }
+                    return CreatedAtRoute("DefaultApi", new { invoiceDTO.InvoiceId }, invoiceDTO);
                 }
             }
             catch (Exception exception)
@@ -121,12 +118,9 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsValid(operationResult, invoiceDTO))
+                if (Application.Create(operationResult, invoiceDTO))
                 {
-                    if (Application.Create(operationResult, invoiceDTO))
-                    {
-                        return Ok(invoiceDTO);
-                    }
+                    return Ok(invoiceDTO);
                 }
             }
             catch (Exception exception)

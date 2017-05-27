@@ -11,7 +11,7 @@ namespace Chinook.Persistence
         public ChinookUnitOfWorkLINQ2DB(IAuthenticationManager authenticationManager)
             : base(new ChinookLINQ2DB(), authenticationManager)
         {
-            Domain = "Chinook";
+            //Domain = "Chinook"; // ???
 
             Repositories.Add(typeof(Album), new ChinookAlbumRepositoryLINQ2DB(this));            
             Repositories.Add(typeof(Artist), new ChinookArtistRepositoryLINQ2DB(this));            

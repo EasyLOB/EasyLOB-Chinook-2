@@ -10,7 +10,7 @@ namespace Chinook.Persistence
         public ChinookUnitOfWorkNH(IAuthenticationManager authenticationManager)
             : base(ChinookFactory.Session, authenticationManager)
         {
-            Domain = "Chinook";
+            //Domain = "Chinook"; // ???
 
             //ISession session = base.Session;
         }

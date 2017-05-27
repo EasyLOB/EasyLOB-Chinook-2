@@ -10,8 +10,7 @@ namespace Chinook.Persistence
         public ChinookUnitOfWorkEF(IAuthenticationManager authenticationManager)
             : base(new ChinookDbContext(), authenticationManager)
         {
-            Domain = ""; // ???
-            //Domain = "Chinook";
+            //Domain = "Chinook"; // ???
 
             //ChinookDbContext context = (ChinookDbContext)base.context;
         }

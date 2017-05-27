@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Http;
 
-namespace Chinook.Mvc
+namespace Chinook.WebApi
 {
     public class MediaTypeAPIController : BaseApiControllerApplication<MediaTypeDTO, MediaType>
     {
@@ -97,12 +97,9 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsValid(operationResult, mediaTypeDTO))
+                if (Application.Create(operationResult, mediaTypeDTO))
                 {
-                    if (Application.Create(operationResult, mediaTypeDTO))
-                    {
-                        return CreatedAtRoute("DefaultApi", new { mediaTypeDTO.MediaTypeId }, mediaTypeDTO);
-                    }
+                    return CreatedAtRoute("DefaultApi", new { mediaTypeDTO.MediaTypeId }, mediaTypeDTO);
                 }
             }
             catch (Exception exception)
@@ -121,12 +118,9 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsValid(operationResult, mediaTypeDTO))
+                if (Application.Create(operationResult, mediaTypeDTO))
                 {
-                    if (Application.Create(operationResult, mediaTypeDTO))
-                    {
-                        return Ok(mediaTypeDTO);
-                    }
+                    return Ok(mediaTypeDTO);
                 }
             }
             catch (Exception exception)

@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Http;
 
-namespace Chinook.Mvc
+namespace Chinook.WebApi
 {
     public class TrackAPIController : BaseApiControllerApplication<TrackDTO, Track>
     {
@@ -97,12 +97,9 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsValid(operationResult, trackDTO))
+                if (Application.Create(operationResult, trackDTO))
                 {
-                    if (Application.Create(operationResult, trackDTO))
-                    {
-                        return CreatedAtRoute("DefaultApi", new { trackDTO.TrackId }, trackDTO);
-                    }
+                    return CreatedAtRoute("DefaultApi", new { trackDTO.TrackId }, trackDTO);
                 }
             }
             catch (Exception exception)
@@ -121,12 +118,9 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsValid(operationResult, trackDTO))
+                if (Application.Create(operationResult, trackDTO))
                 {
-                    if (Application.Create(operationResult, trackDTO))
-                    {
-                        return Ok(trackDTO);
-                    }
+                    return Ok(trackDTO);
                 }
             }
             catch (Exception exception)

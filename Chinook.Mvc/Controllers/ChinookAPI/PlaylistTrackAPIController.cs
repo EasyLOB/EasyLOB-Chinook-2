@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Http;
 
-namespace Chinook.Mvc
+namespace Chinook.WebApi
 {
     public class PlaylistTrackAPIController : BaseApiControllerApplication<PlaylistTrackDTO, PlaylistTrack>
     {
@@ -97,12 +97,9 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsValid(operationResult, playlistTrackDTO))
+                if (Application.Create(operationResult, playlistTrackDTO))
                 {
-                    if (Application.Create(operationResult, playlistTrackDTO))
-                    {
-                        return CreatedAtRoute("DefaultApi", new { playlistTrackDTO.PlaylistId, playlistTrackDTO.TrackId }, playlistTrackDTO);
-                    }
+                    return CreatedAtRoute("DefaultApi", new { playlistTrackDTO.PlaylistId, playlistTrackDTO.TrackId }, playlistTrackDTO);
                 }
             }
             catch (Exception exception)
@@ -121,12 +118,9 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsValid(operationResult, playlistTrackDTO))
+                if (Application.Create(operationResult, playlistTrackDTO))
                 {
-                    if (Application.Create(operationResult, playlistTrackDTO))
-                    {
-                        return Ok(playlistTrackDTO);
-                    }
+                    return Ok(playlistTrackDTO);
                 }
             }
             catch (Exception exception)

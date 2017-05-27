@@ -1,4 +1,4 @@
-using EasyLOB.Data;
+﻿using EasyLOB.Data;
 using EasyLOB.Security;
 using System.Web.Mvc;
 
@@ -46,13 +46,6 @@ namespace EasyLOB.WebApi
         public BaseApiController()
         {
             AuthorizationManager = DependencyResolver.Current.GetService<IAuthorizationManager>();
-        }
-
-        protected virtual bool IsValid(ZOperationResult operationResult, IZValidatableObject entity)
-        {
-            entity.Validate(operationResult);
-
-            return base.IsValid(operationResult, typeof(TEntity).Name);
         }
 
         #endregion Methods
