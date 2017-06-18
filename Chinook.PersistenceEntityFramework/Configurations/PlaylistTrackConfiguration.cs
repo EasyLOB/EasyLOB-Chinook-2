@@ -22,12 +22,14 @@ namespace Chinook.Persistence
                 .HasColumnName("PlaylistId")
                 .HasColumnOrder(1)
                 .HasColumnType("int")
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None)
                 .IsRequired();
         
             this.Property(x => x.TrackId)
                 .HasColumnName("TrackId")
                 .HasColumnOrder(2)
                 .HasColumnType("int")
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None)
                 .IsRequired();
 
             #endregion Properties
