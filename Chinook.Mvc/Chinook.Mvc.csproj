@@ -243,18 +243,18 @@
     <Compile Include="Controllers\Chinook-Custom\ChinookTasks\SimpleAJAX.cs" />
     <Compile Include="Controllers\Chinook-Custom\ChinookTasks\Simple.cs" />
     <Compile Include="Controllers\Chinook-Custom\CustomerDocumentController.cs" />
-    <Compile Include="Controllers\ChinookAPI\AlbumAPIController.cs" />
-    <Compile Include="Controllers\ChinookAPI\ArtistAPIController.cs" />
-    <Compile Include="Controllers\ChinookAPI\CustomerAPIController.cs" />
-    <Compile Include="Controllers\ChinookAPI\CustomerDocumentAPIController.cs" />
-    <Compile Include="Controllers\ChinookAPI\EmployeeAPIController.cs" />
-    <Compile Include="Controllers\ChinookAPI\GenreAPIController.cs" />
-    <Compile Include="Controllers\ChinookAPI\InvoiceAPIController.cs" />
-    <Compile Include="Controllers\ChinookAPI\InvoiceLineAPIController.cs" />
-    <Compile Include="Controllers\ChinookAPI\MediaTypeAPIController.cs" />
-    <Compile Include="Controllers\ChinookAPI\PlaylistAPIController.cs" />
-    <Compile Include="Controllers\ChinookAPI\PlaylistTrackAPIController.cs" />
-    <Compile Include="Controllers\ChinookAPI\TrackAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\AlbumAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\ArtistAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\CustomerAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\CustomerDocumentAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\EmployeeAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\GenreAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\InvoiceAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\InvoiceLineAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\MediaTypeAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\PlaylistAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\PlaylistTrackAPIController.cs" />
+    <Compile Include="Controllers\WebAPI-Chinook\TrackAPIController.cs" />
     <Compile Include="Controllers\Chinook\AlbumController.cs" />
     <Compile Include="Controllers\Chinook\ArtistController.cs" />
     <Compile Include="Controllers\Chinook\CustomerController.cs" />
@@ -299,10 +299,10 @@
     <Compile Include="EasyLOB\Filters\EasyLOBChinookProfileAttribute.cs" />
     <Compile Include="EasyLOB\Filters\EasyLOBMultiTenantAttribute.cs" />
     <Compile Include="EasyLOB\Filters\EasyLOBProfileAttribute.cs" />
-    <Compile Include="EasyLOB\Mvc\CultureAttribute.cs" />
-    <Compile Include="EasyLOB\Mvc\CustomRazorViewEngine.cs" />
+    <Compile Include="EasyLOB\MVC\CultureAttribute.cs" />
+    <Compile Include="EasyLOB\MVC\CustomRazorViewEngine.cs" />
     <Compile Include="Models\LookupModel.cs" />
-    <Compile Include="EasyLOB\Mvc\ValidateModelStateAttribute.cs" />
+    <Compile Include="EasyLOB\MVC\ValidateModelStateAttribute.cs" />
     <Compile Include="EasyLOB\Syncfusion\Dashboard\DashboardServiceSerialization.cs" />
     <Compile Include="EasyLOB\Syncfusion\Dashboard\DashboardViewer.cs" />
     <Compile Include="EasyLOB\Syncfusion\XlsIOExtensions.cs" />
@@ -315,7 +315,7 @@
     <Compile Include="EasyLOB\Unity\UnityHelperIdentity.cs" />
     <Compile Include="EasyLOB\Unity\UnityHelperLog.cs" />
     <Compile Include="EasyLOB\Unity\UnityHelperChinook.cs" />
-    <Compile Include="EasyLOB\WebApi\UnityResolver.cs" />
+    <Compile Include="EasyLOB\WebAPI\UnityResolver.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1378,8 +1378,8 @@
     <Folder Include="Content\ej\web\ribbon-css\" />
     <Folder Include="Controllers\Activity\" />
     <Folder Include="Controllers\AuditTrail-Custom\" />
-    <Folder Include="Controllers\ChinookAPI-Custom\" />
     <Folder Include="Controllers\Identity-Custom\" />
+    <Folder Include="Controllers\WebAPI-Chinook-Custom\" />
     <Folder Include="Models\AuditTrail\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
