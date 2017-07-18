@@ -120,21 +120,6 @@
         .PageSettings(page => page
             .PageSize(AppDefaults.SyncfusionRecordsByPage)
         )
-        @*
-        .SearchSettings(search =>
-        {
-            search.Fields(field =>
-            {
-                field.Add("InvoiceLineId");
-                //field.Add("InvoiceId");
-                field.Add("InvoiceLookupText");
-                //field.Add("TrackId");
-                field.Add("TrackLookupText");
-                //field.Add("UnitPrice");
-                //field.Add("Quantity");
-            });
-        })
-        *@
         .ShowColumnChooser()
         .ToolbarSettings(toolbar => toolbar
             .CustomToolbarItems(new List<object>() {

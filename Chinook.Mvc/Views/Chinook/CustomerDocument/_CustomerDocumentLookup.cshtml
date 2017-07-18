@@ -110,20 +110,6 @@
                     .PageSettings(page => page
                         .PageSize(AppDefaults.SyncfusionRecordsByPage)
                     )
-                    @*
-                    .SearchSettings(search =>
-                    {
-                        search.Fields(field =>
-                        {
-                            field.Add("CustomerDocumentId");
-                            //field.Add("CustomerId");
-                            //field.Add("CustomerLookupText");
-                            field.Add("Description");
-                            field.Add("FileName");
-                            field.Add("FileAcronym");
-                        });
-                    })
-                    *@
                     .ShowColumnChooser()
                     .ToolbarSettings(toolbar => toolbar
                         .CustomToolbarItems(new List<object>() {

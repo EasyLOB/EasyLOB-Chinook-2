@@ -131,24 +131,6 @@
         .PageSettings(page => page
             .PageSize(AppDefaults.SyncfusionRecordsByPage)
         )
-        @*
-        .SearchSettings(search =>
-        {
-            search.Fields(field =>
-            {
-                field.Add("InvoiceId");
-                //field.Add("CustomerId");
-                field.Add("CustomerLookupText");
-                //field.Add("InvoiceDate");
-                field.Add("BillingAddress");
-                field.Add("BillingCity");
-                field.Add("BillingState");
-                field.Add("BillingCountry");
-                field.Add("BillingPostalCode");
-                //field.Add("Total");
-            });
-        })
-        *@
         .ShowColumnChooser()
         .ToolbarSettings(toolbar => toolbar
             .CustomToolbarItems(new List<object>() {

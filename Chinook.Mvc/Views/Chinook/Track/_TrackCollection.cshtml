@@ -158,26 +158,6 @@
         .PageSettings(page => page
             .PageSize(AppDefaults.SyncfusionRecordsByPage)
         )
-        @*
-        .SearchSettings(search =>
-        {
-            search.Fields(field =>
-            {
-                field.Add("TrackId");
-                field.Add("Name");
-                //field.Add("AlbumId");
-                field.Add("AlbumLookupText");
-                //field.Add("MediaTypeId");
-                field.Add("MediaTypeLookupText");
-                //field.Add("GenreId");
-                field.Add("GenreLookupText");
-                field.Add("Composer");
-                //field.Add("Milliseconds");
-                //field.Add("Bytes");
-                //field.Add("UnitPrice");
-            });
-        })
-        *@
         .ShowColumnChooser()
         .ToolbarSettings(toolbar => toolbar
             .CustomToolbarItems(new List<object>() {
