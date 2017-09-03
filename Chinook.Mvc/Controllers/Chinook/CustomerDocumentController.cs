@@ -128,7 +128,7 @@ namespace Chinook.Mvc
         //                        customerDocumentItemModel.OperationResult.StatusMessage =
         //                            EasyLOB.Resources.PresentationResources.CreateToUpdate;
         //                        return JsonResultSuccess(customerDocumentItemModel.OperationResult,
-        //                            Url.Content(String.Format("~/CustomerDocument/Update?CustomerDocumentId={0}", customerDocumentDTO.CustomerDocumentId)));
+        //                            Url.Action("Update", "CustomerDocument", new { CustomerDocumentId = customerDocumentDTO.CustomerDocumentId }, Request.Url.Scheme));
         //                    }
         //                    else
         //                    {
@@ -219,7 +219,7 @@ namespace Chinook.Mvc
                             if (customerDocumentItemModel.IsSave)
                             {
                                 return JsonResultSuccess(customerDocumentItemModel.OperationResult,
-                                    Url.Content(String.Format("~/CustomerDocument/Update?CustomerDocumentId={0}", customerDocumentDTO.CustomerDocumentId)));
+                                    Url.Action("Update", "CustomerDocument", new { CustomerDocumentId = customerDocumentDTO.CustomerDocumentId }, Request.Url.Scheme));
                             }
                             else
                             {

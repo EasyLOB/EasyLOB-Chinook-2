@@ -128,7 +128,7 @@ namespace Chinook.Mvc
                                 playlistTrackItemModel.OperationResult.StatusMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(playlistTrackItemModel.OperationResult,
-                                    Url.Content(String.Format("~/PlaylistTrack/Update?PlaylistId={0}&TrackId={1}", playlistTrackDTO.PlaylistId, playlistTrackDTO.TrackId)));
+                                    Url.Action("Update", "PlaylistTrack", new { PlaylistId = playlistTrackDTO.PlaylistId, TrackId = playlistTrackDTO.TrackId }, Request.Url.Scheme));
                             }
                             else
                             {
@@ -219,7 +219,7 @@ namespace Chinook.Mvc
                             if (playlistTrackItemModel.IsSave)
                             {
                                 return JsonResultSuccess(playlistTrackItemModel.OperationResult,
-                                    Url.Content(String.Format("~/PlaylistTrack/Update?PlaylistId={0}&TrackId={1}", playlistTrackDTO.PlaylistId, playlistTrackDTO.TrackId)));
+                                    Url.Action("Update", "PlaylistTrack", new { PlaylistId = playlistTrackDTO.PlaylistId, TrackId = playlistTrackDTO.TrackId }, Request.Url.Scheme));
                             }
                             else
                             {

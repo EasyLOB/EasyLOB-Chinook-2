@@ -128,7 +128,7 @@ namespace Chinook.Mvc
                                 mediaTypeItemModel.OperationResult.StatusMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(mediaTypeItemModel.OperationResult,
-                                    Url.Content(String.Format("~/MediaType/Update?MediaTypeId={0}", mediaTypeDTO.MediaTypeId)));
+                                    Url.Action("Update", "MediaType", new { MediaTypeId = mediaTypeDTO.MediaTypeId }, Request.Url.Scheme));
                             }
                             else
                             {
@@ -219,7 +219,7 @@ namespace Chinook.Mvc
                             if (mediaTypeItemModel.IsSave)
                             {
                                 return JsonResultSuccess(mediaTypeItemModel.OperationResult,
-                                    Url.Content(String.Format("~/MediaType/Update?MediaTypeId={0}", mediaTypeDTO.MediaTypeId)));
+                                    Url.Action("Update", "MediaType", new { MediaTypeId = mediaTypeDTO.MediaTypeId }, Request.Url.Scheme));
                             }
                             else
                             {

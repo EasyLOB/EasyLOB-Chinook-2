@@ -49,7 +49,7 @@ namespace Chinook.Mvc
                                 CustomerDocumentItemModel.OperationResult.StatusMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(CustomerDocumentItemModel.OperationResult,
-                                    Url.Content(String.Format("~/CustomerDocument/Update?Id={0}", CustomerDocumentDTO.CustomerDocumentId)));
+                                    Url.Action("Update", "CustomerDocument", new { Id = CustomerDocumentDTO.CustomerDocumentId }, Request.Url.Scheme));
                             }
                             else
                             {

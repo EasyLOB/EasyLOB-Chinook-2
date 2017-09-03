@@ -128,7 +128,7 @@ namespace Chinook.Mvc
                                 invoiceLineItemModel.OperationResult.StatusMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(invoiceLineItemModel.OperationResult,
-                                    Url.Content(String.Format("~/InvoiceLine/Update?InvoiceLineId={0}", invoiceLineDTO.InvoiceLineId)));
+                                    Url.Action("Update", "InvoiceLine", new { InvoiceLineId = invoiceLineDTO.InvoiceLineId }, Request.Url.Scheme));
                             }
                             else
                             {
@@ -219,7 +219,7 @@ namespace Chinook.Mvc
                             if (invoiceLineItemModel.IsSave)
                             {
                                 return JsonResultSuccess(invoiceLineItemModel.OperationResult,
-                                    Url.Content(String.Format("~/InvoiceLine/Update?InvoiceLineId={0}", invoiceLineDTO.InvoiceLineId)));
+                                    Url.Action("Update", "InvoiceLine", new { InvoiceLineId = invoiceLineDTO.InvoiceLineId }, Request.Url.Scheme));
                             }
                             else
                             {

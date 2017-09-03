@@ -128,7 +128,7 @@ namespace Chinook.Mvc
                                 albumItemModel.OperationResult.StatusMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(albumItemModel.OperationResult,
-                                    Url.Content(String.Format("~/Album/Update?AlbumId={0}", albumDTO.AlbumId)));
+                                    Url.Action("Update", "Album", new { AlbumId = albumDTO.AlbumId }, Request.Url.Scheme));
                             }
                             else
                             {
@@ -219,7 +219,7 @@ namespace Chinook.Mvc
                             if (albumItemModel.IsSave)
                             {
                                 return JsonResultSuccess(albumItemModel.OperationResult,
-                                    Url.Content(String.Format("~/Album/Update?AlbumId={0}", albumDTO.AlbumId)));
+                                    Url.Action("Update", "Album", new { AlbumId = albumDTO.AlbumId }, Request.Url.Scheme));
                             }
                             else
                             {

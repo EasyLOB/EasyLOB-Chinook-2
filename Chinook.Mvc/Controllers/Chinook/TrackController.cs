@@ -128,7 +128,7 @@ namespace Chinook.Mvc
                                 trackItemModel.OperationResult.StatusMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(trackItemModel.OperationResult,
-                                    Url.Content(String.Format("~/Track/Update?TrackId={0}", trackDTO.TrackId)));
+                                    Url.Action("Update", "Track", new { TrackId = trackDTO.TrackId }, Request.Url.Scheme));
                             }
                             else
                             {
@@ -219,7 +219,7 @@ namespace Chinook.Mvc
                             if (trackItemModel.IsSave)
                             {
                                 return JsonResultSuccess(trackItemModel.OperationResult,
-                                    Url.Content(String.Format("~/Track/Update?TrackId={0}", trackDTO.TrackId)));
+                                    Url.Action("Update", "Track", new { TrackId = trackDTO.TrackId }, Request.Url.Scheme));
                             }
                             else
                             {

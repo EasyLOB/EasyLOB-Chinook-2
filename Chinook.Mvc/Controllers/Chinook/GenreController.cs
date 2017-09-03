@@ -128,7 +128,7 @@ namespace Chinook.Mvc
                                 genreItemModel.OperationResult.StatusMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(genreItemModel.OperationResult,
-                                    Url.Content(String.Format("~/Genre/Update?GenreId={0}", genreDTO.GenreId)));
+                                    Url.Action("Update", "Genre", new { GenreId = genreDTO.GenreId }, Request.Url.Scheme));
                             }
                             else
                             {
@@ -219,7 +219,7 @@ namespace Chinook.Mvc
                             if (genreItemModel.IsSave)
                             {
                                 return JsonResultSuccess(genreItemModel.OperationResult,
-                                    Url.Content(String.Format("~/Genre/Update?GenreId={0}", genreDTO.GenreId)));
+                                    Url.Action("Update", "Genre", new { GenreId = genreDTO.GenreId }, Request.Url.Scheme));
                             }
                             else
                             {
