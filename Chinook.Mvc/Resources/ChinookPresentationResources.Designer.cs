@@ -61,11 +61,11 @@ namespace Chinook.Mvc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chinook API Index.
+        ///   Looks up a localized string similar to Chinook Help.
         /// </summary>
-        public static string TaskChinookAPIIndex {
+        public static string TaskChinookHelp {
             get {
-                return ResourceManager.GetString("TaskChinookAPIIndex", resourceCulture);
+                return ResourceManager.GetString("TaskChinookHelp", resourceCulture);
             }
         }
         

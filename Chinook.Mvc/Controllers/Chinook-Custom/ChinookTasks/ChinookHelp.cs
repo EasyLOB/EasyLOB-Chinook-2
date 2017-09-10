@@ -6,9 +6,9 @@ namespace Chinook.Mvc
     {
         #region Methods
 
-        // GET: ChinookTasks/ChinookAPIIndex
+        // GET: ChinookTasks/ChinookHelp
         [HttpGet]
-        public ActionResult ChinookAPIIndex()
+        public ActionResult ChinookHelp()
         {
             return View();
         }

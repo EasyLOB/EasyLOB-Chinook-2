@@ -3,7 +3,6 @@ using EasyLOB;
 using EasyLOB.Library;
 using EasyLOB.Mvc;
 using System;
-using System.IO;
 using System.Web.Mvc;
 
 namespace Chinook.Mvc

@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="TaskChinookAPIIndex" xml:space="preserve">
-    <value>Índice Chinook API</value>
+  <data name="TaskChinookHelp" xml:space="preserve">
+    <value>Help Chinook</value>
   </data>
   <data name="TaskChinookStatus" xml:space="preserve">
     <value>Status Chinook</value>
