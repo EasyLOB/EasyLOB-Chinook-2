@@ -37,32 +37,6 @@ namespace EasyLOB.Mvc
             }
         }
 
-        private static ApplicationUserManager _userManager;
-
-        public static ApplicationUserManager UserManager
-        {
-            //get
-            //{
-            //    return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); // !?!
-            //}
-            get
-            {
-                if (_userManager == null)
-                {
-                    _userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                    var provider = new DpapiDataProtectionProvider("EasyLOB");
-                    UserManager.UserTokenProvider =
-                        new DataProtectorTokenProvider<EasyLOB.Identity.ApplicationUser, string>(provider.Create("UserToken")) as IUserTokenProvider<EasyLOB.Identity.ApplicationUser, string>;
-                }
-
-                return _userManager;
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
         #endregion Properties
 
         #region Properties Syncfusion
