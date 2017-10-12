@@ -41,6 +41,7 @@
         {
             column.Field("InvoiceId")
                 .AllowEditing(false)
+                .Type("number")
                 .EditType(EditingType.Numeric)
                 .Format(SyncfusionPatternResources.GridFormat_Integer)
                 .HeaderText(InvoiceResources.PropertyInvoiceId)
@@ -51,6 +52,7 @@
                 .Width(Invoice.DataProfile.GridWidthFor("InvoiceId"))
                 .Add();
             column.Field("CustomerId")
+                .Type("number")
                 .EditType(EditingType.Numeric)
                 .Format(SyncfusionPatternResources.GridFormat_Integer)
                 .HeaderText(InvoiceResources.PropertyCustomerId)
@@ -60,11 +62,13 @@
                 .Add();
             column.Field("CustomerLookupText")
                 .AllowEditing(false)
+                .Type("string")
                 .HeaderText(CustomerResources.EntitySingular)
                 .Visible(Invoice.DataProfile.IsGridVisibleFor("CustomerLookupText"))
                 .Width(Invoice.DataProfile.GridWidthFor("CustomerLookupText"))
                 .Add();
             column.Field("InvoiceDate")
+                .Type("datetime")
                 .EditType(EditingType.DateTimePicker)
                 .Format(SyncfusionPatternResources.GridFormat_DateTime)
                 .HeaderText(InvoiceResources.PropertyInvoiceDate)
@@ -72,36 +76,42 @@
                 .Width(Invoice.DataProfile.GridWidthFor("InvoiceDate"))
                 .Add();
             column.Field("BillingAddress")
+                .Type("string")
                 .EditType(EditingType.String)
                 .HeaderText(InvoiceResources.PropertyBillingAddress)
                 .Visible(Invoice.DataProfile.IsGridVisibleFor("BillingAddress"))
                 .Width(Invoice.DataProfile.GridWidthFor("BillingAddress"))
                 .Add();
             column.Field("BillingCity")
+                .Type("string")
                 .EditType(EditingType.String)
                 .HeaderText(InvoiceResources.PropertyBillingCity)
                 .Visible(Invoice.DataProfile.IsGridVisibleFor("BillingCity"))
                 .Width(Invoice.DataProfile.GridWidthFor("BillingCity"))
                 .Add();
             column.Field("BillingState")
+                .Type("string")
                 .EditType(EditingType.String)
                 .HeaderText(InvoiceResources.PropertyBillingState)
                 .Visible(Invoice.DataProfile.IsGridVisibleFor("BillingState"))
                 .Width(Invoice.DataProfile.GridWidthFor("BillingState"))
                 .Add();
             column.Field("BillingCountry")
+                .Type("string")
                 .EditType(EditingType.String)
                 .HeaderText(InvoiceResources.PropertyBillingCountry)
                 .Visible(Invoice.DataProfile.IsGridVisibleFor("BillingCountry"))
                 .Width(Invoice.DataProfile.GridWidthFor("BillingCountry"))
                 .Add();
             column.Field("BillingPostalCode")
+                .Type("string")
                 .EditType(EditingType.String)
                 .HeaderText(InvoiceResources.PropertyBillingPostalCode)
                 .Visible(Invoice.DataProfile.IsGridVisibleFor("BillingPostalCode"))
                 .Width(Invoice.DataProfile.GridWidthFor("BillingPostalCode"))
                 .Add();
             column.Field("Total")
+                .Type("number")
                 .EditType(EditingType.Numeric)
                 .Format(SyncfusionPatternResources.GridFormat_Float)
                 .HeaderText(InvoiceResources.PropertyTotal)

@@ -58,6 +58,7 @@
                     {
                         column.Field("InvoiceLineId")
                             .AllowEditing(false)
+                            .Type("number")
                             .EditType(EditingType.Numeric)
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(InvoiceLineResources.PropertyInvoiceLineId)
@@ -68,6 +69,7 @@
                             .Width(InvoiceLine.DataProfile.GridWidthFor("InvoiceLineId"))
                             .Add();
                         column.Field("InvoiceId")
+                            .Type("number")
                             .EditType(EditingType.Numeric)
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(InvoiceLineResources.PropertyInvoiceId)
@@ -77,11 +79,13 @@
                             .Add();
                         column.Field("InvoiceLookupText")
                             .AllowEditing(false)
+                            .Type("string")
                             .HeaderText(InvoiceResources.EntitySingular)
                             .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("InvoiceLookupText"))
                             .Width(InvoiceLine.DataProfile.GridWidthFor("InvoiceLookupText"))
                             .Add();
                         column.Field("TrackId")
+                            .Type("number")
                             .EditType(EditingType.Numeric)
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(InvoiceLineResources.PropertyTrackId)
@@ -91,11 +95,13 @@
                             .Add();
                         column.Field("TrackLookupText")
                             .AllowEditing(false)
+                            .Type("string")
                             .HeaderText(TrackResources.EntitySingular)
                             .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("TrackLookupText"))
                             .Width(InvoiceLine.DataProfile.GridWidthFor("TrackLookupText"))
                             .Add();
                         column.Field("UnitPrice")
+                            .Type("number")
                             .EditType(EditingType.Numeric)
                             .Format(SyncfusionPatternResources.GridFormat_Float)
                             .HeaderText(InvoiceLineResources.PropertyUnitPrice)
@@ -104,6 +110,7 @@
                             .Width(InvoiceLine.DataProfile.GridWidthFor("UnitPrice"))
                             .Add();
                         column.Field("Quantity")
+                            .Type("number")
                             .EditType(EditingType.Numeric)
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(InvoiceLineResources.PropertyQuantity)

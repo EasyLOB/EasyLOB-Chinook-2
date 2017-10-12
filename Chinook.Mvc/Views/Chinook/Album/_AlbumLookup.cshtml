@@ -58,6 +58,7 @@
                     {
                         column.Field("AlbumId")
                             .AllowEditing(false)
+                            .Type("number")
                             .EditType(EditingType.Numeric)
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(AlbumResources.PropertyAlbumId)
@@ -68,12 +69,14 @@
                             .Width(Album.DataProfile.GridWidthFor("AlbumId"))
                             .Add();
                         column.Field("Title")
+                            .Type("string")
                             .EditType(EditingType.String)
                             .HeaderText(AlbumResources.PropertyTitle)
                             .Visible(Album.DataProfile.IsGridVisibleFor("Title"))
                             .Width(Album.DataProfile.GridWidthFor("Title"))
                             .Add();
                         column.Field("ArtistId")
+                            .Type("number")
                             .EditType(EditingType.Numeric)
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(AlbumResources.PropertyArtistId)
@@ -83,6 +86,7 @@
                             .Add();
                         column.Field("ArtistLookupText")
                             .AllowEditing(false)
+                            .Type("string")
                             .HeaderText(ArtistResources.EntitySingular)
                             .Visible(Album.DataProfile.IsGridVisibleFor("ArtistLookupText"))
                             .Width(Album.DataProfile.GridWidthFor("ArtistLookupText"))

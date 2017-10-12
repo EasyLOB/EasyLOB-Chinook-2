@@ -57,6 +57,7 @@
                     .Columns(column =>
                     {
                         column.Field("PlaylistId")
+                            .Type("number")
                             .EditType(EditingType.Numeric)
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(PlaylistTrackResources.PropertyPlaylistId)
@@ -67,11 +68,13 @@
                             .Add();
                         column.Field("PlaylistLookupText")
                             .AllowEditing(false)
+                            .Type("string")
                             .HeaderText(PlaylistResources.EntitySingular)
                             .Visible(PlaylistTrack.DataProfile.IsGridVisibleFor("PlaylistLookupText"))
                             .Width(PlaylistTrack.DataProfile.GridWidthFor("PlaylistLookupText"))
                             .Add();
                         column.Field("TrackId")
+                            .Type("number")
                             .EditType(EditingType.Numeric)
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(PlaylistTrackResources.PropertyTrackId)
@@ -82,6 +85,7 @@
                             .Add();
                         column.Field("TrackLookupText")
                             .AllowEditing(false)
+                            .Type("string")
                             .HeaderText(TrackResources.EntitySingular)
                             .Visible(PlaylistTrack.DataProfile.IsGridVisibleFor("TrackLookupText"))
                             .Width(PlaylistTrack.DataProfile.GridWidthFor("TrackLookupText"))

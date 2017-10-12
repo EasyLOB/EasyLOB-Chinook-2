@@ -58,6 +58,7 @@
                     {
                         column.Field("CustomerDocumentId")
                             .AllowEditing(false)
+                            .Type("number")
                             .EditType(EditingType.Numeric)
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(CustomerDocumentResources.PropertyCustomerDocumentId)
@@ -68,6 +69,7 @@
                             .Width(CustomerDocument.DataProfile.GridWidthFor("CustomerDocumentId"))
                             .Add();
                         column.Field("CustomerId")
+                            .Type("number")
                             .EditType(EditingType.Numeric)
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(CustomerDocumentResources.PropertyCustomerId)
@@ -77,23 +79,27 @@
                             .Add();
                         column.Field("CustomerLookupText")
                             .AllowEditing(false)
+                            .Type("string")
                             .HeaderText(CustomerResources.EntitySingular)
                             .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("CustomerLookupText"))
                             .Width(CustomerDocument.DataProfile.GridWidthFor("CustomerLookupText"))
                             .Add();
                         column.Field("Description")
+                            .Type("string")
                             .EditType(EditingType.String)
                             .HeaderText(CustomerDocumentResources.PropertyDescription)
                             .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("Description"))
                             .Width(CustomerDocument.DataProfile.GridWidthFor("Description"))
                             .Add();
                         column.Field("FileName")
+                            .Type("string")
                             .EditType(EditingType.String)
                             .HeaderText(CustomerDocumentResources.PropertyFileName)
                             .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("FileName"))
                             .Width(CustomerDocument.DataProfile.GridWidthFor("FileName"))
                             .Add();
                         column.Field("FileAcronym")
+                            .Type("string")
                             .EditType(EditingType.String)
                             .HeaderText(CustomerDocumentResources.PropertyFileAcronym)
                             .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("FileAcronym"))
