@@ -48,20 +48,20 @@ namespace Chinook.Application
         {
             try
             {
-                unitOfWork.ExecuteSQL("DELETE FROM InvoiceLine WHERE InvoiceLineId > 2240");                
-                unitOfWork.ExecuteSQL("DELETE FROM Invoice WHERE InvoiceId > 412");
+                unitOfWork.SQLCommand("DELETE FROM InvoiceLine WHERE InvoiceLineId > 2240");                
+                unitOfWork.SQLCommand("DELETE FROM Invoice WHERE InvoiceId > 412");
 
-                unitOfWork.ExecuteSQL("DELETE FROM Customer WHERE CustomerId > 59");
-                unitOfWork.ExecuteSQL("DELETE FROM Employee WHERE EmployeeId > 8");
+                unitOfWork.SQLCommand("DELETE FROM Customer WHERE CustomerId > 59");
+                unitOfWork.SQLCommand("DELETE FROM Employee WHERE EmployeeId > 8");
 
-                unitOfWork.ExecuteSQL("DELETE FROM PlaylistTrack WHERE PlaylistId > 18 OR TrackId > 3503");
-                unitOfWork.ExecuteSQL("DELETE FROM Track WHERE TrackId > 3503");
-                unitOfWork.ExecuteSQL("DELETE FROM Playlist WHERE PlaylistId > 18");
+                unitOfWork.SQLCommand("DELETE FROM PlaylistTrack WHERE PlaylistId > 18 OR TrackId > 3503");
+                unitOfWork.SQLCommand("DELETE FROM Track WHERE TrackId > 3503");
+                unitOfWork.SQLCommand("DELETE FROM Playlist WHERE PlaylistId > 18");
 
-                unitOfWork.ExecuteSQL("DELETE FROM Genre WHERE GenreId > 25");
-                unitOfWork.ExecuteSQL("DELETE FROM MediaType WHERE MediaTypeId > 5");
-                unitOfWork.ExecuteSQL("DELETE FROM Album WHERE AlbumId > 347");
-                unitOfWork.ExecuteSQL("DELETE FROM Artist WHERE ArtistId > 275");
+                unitOfWork.SQLCommand("DELETE FROM Genre WHERE GenreId > 25");
+                unitOfWork.SQLCommand("DELETE FROM MediaType WHERE MediaTypeId > 5");
+                unitOfWork.SQLCommand("DELETE FROM Album WHERE AlbumId > 347");
+                unitOfWork.SQLCommand("DELETE FROM Artist WHERE ArtistId > 275");
             }
             catch (Exception exception)
             {
