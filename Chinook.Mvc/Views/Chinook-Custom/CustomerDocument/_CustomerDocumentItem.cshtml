@@ -22,13 +22,13 @@
         {
             data.Add().ID("TabSheet_CustomerDocument_CustomerDocument").Text(CustomerDocumentResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
                 
-                <div id="Group_CustomerDocument_CustomerDocumentId" class="@AppDefaults.CssClassGroup @CustomerDocument.DataProfile.EditWidthCSSFor("CustomerDocumentId")">
+                <div id="Group_CustomerDocument_CustomerDocumentId" class="@AppDefaults.CssClassGroup @CustomerDocument.Profile.EditCSSFor("CustomerDocumentId")">
                     @Html.LabelFor(model => model.CustomerDocument.CustomerDocumentId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.CustomerDocument.CustomerDocumentId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "CustomerDocument_CustomerDocumentId" } })
                     @* @Html.ValidationMessageFor(model => model.CustomerDocument.CustomerDocumentId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_CustomerDocument_CustomerId" class="@AppDefaults.CssClassGroup @CustomerDocument.DataProfile.EditWidthCSSFor("CustomerLookupText")">
+                <div id="Group_CustomerDocument_CustomerId" class="@AppDefaults.CssClassGroup @CustomerDocument.Profile.EditCSSFor("CustomerLookupText")">
                     @Html.LabelFor(model => model.CustomerDocument.CustomerId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.CustomerDocument.CustomerId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "CustomerDocument_CustomerId" } })
                     @{
@@ -41,19 +41,19 @@
                     @* @Html.ValidationMessageFor(model => model.CustomerDocument.CustomerId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_CustomerDocument_Description" class="@AppDefaults.CssClassGroup @CustomerDocument.DataProfile.EditWidthCSSFor("Description")">
+                <div id="Group_CustomerDocument_Description" class="@AppDefaults.CssClassGroup @CustomerDocument.Profile.EditCSSFor("Description")">
                     @Html.LabelFor(model => model.CustomerDocument.Description, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.CustomerDocument.Description, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "CustomerDocument_Description" } })
                     @* @Html.ValidationMessageFor(model => model.CustomerDocument.Description, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_CustomerDocument_FileName" class="@AppDefaults.CssClassGroup @CustomerDocument.DataProfile.EditWidthCSSFor("FileName")">
+                <div id="Group_CustomerDocument_FileName" class="@AppDefaults.CssClassGroup @CustomerDocument.Profile.EditCSSFor("FileName")">
                     @Html.LabelFor(model => model.CustomerDocument.FileName, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.CustomerDocument.FileName, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "CustomerDocument_FileName" } })
                     @* @Html.ValidationMessageFor(model => model.CustomerDocument.FileName, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_CustomerDocument_FileAcronym" class="@AppDefaults.CssClassGroup @CustomerDocument.DataProfile.EditWidthCSSFor("FileAcronym")">
+                <div id="Group_CustomerDocument_FileAcronym" class="@AppDefaults.CssClassGroup @CustomerDocument.Profile.EditCSSFor("FileAcronym")">
                     @Html.LabelFor(model => model.CustomerDocument.FileAcronym, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.CustomerDocument.FileAcronym, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "CustomerDocument_FileAcronym" } })
                     @* @Html.ValidationMessageFor(model => model.CustomerDocument.FileAcronym, "", new { @class = AppDefaults.CssClassValidator }) *@
@@ -90,12 +90,12 @@
             ej.widget.init($("#Item_CustomerDocument"));
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(CustomerDocument.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(CustomerDocument.Profile));
             var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
 
             var ajaxUrl = "";
 
-            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+            if (controllerAction != "create" || profile.IsIdentity) {
                 $("#Group_CustomerDocument_CustomerDocumentId").hide();
             }
 
@@ -113,7 +113,7 @@
                 $("#Group_UploadBox_CustomerDocument").hide();
             }
 
-            zOnItemView(model, dataProfile);
+            zOnItemView(model, profile);
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
         }

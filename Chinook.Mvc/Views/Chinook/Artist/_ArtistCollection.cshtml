@@ -44,15 +44,15 @@
                 .IsIdentity(true)
                 .IsPrimaryKey(true)
                 .TextAlign(TextAlign.Right)
-                .Visible(Artist.DataProfile.IsGridVisibleFor("ArtistId"))
-                .Width(Artist.DataProfile.GridWidthFor("ArtistId"))
+                .Visible(Artist.Profile.IsGridVisibleFor("ArtistId"))
+                .Width(Artist.Profile.GridWidthFor("ArtistId"))
                 .Add();
             column.Field("Name")
                 .Type("string")
                 .EditType(EditingType.String)
                 .HeaderText(ArtistResources.PropertyName)
-                .Visible(Artist.DataProfile.IsGridVisibleFor("Name"))
-                .Width(Artist.DataProfile.GridWidthFor("Name"))
+                .Visible(Artist.Profile.IsGridVisibleFor("Name"))
+                .Width(Artist.Profile.GridWidthFor("Name"))
                 .Add();
         })
         .EditSettings(edit => edit
@@ -107,9 +107,9 @@
             ej.widget.init($("#Collection_Artist"));
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Artist.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Artist.Profile));
 
-            zOnCollectionView(model, dataProfile, "@Url.Action("DataSource", "Artist")");
+            zOnCollectionView(model, profile, "@Url.Action("DataSource", "Artist")");
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
         }                

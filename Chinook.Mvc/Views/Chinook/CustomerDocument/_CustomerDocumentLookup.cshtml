@@ -65,8 +65,8 @@
                             .IsIdentity(true)
                             .IsPrimaryKey(true)
                             .TextAlign(TextAlign.Right)
-                            .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("CustomerDocumentId"))
-                            .Width(CustomerDocument.DataProfile.GridWidthFor("CustomerDocumentId"))
+                            .Visible(CustomerDocument.Profile.IsGridVisibleFor("CustomerDocumentId"))
+                            .Width(CustomerDocument.Profile.GridWidthFor("CustomerDocumentId"))
                             .Add();
                         column.Field("CustomerId")
                             .Type("number")
@@ -74,36 +74,36 @@
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(CustomerDocumentResources.PropertyCustomerId)
                             .TextAlign(TextAlign.Right)
-                            .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("CustomerId"))
-                            .Width(CustomerDocument.DataProfile.GridWidthFor("CustomerId"))
+                            .Visible(CustomerDocument.Profile.IsGridVisibleFor("CustomerId"))
+                            .Width(CustomerDocument.Profile.GridWidthFor("CustomerId"))
                             .Add();
                         column.Field("CustomerLookupText")
                             .AllowEditing(false)
                             .Type("string")
                             .HeaderText(CustomerResources.EntitySingular)
-                            .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("CustomerLookupText"))
-                            .Width(CustomerDocument.DataProfile.GridWidthFor("CustomerLookupText"))
+                            .Visible(CustomerDocument.Profile.IsGridVisibleFor("CustomerLookupText"))
+                            .Width(CustomerDocument.Profile.GridWidthFor("CustomerLookupText"))
                             .Add();
                         column.Field("Description")
                             .Type("string")
                             .EditType(EditingType.String)
                             .HeaderText(CustomerDocumentResources.PropertyDescription)
-                            .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("Description"))
-                            .Width(CustomerDocument.DataProfile.GridWidthFor("Description"))
+                            .Visible(CustomerDocument.Profile.IsGridVisibleFor("Description"))
+                            .Width(CustomerDocument.Profile.GridWidthFor("Description"))
                             .Add();
                         column.Field("FileName")
                             .Type("string")
                             .EditType(EditingType.String)
                             .HeaderText(CustomerDocumentResources.PropertyFileName)
-                            .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("FileName"))
-                            .Width(CustomerDocument.DataProfile.GridWidthFor("FileName"))
+                            .Visible(CustomerDocument.Profile.IsGridVisibleFor("FileName"))
+                            .Width(CustomerDocument.Profile.GridWidthFor("FileName"))
                             .Add();
                         column.Field("FileAcronym")
                             .Type("string")
                             .EditType(EditingType.String)
                             .HeaderText(CustomerDocumentResources.PropertyFileAcronym)
-                            .Visible(CustomerDocument.DataProfile.IsGridVisibleFor("FileAcronym"))
-                            .Width(CustomerDocument.DataProfile.GridWidthFor("FileAcronym"))
+                            .Visible(CustomerDocument.Profile.IsGridVisibleFor("FileAcronym"))
+                            .Width(CustomerDocument.Profile.GridWidthFor("FileAcronym"))
                             .Add();
                     })
                     //.EnablePersistence()
@@ -146,7 +146,7 @@
     $(function () {
         try {
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(CustomerDocument.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(CustomerDocument.Profile));
 
             $("#@Model.ValueId").hide();
 
@@ -167,7 +167,7 @@
 
             @*
             var ejGrid = zGrid("@(Model.ValueId)_LookupGrid");
-            zOnLookupView(model, dataProfile, ejGrid);
+            zOnLookupView(model, profile, ejGrid);
             *@
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
@@ -200,8 +200,8 @@
             this.model.locale = culture;
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(CustomerDocument.DataProfile));
-            zOnLookupView(model, dataProfile, this);
+            var profile = @Html.Raw(JsonConvert.SerializeObject(CustomerDocument.Profile));
+            zOnLookupView(model, profile, this);
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "load_@(Model.ValueId)_LookupGrid", exception));
         }

@@ -22,19 +22,19 @@
         {
             data.Add().ID("TabSheet_Album_Album").Text(AlbumResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
                 
-                <div id="Group_Album_AlbumId" class="@AppDefaults.CssClassGroup @Album.DataProfile.EditWidthCSSFor("AlbumId")">
+                <div id="Group_Album_AlbumId" class="@AppDefaults.CssClassGroup @Album.Profile.EditCSSFor("AlbumId")">
                     @Html.LabelFor(model => model.Album.AlbumId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Album.AlbumId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Album_AlbumId" } })
                     @* @Html.ValidationMessageFor(model => model.Album.AlbumId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Album_Title" class="@AppDefaults.CssClassGroup @Album.DataProfile.EditWidthCSSFor("Title")">
+                <div id="Group_Album_Title" class="@AppDefaults.CssClassGroup @Album.Profile.EditCSSFor("Title")">
                     @Html.LabelFor(model => model.Album.Title, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Album.Title, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Album_Title" } })
                     @* @Html.ValidationMessageFor(model => model.Album.Title, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Album_ArtistId" class="@AppDefaults.CssClassGroup @Album.DataProfile.EditWidthCSSFor("ArtistLookupText")">
+                <div id="Group_Album_ArtistId" class="@AppDefaults.CssClassGroup @Album.Profile.EditCSSFor("ArtistLookupText")">
                     @Html.LabelFor(model => model.Album.ArtistId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Album.ArtistId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Album_ArtistId" } })
                     @{
@@ -67,18 +67,18 @@
             ej.widget.init($("#Item_Album"));
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Album.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Album.Profile));
             var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
 
             var ajaxUrl = "";
-            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "Tracks")) {
+            if (controllerAction != "create" && zContains(profile.EditCollections, "Tracks")) {
                 // Tracks
                 zUrlDictionaryWrite("Track", "@Context.Request.Url.AbsoluteUri");
                 ajaxUrl = "@(Html.Raw(Url.Action("Search", "Track", new { MasterControllerAction = Model.ControllerAction, MasterAlbumId = Model.Album.AlbumId })))";
                 zAjaxLoadSync("Ajax_Album_Tracks", ajaxUrl);
             }
 
-            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+            if (controllerAction != "create" || profile.IsIdentity) {
                 $("#Group_Album_AlbumId").hide();
             }
 
@@ -89,7 +89,7 @@
                 $("#Group_Album_ArtistId").hide();            
             }
 
-            zOnItemView(model, dataProfile);        
+            zOnItemView(model, profile);        
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
         }

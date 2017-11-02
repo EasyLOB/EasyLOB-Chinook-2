@@ -63,15 +63,15 @@
                             .HeaderText(PlaylistTrackResources.PropertyPlaylistId)
                             .IsPrimaryKey(true)
                             .TextAlign(TextAlign.Right)
-                            .Visible(PlaylistTrack.DataProfile.IsGridVisibleFor("PlaylistId"))
-                            .Width(PlaylistTrack.DataProfile.GridWidthFor("PlaylistId"))
+                            .Visible(PlaylistTrack.Profile.IsGridVisibleFor("PlaylistId"))
+                            .Width(PlaylistTrack.Profile.GridWidthFor("PlaylistId"))
                             .Add();
                         column.Field("PlaylistLookupText")
                             .AllowEditing(false)
                             .Type("string")
                             .HeaderText(PlaylistResources.EntitySingular)
-                            .Visible(PlaylistTrack.DataProfile.IsGridVisibleFor("PlaylistLookupText"))
-                            .Width(PlaylistTrack.DataProfile.GridWidthFor("PlaylistLookupText"))
+                            .Visible(PlaylistTrack.Profile.IsGridVisibleFor("PlaylistLookupText"))
+                            .Width(PlaylistTrack.Profile.GridWidthFor("PlaylistLookupText"))
                             .Add();
                         column.Field("TrackId")
                             .Type("number")
@@ -80,15 +80,15 @@
                             .HeaderText(PlaylistTrackResources.PropertyTrackId)
                             .IsPrimaryKey(true)
                             .TextAlign(TextAlign.Right)
-                            .Visible(PlaylistTrack.DataProfile.IsGridVisibleFor("TrackId"))
-                            .Width(PlaylistTrack.DataProfile.GridWidthFor("TrackId"))
+                            .Visible(PlaylistTrack.Profile.IsGridVisibleFor("TrackId"))
+                            .Width(PlaylistTrack.Profile.GridWidthFor("TrackId"))
                             .Add();
                         column.Field("TrackLookupText")
                             .AllowEditing(false)
                             .Type("string")
                             .HeaderText(TrackResources.EntitySingular)
-                            .Visible(PlaylistTrack.DataProfile.IsGridVisibleFor("TrackLookupText"))
-                            .Width(PlaylistTrack.DataProfile.GridWidthFor("TrackLookupText"))
+                            .Visible(PlaylistTrack.Profile.IsGridVisibleFor("TrackLookupText"))
+                            .Width(PlaylistTrack.Profile.GridWidthFor("TrackLookupText"))
                             .Add();
                     })
                     //.EnablePersistence()
@@ -131,7 +131,7 @@
     $(function () {
         try {
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(PlaylistTrack.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(PlaylistTrack.Profile));
 
             $("#@Model.ValueId").hide();
 
@@ -152,7 +152,7 @@
 
             @*
             var ejGrid = zGrid("@(Model.ValueId)_LookupGrid");
-            zOnLookupView(model, dataProfile, ejGrid);
+            zOnLookupView(model, profile, ejGrid);
             *@
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
@@ -185,8 +185,8 @@
             this.model.locale = culture;
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(PlaylistTrack.DataProfile));
-            zOnLookupView(model, dataProfile, this);
+            var profile = @Html.Raw(JsonConvert.SerializeObject(PlaylistTrack.Profile));
+            zOnLookupView(model, profile, this);
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "load_@(Model.ValueId)_LookupGrid", exception));
         }

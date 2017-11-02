@@ -65,8 +65,8 @@
                             .IsIdentity(true)
                             .IsPrimaryKey(true)
                             .TextAlign(TextAlign.Right)
-                            .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("InvoiceLineId"))
-                            .Width(InvoiceLine.DataProfile.GridWidthFor("InvoiceLineId"))
+                            .Visible(InvoiceLine.Profile.IsGridVisibleFor("InvoiceLineId"))
+                            .Width(InvoiceLine.Profile.GridWidthFor("InvoiceLineId"))
                             .Add();
                         column.Field("InvoiceId")
                             .Type("number")
@@ -74,15 +74,15 @@
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(InvoiceLineResources.PropertyInvoiceId)
                             .TextAlign(TextAlign.Right)
-                            .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("InvoiceId"))
-                            .Width(InvoiceLine.DataProfile.GridWidthFor("InvoiceId"))
+                            .Visible(InvoiceLine.Profile.IsGridVisibleFor("InvoiceId"))
+                            .Width(InvoiceLine.Profile.GridWidthFor("InvoiceId"))
                             .Add();
                         column.Field("InvoiceLookupText")
                             .AllowEditing(false)
                             .Type("string")
                             .HeaderText(InvoiceResources.EntitySingular)
-                            .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("InvoiceLookupText"))
-                            .Width(InvoiceLine.DataProfile.GridWidthFor("InvoiceLookupText"))
+                            .Visible(InvoiceLine.Profile.IsGridVisibleFor("InvoiceLookupText"))
+                            .Width(InvoiceLine.Profile.GridWidthFor("InvoiceLookupText"))
                             .Add();
                         column.Field("TrackId")
                             .Type("number")
@@ -90,15 +90,15 @@
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(InvoiceLineResources.PropertyTrackId)
                             .TextAlign(TextAlign.Right)
-                            .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("TrackId"))
-                            .Width(InvoiceLine.DataProfile.GridWidthFor("TrackId"))
+                            .Visible(InvoiceLine.Profile.IsGridVisibleFor("TrackId"))
+                            .Width(InvoiceLine.Profile.GridWidthFor("TrackId"))
                             .Add();
                         column.Field("TrackLookupText")
                             .AllowEditing(false)
                             .Type("string")
                             .HeaderText(TrackResources.EntitySingular)
-                            .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("TrackLookupText"))
-                            .Width(InvoiceLine.DataProfile.GridWidthFor("TrackLookupText"))
+                            .Visible(InvoiceLine.Profile.IsGridVisibleFor("TrackLookupText"))
+                            .Width(InvoiceLine.Profile.GridWidthFor("TrackLookupText"))
                             .Add();
                         column.Field("UnitPrice")
                             .Type("number")
@@ -106,8 +106,8 @@
                             .Format(SyncfusionPatternResources.GridFormat_Float)
                             .HeaderText(InvoiceLineResources.PropertyUnitPrice)
                             .TextAlign(TextAlign.Right)
-                            .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("UnitPrice"))
-                            .Width(InvoiceLine.DataProfile.GridWidthFor("UnitPrice"))
+                            .Visible(InvoiceLine.Profile.IsGridVisibleFor("UnitPrice"))
+                            .Width(InvoiceLine.Profile.GridWidthFor("UnitPrice"))
                             .Add();
                         column.Field("Quantity")
                             .Type("number")
@@ -115,8 +115,8 @@
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(InvoiceLineResources.PropertyQuantity)
                             .TextAlign(TextAlign.Right)
-                            .Visible(InvoiceLine.DataProfile.IsGridVisibleFor("Quantity"))
-                            .Width(InvoiceLine.DataProfile.GridWidthFor("Quantity"))
+                            .Visible(InvoiceLine.Profile.IsGridVisibleFor("Quantity"))
+                            .Width(InvoiceLine.Profile.GridWidthFor("Quantity"))
                             .Add();
                     })
                     //.EnablePersistence()
@@ -159,7 +159,7 @@
     $(function () {
         try {
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(InvoiceLine.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(InvoiceLine.Profile));
 
             $("#@Model.ValueId").hide();
 
@@ -180,7 +180,7 @@
 
             @*
             var ejGrid = zGrid("@(Model.ValueId)_LookupGrid");
-            zOnLookupView(model, dataProfile, ejGrid);
+            zOnLookupView(model, profile, ejGrid);
             *@
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
@@ -213,8 +213,8 @@
             this.model.locale = culture;
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(InvoiceLine.DataProfile));
-            zOnLookupView(model, dataProfile, this);
+            var profile = @Html.Raw(JsonConvert.SerializeObject(InvoiceLine.Profile));
+            zOnLookupView(model, profile, this);
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "load_@(Model.ValueId)_LookupGrid", exception));
         }

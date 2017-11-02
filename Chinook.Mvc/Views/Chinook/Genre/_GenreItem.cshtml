@@ -20,13 +20,13 @@
         {
             data.Add().ID("TabSheet_Genre_Genre").Text(GenreResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
                 
-                <div id="Group_Genre_GenreId" class="@AppDefaults.CssClassGroup @Genre.DataProfile.EditWidthCSSFor("GenreId")">
+                <div id="Group_Genre_GenreId" class="@AppDefaults.CssClassGroup @Genre.Profile.EditCSSFor("GenreId")">
                     @Html.LabelFor(model => model.Genre.GenreId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Genre.GenreId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Genre_GenreId" } })
                     @* @Html.ValidationMessageFor(model => model.Genre.GenreId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Genre_Name" class="@AppDefaults.CssClassGroup @Genre.DataProfile.EditWidthCSSFor("Name")">
+                <div id="Group_Genre_Name" class="@AppDefaults.CssClassGroup @Genre.Profile.EditCSSFor("Name")">
                     @Html.LabelFor(model => model.Genre.Name, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.Genre.Name, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Genre_Name" } })
                     @* @Html.ValidationMessageFor(model => model.Genre.Name, "", new { @class = AppDefaults.CssClassValidator }) *@
@@ -52,24 +52,24 @@
             ej.widget.init($("#Item_Genre"));
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Genre.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Genre.Profile));
             var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
 
             var ajaxUrl = "";
-            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "Tracks")) {
+            if (controllerAction != "create" && zContains(profile.EditCollections, "Tracks")) {
                 // Tracks
                 zUrlDictionaryWrite("Track", "@Context.Request.Url.AbsoluteUri");
                 ajaxUrl = "@(Html.Raw(Url.Action("Search", "Track", new { MasterControllerAction = Model.ControllerAction, MasterGenreId = Model.Genre.GenreId })))";
                 zAjaxLoadSync("Ajax_Genre_Tracks", ajaxUrl);
             }
 
-            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+            if (controllerAction != "create" || profile.IsIdentity) {
                 $("#Group_Genre_GenreId").hide();
             }
 
             // Associations (FK)
 
-            zOnItemView(model, dataProfile);        
+            zOnItemView(model, profile);        
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
         }

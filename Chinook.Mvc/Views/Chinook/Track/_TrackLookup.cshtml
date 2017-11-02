@@ -65,15 +65,15 @@
                             .IsIdentity(true)
                             .IsPrimaryKey(true)
                             .TextAlign(TextAlign.Right)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("TrackId"))
-                            .Width(Track.DataProfile.GridWidthFor("TrackId"))
+                            .Visible(Track.Profile.IsGridVisibleFor("TrackId"))
+                            .Width(Track.Profile.GridWidthFor("TrackId"))
                             .Add();
                         column.Field("Name")
                             .Type("string")
                             .EditType(EditingType.String)
                             .HeaderText(TrackResources.PropertyName)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("Name"))
-                            .Width(Track.DataProfile.GridWidthFor("Name"))
+                            .Visible(Track.Profile.IsGridVisibleFor("Name"))
+                            .Width(Track.Profile.GridWidthFor("Name"))
                             .Add();
                         column.Field("AlbumId")
                             .Type("number")
@@ -81,15 +81,15 @@
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(TrackResources.PropertyAlbumId)
                             .TextAlign(TextAlign.Right)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("AlbumId"))
-                            .Width(Track.DataProfile.GridWidthFor("AlbumId"))
+                            .Visible(Track.Profile.IsGridVisibleFor("AlbumId"))
+                            .Width(Track.Profile.GridWidthFor("AlbumId"))
                             .Add();
                         column.Field("AlbumLookupText")
                             .AllowEditing(false)
                             .Type("string")
                             .HeaderText(AlbumResources.EntitySingular)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("AlbumLookupText"))
-                            .Width(Track.DataProfile.GridWidthFor("AlbumLookupText"))
+                            .Visible(Track.Profile.IsGridVisibleFor("AlbumLookupText"))
+                            .Width(Track.Profile.GridWidthFor("AlbumLookupText"))
                             .Add();
                         column.Field("MediaTypeId")
                             .Type("number")
@@ -97,15 +97,15 @@
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(TrackResources.PropertyMediaTypeId)
                             .TextAlign(TextAlign.Right)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("MediaTypeId"))
-                            .Width(Track.DataProfile.GridWidthFor("MediaTypeId"))
+                            .Visible(Track.Profile.IsGridVisibleFor("MediaTypeId"))
+                            .Width(Track.Profile.GridWidthFor("MediaTypeId"))
                             .Add();
                         column.Field("MediaTypeLookupText")
                             .AllowEditing(false)
                             .Type("string")
                             .HeaderText(MediaTypeResources.EntitySingular)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("MediaTypeLookupText"))
-                            .Width(Track.DataProfile.GridWidthFor("MediaTypeLookupText"))
+                            .Visible(Track.Profile.IsGridVisibleFor("MediaTypeLookupText"))
+                            .Width(Track.Profile.GridWidthFor("MediaTypeLookupText"))
                             .Add();
                         column.Field("GenreId")
                             .Type("number")
@@ -113,22 +113,22 @@
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(TrackResources.PropertyGenreId)
                             .TextAlign(TextAlign.Right)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("GenreId"))
-                            .Width(Track.DataProfile.GridWidthFor("GenreId"))
+                            .Visible(Track.Profile.IsGridVisibleFor("GenreId"))
+                            .Width(Track.Profile.GridWidthFor("GenreId"))
                             .Add();
                         column.Field("GenreLookupText")
                             .AllowEditing(false)
                             .Type("string")
                             .HeaderText(GenreResources.EntitySingular)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("GenreLookupText"))
-                            .Width(Track.DataProfile.GridWidthFor("GenreLookupText"))
+                            .Visible(Track.Profile.IsGridVisibleFor("GenreLookupText"))
+                            .Width(Track.Profile.GridWidthFor("GenreLookupText"))
                             .Add();
                         column.Field("Composer")
                             .Type("string")
                             .EditType(EditingType.String)
                             .HeaderText(TrackResources.PropertyComposer)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("Composer"))
-                            .Width(Track.DataProfile.GridWidthFor("Composer"))
+                            .Visible(Track.Profile.IsGridVisibleFor("Composer"))
+                            .Width(Track.Profile.GridWidthFor("Composer"))
                             .Add();
                         column.Field("Milliseconds")
                             .Type("number")
@@ -136,8 +136,8 @@
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(TrackResources.PropertyMilliseconds)
                             .TextAlign(TextAlign.Right)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("Milliseconds"))
-                            .Width(Track.DataProfile.GridWidthFor("Milliseconds"))
+                            .Visible(Track.Profile.IsGridVisibleFor("Milliseconds"))
+                            .Width(Track.Profile.GridWidthFor("Milliseconds"))
                             .Add();
                         column.Field("Bytes")
                             .Type("number")
@@ -145,8 +145,8 @@
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(TrackResources.PropertyBytes)
                             .TextAlign(TextAlign.Right)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("Bytes"))
-                            .Width(Track.DataProfile.GridWidthFor("Bytes"))
+                            .Visible(Track.Profile.IsGridVisibleFor("Bytes"))
+                            .Width(Track.Profile.GridWidthFor("Bytes"))
                             .Add();
                         column.Field("UnitPrice")
                             .Type("number")
@@ -154,8 +154,8 @@
                             .Format(SyncfusionPatternResources.GridFormat_Float)
                             .HeaderText(TrackResources.PropertyUnitPrice)
                             .TextAlign(TextAlign.Right)
-                            .Visible(Track.DataProfile.IsGridVisibleFor("UnitPrice"))
-                            .Width(Track.DataProfile.GridWidthFor("UnitPrice"))
+                            .Visible(Track.Profile.IsGridVisibleFor("UnitPrice"))
+                            .Width(Track.Profile.GridWidthFor("UnitPrice"))
                             .Add();
                     })
                     //.EnablePersistence()
@@ -198,7 +198,7 @@
     $(function () {
         try {
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Track.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Track.Profile));
 
             $("#@Model.ValueId").hide();
 
@@ -219,7 +219,7 @@
 
             @*
             var ejGrid = zGrid("@(Model.ValueId)_LookupGrid");
-            zOnLookupView(model, dataProfile, ejGrid);
+            zOnLookupView(model, profile, ejGrid);
             *@
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
@@ -252,8 +252,8 @@
             this.model.locale = culture;
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Track.DataProfile));
-            zOnLookupView(model, dataProfile, this);
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Track.Profile));
+            zOnLookupView(model, profile, this);
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "load_@(Model.ValueId)_LookupGrid", exception));
         }

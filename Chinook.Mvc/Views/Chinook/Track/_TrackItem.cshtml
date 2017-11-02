@@ -26,19 +26,19 @@
         {
             data.Add().ID("TabSheet_Track_Track").Text(TrackResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
                 
-                <div id="Group_Track_TrackId" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("TrackId")">
+                <div id="Group_Track_TrackId" class="@AppDefaults.CssClassGroup @Track.Profile.EditCSSFor("TrackId")">
                     @Html.LabelFor(model => model.Track.TrackId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Track.TrackId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_TrackId" } })
                     @* @Html.ValidationMessageFor(model => model.Track.TrackId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Track_Name" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("Name")">
+                <div id="Group_Track_Name" class="@AppDefaults.CssClassGroup @Track.Profile.EditCSSFor("Name")">
                     @Html.LabelFor(model => model.Track.Name, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Track.Name, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_Name" } })
                     @* @Html.ValidationMessageFor(model => model.Track.Name, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Track_AlbumId" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("AlbumLookupText")">
+                <div id="Group_Track_AlbumId" class="@AppDefaults.CssClassGroup @Track.Profile.EditCSSFor("AlbumLookupText")">
                     @Html.LabelFor(model => model.Track.AlbumId, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.Track.AlbumId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_AlbumId" } })
                     @{
@@ -51,7 +51,7 @@
                     @* @Html.ValidationMessageFor(model => model.Track.AlbumId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Track_MediaTypeId" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("MediaTypeLookupText")">
+                <div id="Group_Track_MediaTypeId" class="@AppDefaults.CssClassGroup @Track.Profile.EditCSSFor("MediaTypeLookupText")">
                     @Html.LabelFor(model => model.Track.MediaTypeId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Track.MediaTypeId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_MediaTypeId" } })
                     @{
@@ -64,7 +64,7 @@
                     @* @Html.ValidationMessageFor(model => model.Track.MediaTypeId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Track_GenreId" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("GenreLookupText")">
+                <div id="Group_Track_GenreId" class="@AppDefaults.CssClassGroup @Track.Profile.EditCSSFor("GenreLookupText")">
                     @Html.LabelFor(model => model.Track.GenreId, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.Track.GenreId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_GenreId" } })
                     @{
@@ -77,25 +77,25 @@
                     @* @Html.ValidationMessageFor(model => model.Track.GenreId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Track_Composer" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("Composer")">
+                <div id="Group_Track_Composer" class="@AppDefaults.CssClassGroup @Track.Profile.EditCSSFor("Composer")">
                     @Html.LabelFor(model => model.Track.Composer, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.Track.Composer, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_Composer" } })
                     @* @Html.ValidationMessageFor(model => model.Track.Composer, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Track_Milliseconds" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("Milliseconds")">
+                <div id="Group_Track_Milliseconds" class="@AppDefaults.CssClassGroup @Track.Profile.EditCSSFor("Milliseconds")">
                     @Html.LabelFor(model => model.Track.Milliseconds, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Track.Milliseconds, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_Milliseconds" } })
                     @* @Html.ValidationMessageFor(model => model.Track.Milliseconds, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Track_Bytes" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("Bytes")">
+                <div id="Group_Track_Bytes" class="@AppDefaults.CssClassGroup @Track.Profile.EditCSSFor("Bytes")">
                     @Html.LabelFor(model => model.Track.Bytes, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.Track.Bytes, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_Bytes" } })
                     @* @Html.ValidationMessageFor(model => model.Track.Bytes, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Track_UnitPrice" class="@AppDefaults.CssClassGroup @Track.DataProfile.EditWidthCSSFor("UnitPrice")">
+                <div id="Group_Track_UnitPrice" class="@AppDefaults.CssClassGroup @Track.Profile.EditCSSFor("UnitPrice")">
                     @Html.LabelFor(model => model.Track.UnitPrice, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Track.UnitPrice, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Track_UnitPrice" } })
                     @* @Html.ValidationMessageFor(model => model.Track.UnitPrice, "", new { @class = AppDefaults.CssClassValidator }) *@
@@ -124,24 +124,24 @@
             ej.widget.init($("#Item_Track"));
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Track.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Track.Profile));
             var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
 
             var ajaxUrl = "";
-            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "InvoiceLines")) {
+            if (controllerAction != "create" && zContains(profile.EditCollections, "InvoiceLines")) {
                 // InvoiceLines
                 zUrlDictionaryWrite("InvoiceLine", "@Context.Request.Url.AbsoluteUri");
                 ajaxUrl = "@(Html.Raw(Url.Action("Search", "InvoiceLine", new { MasterControllerAction = Model.ControllerAction, MasterTrackId = Model.Track.TrackId })))";
                 zAjaxLoadSync("Ajax_Track_InvoiceLines", ajaxUrl);
             }
-            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "PlaylistTracks")) {
+            if (controllerAction != "create" && zContains(profile.EditCollections, "PlaylistTracks")) {
                 // PlaylistTracks
                 zUrlDictionaryWrite("PlaylistTrack", "@Context.Request.Url.AbsoluteUri");
                 ajaxUrl = "@(Html.Raw(Url.Action("Search", "PlaylistTrack", new { MasterControllerAction = Model.ControllerAction, MasterTrackId = Model.Track.TrackId })))";
                 zAjaxLoadSync("Ajax_Track_PlaylistTracks", ajaxUrl);
             }
 
-            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+            if (controllerAction != "create" || profile.IsIdentity) {
                 $("#Group_Track_TrackId").hide();
             }
 
@@ -162,7 +162,7 @@
                 $("#Group_Track_MediaTypeId").hide();            
             }
 
-            zOnItemView(model, dataProfile);        
+            zOnItemView(model, profile);        
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
         }

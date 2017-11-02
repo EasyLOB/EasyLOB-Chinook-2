@@ -65,15 +65,15 @@
                             .IsIdentity(true)
                             .IsPrimaryKey(true)
                             .TextAlign(TextAlign.Right)
-                            .Visible(Genre.DataProfile.IsGridVisibleFor("GenreId"))
-                            .Width(Genre.DataProfile.GridWidthFor("GenreId"))
+                            .Visible(Genre.Profile.IsGridVisibleFor("GenreId"))
+                            .Width(Genre.Profile.GridWidthFor("GenreId"))
                             .Add();
                         column.Field("Name")
                             .Type("string")
                             .EditType(EditingType.String)
                             .HeaderText(GenreResources.PropertyName)
-                            .Visible(Genre.DataProfile.IsGridVisibleFor("Name"))
-                            .Width(Genre.DataProfile.GridWidthFor("Name"))
+                            .Visible(Genre.Profile.IsGridVisibleFor("Name"))
+                            .Width(Genre.Profile.GridWidthFor("Name"))
                             .Add();
                     })
                     //.EnablePersistence()
@@ -116,7 +116,7 @@
     $(function () {
         try {
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Genre.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Genre.Profile));
 
             $("#@Model.ValueId").hide();
 
@@ -137,7 +137,7 @@
 
             @*
             var ejGrid = zGrid("@(Model.ValueId)_LookupGrid");
-            zOnLookupView(model, dataProfile, ejGrid);
+            zOnLookupView(model, profile, ejGrid);
             *@
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
@@ -170,8 +170,8 @@
             this.model.locale = culture;
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Genre.DataProfile));
-            zOnLookupView(model, dataProfile, this);
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Genre.Profile));
+            zOnLookupView(model, profile, this);
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "load_@(Model.ValueId)_LookupGrid", exception));
         }

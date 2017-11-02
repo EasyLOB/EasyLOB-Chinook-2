@@ -20,13 +20,13 @@
         {
             data.Add().ID("TabSheet_MediaType_MediaType").Text(MediaTypeResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
                 
-                <div id="Group_MediaType_MediaTypeId" class="@AppDefaults.CssClassGroup @MediaType.DataProfile.EditWidthCSSFor("MediaTypeId")">
+                <div id="Group_MediaType_MediaTypeId" class="@AppDefaults.CssClassGroup @MediaType.Profile.EditCSSFor("MediaTypeId")">
                     @Html.LabelFor(model => model.MediaType.MediaTypeId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.MediaType.MediaTypeId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "MediaType_MediaTypeId" } })
                     @* @Html.ValidationMessageFor(model => model.MediaType.MediaTypeId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_MediaType_Name" class="@AppDefaults.CssClassGroup @MediaType.DataProfile.EditWidthCSSFor("Name")">
+                <div id="Group_MediaType_Name" class="@AppDefaults.CssClassGroup @MediaType.Profile.EditCSSFor("Name")">
                     @Html.LabelFor(model => model.MediaType.Name, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.MediaType.Name, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "MediaType_Name" } })
                     @* @Html.ValidationMessageFor(model => model.MediaType.Name, "", new { @class = AppDefaults.CssClassValidator }) *@
@@ -52,24 +52,24 @@
             ej.widget.init($("#Item_MediaType"));
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(MediaType.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(MediaType.Profile));
             var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
 
             var ajaxUrl = "";
-            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "Tracks")) {
+            if (controllerAction != "create" && zContains(profile.EditCollections, "Tracks")) {
                 // Tracks
                 zUrlDictionaryWrite("Track", "@Context.Request.Url.AbsoluteUri");
                 ajaxUrl = "@(Html.Raw(Url.Action("Search", "Track", new { MasterControllerAction = Model.ControllerAction, MasterMediaTypeId = Model.MediaType.MediaTypeId })))";
                 zAjaxLoadSync("Ajax_MediaType_Tracks", ajaxUrl);
             }
 
-            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+            if (controllerAction != "create" || profile.IsIdentity) {
                 $("#Group_MediaType_MediaTypeId").hide();
             }
 
             // Associations (FK)
 
-            zOnItemView(model, dataProfile);        
+            zOnItemView(model, profile);        
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
         }

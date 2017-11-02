@@ -24,7 +24,7 @@
         {
             data.Add().ID("TabSheet_PlaylistTrack_PlaylistTrack").Text(PlaylistTrackResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
                 
-                <div id="Group_PlaylistTrack_PlaylistId" class="@AppDefaults.CssClassGroup @PlaylistTrack.DataProfile.EditWidthCSSFor("PlaylistLookupText")">
+                <div id="Group_PlaylistTrack_PlaylistId" class="@AppDefaults.CssClassGroup @PlaylistTrack.Profile.EditCSSFor("PlaylistLookupText")">
                     @Html.LabelFor(model => model.PlaylistTrack.PlaylistId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.PlaylistTrack.PlaylistId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "PlaylistTrack_PlaylistId" } })
                     @{
@@ -37,7 +37,7 @@
                     @* @Html.ValidationMessageFor(model => model.PlaylistTrack.PlaylistId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_PlaylistTrack_TrackId" class="@AppDefaults.CssClassGroup @PlaylistTrack.DataProfile.EditWidthCSSFor("TrackLookupText")">
+                <div id="Group_PlaylistTrack_TrackId" class="@AppDefaults.CssClassGroup @PlaylistTrack.Profile.EditCSSFor("TrackLookupText")">
                     @Html.LabelFor(model => model.PlaylistTrack.TrackId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.PlaylistTrack.TrackId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "PlaylistTrack_TrackId" } })
                     @{
@@ -67,12 +67,12 @@
             ej.widget.init($("#Item_PlaylistTrack"));
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(PlaylistTrack.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(PlaylistTrack.Profile));
             var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
 
             var ajaxUrl = "";
 
-            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+            if (controllerAction != "create" || profile.IsIdentity) {
                 $("#Group_PlaylistTrack_PlaylistId").hide();
                 $("#Group_PlaylistTrack_TrackId").hide();
             }
@@ -89,7 +89,7 @@
                 $("#Group_PlaylistTrack_TrackId").hide();            
             }
 
-            zOnItemView(model, dataProfile);        
+            zOnItemView(model, profile);        
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
         }

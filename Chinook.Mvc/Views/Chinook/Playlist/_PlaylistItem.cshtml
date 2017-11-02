@@ -20,13 +20,13 @@
         {
             data.Add().ID("TabSheet_Playlist_Playlist").Text(PlaylistResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
                 
-                <div id="Group_Playlist_PlaylistId" class="@AppDefaults.CssClassGroup @Playlist.DataProfile.EditWidthCSSFor("PlaylistId")">
+                <div id="Group_Playlist_PlaylistId" class="@AppDefaults.CssClassGroup @Playlist.Profile.EditCSSFor("PlaylistId")">
                     @Html.LabelFor(model => model.Playlist.PlaylistId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Playlist.PlaylistId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Playlist_PlaylistId" } })
                     @* @Html.ValidationMessageFor(model => model.Playlist.PlaylistId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Playlist_Name" class="@AppDefaults.CssClassGroup @Playlist.DataProfile.EditWidthCSSFor("Name")">
+                <div id="Group_Playlist_Name" class="@AppDefaults.CssClassGroup @Playlist.Profile.EditCSSFor("Name")">
                     @Html.LabelFor(model => model.Playlist.Name, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.Playlist.Name, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Playlist_Name" } })
                     @* @Html.ValidationMessageFor(model => model.Playlist.Name, "", new { @class = AppDefaults.CssClassValidator }) *@
@@ -52,24 +52,24 @@
             ej.widget.init($("#Item_Playlist"));
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Playlist.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Playlist.Profile));
             var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
 
             var ajaxUrl = "";
-            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "PlaylistTracks")) {
+            if (controllerAction != "create" && zContains(profile.EditCollections, "PlaylistTracks")) {
                 // PlaylistTracks
                 zUrlDictionaryWrite("PlaylistTrack", "@Context.Request.Url.AbsoluteUri");
                 ajaxUrl = "@(Html.Raw(Url.Action("Search", "PlaylistTrack", new { MasterControllerAction = Model.ControllerAction, MasterPlaylistId = Model.Playlist.PlaylistId })))";
                 zAjaxLoadSync("Ajax_Playlist_PlaylistTracks", ajaxUrl);
             }
 
-            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+            if (controllerAction != "create" || profile.IsIdentity) {
                 $("#Group_Playlist_PlaylistId").hide();
             }
 
             // Associations (FK)
 
-            zOnItemView(model, dataProfile);        
+            zOnItemView(model, profile);        
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
         }

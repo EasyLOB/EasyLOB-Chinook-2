@@ -22,13 +22,13 @@
         {
             data.Add().ID("TabSheet_Invoice_Invoice").Text(InvoiceResources.EntitySingular).ContentTemplate(@<div class="@AppDefaults.CssClassPanel">
                 
-                <div id="Group_Invoice_InvoiceId" class="@AppDefaults.CssClassGroup @Invoice.DataProfile.EditWidthCSSFor("InvoiceId")">
+                <div id="Group_Invoice_InvoiceId" class="@AppDefaults.CssClassGroup @Invoice.Profile.EditCSSFor("InvoiceId")">
                     @Html.LabelFor(model => model.Invoice.InvoiceId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Invoice.InvoiceId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Invoice_InvoiceId" } })
                     @* @Html.ValidationMessageFor(model => model.Invoice.InvoiceId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Invoice_CustomerId" class="@AppDefaults.CssClassGroup @Invoice.DataProfile.EditWidthCSSFor("CustomerLookupText")">
+                <div id="Group_Invoice_CustomerId" class="@AppDefaults.CssClassGroup @Invoice.Profile.EditCSSFor("CustomerLookupText")">
                     @Html.LabelFor(model => model.Invoice.CustomerId, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Invoice.CustomerId, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Invoice_CustomerId" } })
                     @{
@@ -41,44 +41,44 @@
                     @* @Html.ValidationMessageFor(model => model.Invoice.CustomerId, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Invoice_InvoiceDate" class="@AppDefaults.CssClassGroup @Invoice.DataProfile.EditWidthCSSFor("InvoiceDate")">
+                <div id="Group_Invoice_InvoiceDate" class="@AppDefaults.CssClassGroup @Invoice.Profile.EditCSSFor("InvoiceDate")">
                     @Html.LabelFor(model => model.Invoice.InvoiceDate, new { @class = AppDefaults.CssClassLabelRequired })
                     @* @Html.EditorFor(model => model.Invoice.InvoiceDate, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Invoice_InvoiceDate" } }) *@
                     @Html.EJ().DateTimePickerFor(model => model.Invoice.InvoiceDate, AppHelper.DateTimeModel, new { id = "Invoice_InvoiceDate" })
                     @* @Html.ValidationMessageFor(model => model.Invoice.InvoiceDate, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Invoice_BillingAddress" class="@AppDefaults.CssClassGroup @Invoice.DataProfile.EditWidthCSSFor("BillingAddress")">
+                <div id="Group_Invoice_BillingAddress" class="@AppDefaults.CssClassGroup @Invoice.Profile.EditCSSFor("BillingAddress")">
                     @Html.LabelFor(model => model.Invoice.BillingAddress, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.Invoice.BillingAddress, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Invoice_BillingAddress" } })
                     @* @Html.ValidationMessageFor(model => model.Invoice.BillingAddress, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Invoice_BillingCity" class="@AppDefaults.CssClassGroup @Invoice.DataProfile.EditWidthCSSFor("BillingCity")">
+                <div id="Group_Invoice_BillingCity" class="@AppDefaults.CssClassGroup @Invoice.Profile.EditCSSFor("BillingCity")">
                     @Html.LabelFor(model => model.Invoice.BillingCity, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.Invoice.BillingCity, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Invoice_BillingCity" } })
                     @* @Html.ValidationMessageFor(model => model.Invoice.BillingCity, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Invoice_BillingState" class="@AppDefaults.CssClassGroup @Invoice.DataProfile.EditWidthCSSFor("BillingState")">
+                <div id="Group_Invoice_BillingState" class="@AppDefaults.CssClassGroup @Invoice.Profile.EditCSSFor("BillingState")">
                     @Html.LabelFor(model => model.Invoice.BillingState, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.Invoice.BillingState, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Invoice_BillingState" } })
                     @* @Html.ValidationMessageFor(model => model.Invoice.BillingState, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Invoice_BillingCountry" class="@AppDefaults.CssClassGroup @Invoice.DataProfile.EditWidthCSSFor("BillingCountry")">
+                <div id="Group_Invoice_BillingCountry" class="@AppDefaults.CssClassGroup @Invoice.Profile.EditCSSFor("BillingCountry")">
                     @Html.LabelFor(model => model.Invoice.BillingCountry, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.Invoice.BillingCountry, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Invoice_BillingCountry" } })
                     @* @Html.ValidationMessageFor(model => model.Invoice.BillingCountry, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Invoice_BillingPostalCode" class="@AppDefaults.CssClassGroup @Invoice.DataProfile.EditWidthCSSFor("BillingPostalCode")">
+                <div id="Group_Invoice_BillingPostalCode" class="@AppDefaults.CssClassGroup @Invoice.Profile.EditCSSFor("BillingPostalCode")">
                     @Html.LabelFor(model => model.Invoice.BillingPostalCode, new { @class = AppDefaults.CssClassLabel })
                     @Html.EditorFor(model => model.Invoice.BillingPostalCode, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Invoice_BillingPostalCode" } })
                     @* @Html.ValidationMessageFor(model => model.Invoice.BillingPostalCode, "", new { @class = AppDefaults.CssClassValidator }) *@
                 </div>
                 
-                <div id="Group_Invoice_Total" class="@AppDefaults.CssClassGroup @Invoice.DataProfile.EditWidthCSSFor("Total")">
+                <div id="Group_Invoice_Total" class="@AppDefaults.CssClassGroup @Invoice.Profile.EditCSSFor("Total")">
                     @Html.LabelFor(model => model.Invoice.Total, new { @class = AppDefaults.CssClassLabelRequired })
                     @Html.EditorFor(model => model.Invoice.Total, new { htmlAttributes = new { @class = AppDefaults.CssClassEditor, id = "Invoice_Total" } })
                     @* @Html.ValidationMessageFor(model => model.Invoice.Total, "", new { @class = AppDefaults.CssClassValidator }) *@
@@ -104,18 +104,18 @@
             ej.widget.init($("#Item_Invoice"));
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Invoice.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Invoice.Profile));
             var controllerAction = model.ControllerAction == null ? "" : model.ControllerAction.toLowerCase();
 
             var ajaxUrl = "";
-            if (controllerAction != "create" && zContains(dataProfile.EditCollections, "InvoiceLines")) {
+            if (controllerAction != "create" && zContains(profile.EditCollections, "InvoiceLines")) {
                 // InvoiceLines
                 zUrlDictionaryWrite("InvoiceLine", "@Context.Request.Url.AbsoluteUri");
                 ajaxUrl = "@(Html.Raw(Url.Action("Search", "InvoiceLine", new { MasterControllerAction = Model.ControllerAction, MasterInvoiceId = Model.Invoice.InvoiceId })))";
                 zAjaxLoadSync("Ajax_Invoice_InvoiceLines", ajaxUrl);
             }
 
-            if (controllerAction != "create" || dataProfile.Class.IsIdentity) {
+            if (controllerAction != "create" || profile.IsIdentity) {
                 $("#Group_Invoice_InvoiceId").hide();
             }
 
@@ -126,7 +126,7 @@
                 $("#Group_Invoice_CustomerId").hide();            
             }
 
-            zOnItemView(model, dataProfile);        
+            zOnItemView(model, profile);        
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
         }

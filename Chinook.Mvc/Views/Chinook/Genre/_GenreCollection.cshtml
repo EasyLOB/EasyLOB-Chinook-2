@@ -44,15 +44,15 @@
                 .IsIdentity(true)
                 .IsPrimaryKey(true)
                 .TextAlign(TextAlign.Right)
-                .Visible(Genre.DataProfile.IsGridVisibleFor("GenreId"))
-                .Width(Genre.DataProfile.GridWidthFor("GenreId"))
+                .Visible(Genre.Profile.IsGridVisibleFor("GenreId"))
+                .Width(Genre.Profile.GridWidthFor("GenreId"))
                 .Add();
             column.Field("Name")
                 .Type("string")
                 .EditType(EditingType.String)
                 .HeaderText(GenreResources.PropertyName)
-                .Visible(Genre.DataProfile.IsGridVisibleFor("Name"))
-                .Width(Genre.DataProfile.GridWidthFor("Name"))
+                .Visible(Genre.Profile.IsGridVisibleFor("Name"))
+                .Width(Genre.Profile.GridWidthFor("Name"))
                 .Add();
         })
         .EditSettings(edit => edit
@@ -107,9 +107,9 @@
             ej.widget.init($("#Collection_Genre"));
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Genre.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Genre.Profile));
 
-            zOnCollectionView(model, dataProfile, "@Url.Action("DataSource", "Genre")");
+            zOnCollectionView(model, profile, "@Url.Action("DataSource", "Genre")");
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
         }                

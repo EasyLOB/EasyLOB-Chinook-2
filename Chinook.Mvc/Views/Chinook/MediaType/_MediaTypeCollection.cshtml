@@ -44,15 +44,15 @@
                 .IsIdentity(true)
                 .IsPrimaryKey(true)
                 .TextAlign(TextAlign.Right)
-                .Visible(MediaType.DataProfile.IsGridVisibleFor("MediaTypeId"))
-                .Width(MediaType.DataProfile.GridWidthFor("MediaTypeId"))
+                .Visible(MediaType.Profile.IsGridVisibleFor("MediaTypeId"))
+                .Width(MediaType.Profile.GridWidthFor("MediaTypeId"))
                 .Add();
             column.Field("Name")
                 .Type("string")
                 .EditType(EditingType.String)
                 .HeaderText(MediaTypeResources.PropertyName)
-                .Visible(MediaType.DataProfile.IsGridVisibleFor("Name"))
-                .Width(MediaType.DataProfile.GridWidthFor("Name"))
+                .Visible(MediaType.Profile.IsGridVisibleFor("Name"))
+                .Width(MediaType.Profile.GridWidthFor("Name"))
                 .Add();
         })
         .EditSettings(edit => edit
@@ -107,9 +107,9 @@
             ej.widget.init($("#Collection_MediaType"));
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(MediaType.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(MediaType.Profile));
 
-            zOnCollectionView(model, dataProfile, "@Url.Action("DataSource", "MediaType")");
+            zOnCollectionView(model, profile, "@Url.Action("DataSource", "MediaType")");
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
         }                

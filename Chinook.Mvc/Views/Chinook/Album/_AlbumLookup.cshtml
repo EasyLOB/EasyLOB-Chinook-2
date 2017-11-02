@@ -65,15 +65,15 @@
                             .IsIdentity(true)
                             .IsPrimaryKey(true)
                             .TextAlign(TextAlign.Right)
-                            .Visible(Album.DataProfile.IsGridVisibleFor("AlbumId"))
-                            .Width(Album.DataProfile.GridWidthFor("AlbumId"))
+                            .Visible(Album.Profile.IsGridVisibleFor("AlbumId"))
+                            .Width(Album.Profile.GridWidthFor("AlbumId"))
                             .Add();
                         column.Field("Title")
                             .Type("string")
                             .EditType(EditingType.String)
                             .HeaderText(AlbumResources.PropertyTitle)
-                            .Visible(Album.DataProfile.IsGridVisibleFor("Title"))
-                            .Width(Album.DataProfile.GridWidthFor("Title"))
+                            .Visible(Album.Profile.IsGridVisibleFor("Title"))
+                            .Width(Album.Profile.GridWidthFor("Title"))
                             .Add();
                         column.Field("ArtistId")
                             .Type("number")
@@ -81,15 +81,15 @@
                             .Format(SyncfusionPatternResources.GridFormat_Integer)
                             .HeaderText(AlbumResources.PropertyArtistId)
                             .TextAlign(TextAlign.Right)
-                            .Visible(Album.DataProfile.IsGridVisibleFor("ArtistId"))
-                            .Width(Album.DataProfile.GridWidthFor("ArtistId"))
+                            .Visible(Album.Profile.IsGridVisibleFor("ArtistId"))
+                            .Width(Album.Profile.GridWidthFor("ArtistId"))
                             .Add();
                         column.Field("ArtistLookupText")
                             .AllowEditing(false)
                             .Type("string")
                             .HeaderText(ArtistResources.EntitySingular)
-                            .Visible(Album.DataProfile.IsGridVisibleFor("ArtistLookupText"))
-                            .Width(Album.DataProfile.GridWidthFor("ArtistLookupText"))
+                            .Visible(Album.Profile.IsGridVisibleFor("ArtistLookupText"))
+                            .Width(Album.Profile.GridWidthFor("ArtistLookupText"))
                             .Add();
                     })
                     //.EnablePersistence()
@@ -132,7 +132,7 @@
     $(function () {
         try {
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Album.DataProfile));
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Album.Profile));
 
             $("#@Model.ValueId").hide();
 
@@ -153,7 +153,7 @@
 
             @*
             var ejGrid = zGrid("@(Model.ValueId)_LookupGrid");
-            zOnLookupView(model, dataProfile, ejGrid);
+            zOnLookupView(model, profile, ejGrid);
             *@
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "function", exception));
@@ -186,8 +186,8 @@
             this.model.locale = culture;
 
             var model = @Html.Raw(JsonConvert.SerializeObject(Model));
-            var dataProfile = @Html.Raw(JsonConvert.SerializeObject(Album.DataProfile));
-            zOnLookupView(model, dataProfile, this);
+            var profile = @Html.Raw(JsonConvert.SerializeObject(Album.Profile));
+            zOnLookupView(model, profile, this);
         } catch (exception) {
             zAlert(zExceptionMessage("@CSHTML", "load_@(Model.ValueId)_LookupGrid", exception));
         }
