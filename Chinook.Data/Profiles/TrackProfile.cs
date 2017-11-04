@@ -11,11 +11,11 @@ namespace Chinook.Data
         (
             Name: "Track",
             IsIdentity: true,
-            Keys: new string[] { "TrackId" },
+            Keys: new List<string> { "TrackId" },
             Lookup: "Name",
             LINQOrderBy: "Name",
             LINQWhere: "TrackId == @0",
-            Associations: new string[]
+            Associations: new List<string>
             {
                     "Album",
                     "Genre",

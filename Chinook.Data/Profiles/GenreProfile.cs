@@ -11,11 +11,11 @@ namespace Chinook.Data
         (
             Name: "Genre",
             IsIdentity: true,
-            Keys: new string[] { "GenreId" },
+            Keys: new List<string> { "GenreId" },
             Lookup: "Name",
             LINQOrderBy: "Name",
             LINQWhere: "GenreId == @0",
-            Associations: new string[] { },
+            Associations: new List<string> { },
             Collections: new Dictionary<string, bool>
             {
                     { "Tracks", true },

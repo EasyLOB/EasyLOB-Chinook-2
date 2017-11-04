@@ -268,7 +268,7 @@ namespace Chinook.Shell
             collection = repository.Select("AlbumId >= @0", new object[] { 1 }, "Title descending", 0, 10);
             Console.WriteLine(collection.Count().ToString() + " Album(s).");
 
-            collection = repository.Select("AlbumId == @0", new object[] { 1 }, "Title descending", null, null, new string[] { "Artist", "Tracks" });
+            collection = repository.Select("AlbumId == @0", new object[] { 1 }, "Title descending", null, null, new List<string> { "Artist", "Tracks" });
             Console.WriteLine(collection.Count().ToString() + " Album(s) by " +
                 collection.FirstOrDefault().Artist.Name + " with " +
                 collection.FirstOrDefault().Tracks.Count().ToString() + " Track(s).");

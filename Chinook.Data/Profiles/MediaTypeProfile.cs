@@ -11,11 +11,11 @@ namespace Chinook.Data
         (
             Name: "MediaType",
             IsIdentity: true,
-            Keys: new string[] { "MediaTypeId" },
+            Keys: new List<string> { "MediaTypeId" },
             Lookup: "Name",
             LINQOrderBy: "Name",
             LINQWhere: "MediaTypeId == @0",
-            Associations: new string[] { },
+            Associations: new List<string> { },
             Collections: new Dictionary<string, bool>
             {
                     { "Tracks", true },

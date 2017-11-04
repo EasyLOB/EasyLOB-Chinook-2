@@ -11,11 +11,11 @@ namespace Chinook.Data
         (
             Name: "CustomerDocument",
             IsIdentity: true,
-            Keys: new string[] { "CustomerDocumentId" },
+            Keys: new List<string> { "CustomerDocumentId" },
             Lookup: "Description",
             LINQOrderBy: "Description",
             LINQWhere: "CustomerDocumentId == @0",
-            Associations: new string[]
+            Associations: new List<string>
             {
                 "Customer",
             },

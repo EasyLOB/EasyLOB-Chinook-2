@@ -11,11 +11,11 @@ namespace Chinook.Data
         (
             Name: "Playlist",
             IsIdentity: true,
-            Keys: new string[] { "PlaylistId" },
+            Keys: new List<string> { "PlaylistId" },
             Lookup: "Name",
             LINQOrderBy: "Name",
             LINQWhere: "PlaylistId == @0",
-            Associations: new string[] { },
+            Associations: new List<string> { },
             Collections: new Dictionary<string, bool>
             {
                     { "PlaylistTracks", true },

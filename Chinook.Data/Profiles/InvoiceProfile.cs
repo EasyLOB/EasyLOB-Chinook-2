@@ -11,11 +11,11 @@ namespace Chinook.Data
         (
             Name: "Invoice",
             IsIdentity: true,
-            Keys: new string[] { "InvoiceId" },
+            Keys: new List<string> { "InvoiceId" },
             Lookup: "BillingAddress",
             LINQOrderBy: "BillingAddress",
             LINQWhere: "InvoiceId == @0",
-            Associations: new string[]
+            Associations: new List<string>
             {
                     "Customer",
             },
