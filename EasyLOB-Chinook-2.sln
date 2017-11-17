@@ -155,6 +155,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chinook", "Chinook\Chinook.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyLOB.Library.Web", "..\EasyLOB-2\EasyLOB.Library\EasyLOB.Library.Web\EasyLOB.Library.Web.csproj", "{1B39AFB2-8FE2-46F6-8544-520CD16C3E0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyLOB.Library.App", "..\EasyLOB-2\EasyLOB.Library\EasyLOB.Library.App\EasyLOB.Library.App.csproj", "{C4761CD5-0AE1-41C0-9244-7975440AE9D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -498,6 +500,12 @@ Global
 		{1B39AFB2-8FE2-46F6-8544-520CD16C3E0B}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
 		{1B39AFB2-8FE2-46F6-8544-520CD16C3E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B39AFB2-8FE2-46F6-8544-520CD16C3E0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4761CD5-0AE1-41C0-9244-7975440AE9D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4761CD5-0AE1-41C0-9244-7975440AE9D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4761CD5-0AE1-41C0-9244-7975440AE9D1}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4761CD5-0AE1-41C0-9244-7975440AE9D1}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
+		{C4761CD5-0AE1-41C0-9244-7975440AE9D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4761CD5-0AE1-41C0-9244-7975440AE9D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -572,5 +580,6 @@ Global
 		{42792BFA-9B57-485C-AF50-C493B08190CB} = {C3413CD2-52DF-4FCF-A4B9-0A3DE515E1EA}
 		{03EE3CD2-68CD-455B-986D-022CB8FFD94F} = {87EF7D6D-72BF-4CCA-8E5E-3B1A5C05AC0A}
 		{1B39AFB2-8FE2-46F6-8544-520CD16C3E0B} = {C3413CD2-52DF-4FCF-A4B9-0A3DE515E1EA}
+		{C4761CD5-0AE1-41C0-9244-7975440AE9D1} = {C3413CD2-52DF-4FCF-A4B9-0A3DE515E1EA}
 	EndGlobalSection
 EndGlobal
