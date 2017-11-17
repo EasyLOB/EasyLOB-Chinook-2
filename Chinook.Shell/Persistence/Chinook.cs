@@ -38,7 +38,7 @@ namespace Chinook.Shell
             where TEntity : ZDataBase
         {
             IGenericRepository<TEntity> repository = unitOfWork.GetRepository<TEntity>();
-            TEntity entity = repository.Query.FirstOrDefault();
+            TEntity entity = repository.Query().FirstOrDefault();
             Console.WriteLine(typeof(TEntity).Name + ": " + repository.CountAll());
         }
     }

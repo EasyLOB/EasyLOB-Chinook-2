@@ -185,7 +185,7 @@ namespace Chinook.Shell
             Console.WriteLine("UnitOfWork.GetQuery<Album>() Count(): " + collection.Count().ToString() + " Album(s).");
 
             query =
-                from x in repository.Query
+                from x in repository.Query()
                 where x.AlbumId == 1
                 orderby x.Title descending
                 select x;
