@@ -149,7 +149,7 @@
     <Compile Include="Persistence\ChinookLINQEntityFramework.cs" />
     <Compile Include="Persistence\ChinookLINQJoin.cs" />
     <Compile Include="Persistence\ChinookLINQNHibernate.cs" />
-    <Compile Include="Persistence\ChinookSelector.cs" />
+    <Compile Include="Persistence\ChinookLINQSelector.cs" />
     <Compile Include="Persistence\ChinookTransaction.cs" />
     <Compile Include="Persistence\PersistenceDemo.cs" />
     <Compile Include="Persistence\Security.cs" />

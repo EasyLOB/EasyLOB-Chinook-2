@@ -11,7 +11,7 @@ namespace Chinook.Shell
             bool exit = false;
 
             // Hangfire
-            GlobalConfiguration.Configuration.UseSqlServerStorage("hangfire");
+            //GlobalConfiguration.Configuration.UseSqlServerStorage("hangfire");
 
             while (!exit)
             {
@@ -21,7 +21,7 @@ namespace Chinook.Shell
                 Console.WriteLine("<1> Chinook Application Demo");
                 Console.WriteLine("<2> Chinook Persistence Demo");
                 Console.WriteLine("<3> Chinook RESET");
-                Console.WriteLine("<4> Hangfire");
+                //Console.WriteLine("<4> Hangfire");
                 Console.Write("\nChoose an option... ");
 
                 ConsoleKeyInfo key = Console.ReadKey();
@@ -45,9 +45,9 @@ namespace Chinook.Shell
                         ApplicationChinookReset();
                         break;
 
-                    case ('4'):
-                        HangfireDemo();
-                        break;
+                    //case ('4'):
+                    //    HangfireDemo();
+                    //    break;
                 }
 
                 if (!exit && "345".IndexOf(key.KeyChar) >= 0)

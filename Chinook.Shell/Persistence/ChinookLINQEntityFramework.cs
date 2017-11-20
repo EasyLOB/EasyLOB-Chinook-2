@@ -21,7 +21,7 @@ namespace Chinook.Shell
 {
     partial class Program
     {
-        public static void PersistenceLINQEntityFrameworkDemo()
+        public static void PersistenceChinookLINQEntityFrameworkDemo()
         {
             Console.WriteLine("\nPersistence Chinook LINQ Entity Framework Demo\n");
 
@@ -157,7 +157,7 @@ namespace Chinook.Shell
                 "] with " + album.Tracks.Count() + " Track(s).");
         }
 
-        public static void PersistenceLINQEntityFrameworkUnitOfWorkDemo()
+        public static void PersistenceChinookLINQEntityFrameworkUnitOfWorkDemo()
         {
             Console.WriteLine("\nPersistence LINQ Entity Framework UnitOfWork Demo\n");
 

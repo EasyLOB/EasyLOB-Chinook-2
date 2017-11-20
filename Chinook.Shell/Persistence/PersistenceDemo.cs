@@ -15,14 +15,18 @@ namespace Chinook.Shell
                 Console.WriteLine("<0> RETURN");
                 Console.WriteLine("<1> Chinook Demo");
                 Console.WriteLine("<2> Chinook Album Demo");
-                Console.WriteLine("<3> Chinook LINQ Demo");
-                Console.WriteLine("<4> Chinook LINQ Join Demo, does not work with MongoDB,RavenDB and Redis, because there are no server-side Joins");
-                Console.WriteLine("<5> Chinook CRUD Demo");
+                Console.WriteLine("<3> Chinook CRUD Demo");
+                Console.WriteLine("<4> Chinook LINQ Demo");
+                Console.WriteLine("<5> Chinook LINQ Join Demo, does not work with MongoDB,RavenDB and Redis, because there are no server-side Joins");
                 Console.WriteLine("<6> Chinook LINQ Selector Demo");
                 Console.WriteLine("<7> Chinook GetById() Demo");
                 Console.WriteLine("<8> Chinook Transaction Commit Demo (*)");
                 Console.WriteLine("<9> Chinook Transaction Rollback Demo (*)");
-                Console.WriteLine("<A> Security Demo");
+                Console.WriteLine("<A> Chinook LINQ Entity Framework Demo");
+                Console.WriteLine("<B> Chinook LINQ Entity Framework UnitOfWork Demo");
+                Console.WriteLine("<C> Chinook LINQ NHibernate Demo");
+                Console.WriteLine("<D> Chinook LINQ NHibernate Framework UnitOfWork Demo");
+                Console.WriteLine("<E> Security Demo");
                 Console.WriteLine("\n(*) NoSQL Databases MongoDb, RavenDB and Redis DO NOT SUPPORT TRANSACTION");
                 Console.Write("\nChoose an option... ");
 
@@ -44,19 +48,19 @@ namespace Chinook.Shell
                         break;
 
                     case ('3'):
-                        PersistenceChinookLINQDemo();
-                        break;
-
-                    case ('4'):
-                        PersistenceChinookLINQJoinDemo();
-                        break;
-
-                    case ('5'):
                         PersistenceChinookCRUDDemo();
                         break;
 
+                    case ('4'):
+                        PersistenceChinookLINQDemo();
+                        break;
+
+                    case ('5'):
+                        PersistenceChinookLINQJoinDemo();
+                        break;
+
                     case ('6'):
-                        PersistenceChinookSelectorDemo();
+                        PersistenceChinookLINQSelectorDemo();
                         break;
 
                     case ('7'):
@@ -72,6 +76,22 @@ namespace Chinook.Shell
                         break;
 
                     case ('A'):
+                        PersistenceChinookLINQEntityFrameworkDemo();
+                        break;
+
+                    case ('B'):
+                        PersistenceChinookLINQEntityFrameworkUnitOfWorkDemo();
+                        break;
+
+                    case ('C'):
+                        PersistenceChinookLINQNHibernateDemo();
+                        break;
+
+                    case ('D'):
+                        PersistenceChinookLINQNHibernateUnitOfWorkDemo();
+                        break;
+
+                    case ('E'):
                         PersistenceIdentityDemo();
                         break;
                 }

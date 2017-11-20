@@ -143,7 +143,7 @@ namespace Chinook.Shell
             //    "] with " + a.Tracks.Count() + " Track(s).");
         }
 
-        public static void PersistenceLINQNHibernateUnitOfWorkDemo()
+        public static void PersistenceChinookLINQNHibernateUnitOfWorkDemo()
         {
             Console.WriteLine("\nPersistence LINQ NHibernate UnitOfWork Demo\n");
 

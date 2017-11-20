@@ -12,9 +12,9 @@ namespace Chinook.Shell
 {
     partial class Program
     {
-        private static void PersistenceChinookSelectorDemo()
+        private static void PersistenceChinookLINQSelectorDemo()
         {
-            Console.WriteLine("\nPersistence Chinook Selector Demo");
+            Console.WriteLine("\nPersistence Chinook LINQ Selector Demo");
 
             var container = new UnityContainer();
             UnityHelper.RegisterMappings(container);
