@@ -1,5 +1,6 @@
 ﻿using EasyLOB.Data;
 using EasyLOB.Library;
+using EasyLOB.Library.Web;
 using EasyLOB.Library.Syncfusion;
 using EasyLOB.Persistence;
 using EasyLOB.Security.Resources;
@@ -32,7 +33,7 @@ namespace EasyLOB.Mvc
                 OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultModel(OperationResult));
+            return View("OperationResult", new OperationResultViewModel(OperationResult));
         }
 
         // POST: Tasks/ExportSecurity

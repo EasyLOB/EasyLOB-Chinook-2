@@ -36,14 +36,17 @@ namespace Chinook.Mvc
 
             try
             {
-                IsOperation(artistCollectionModel.OperationResult);
+                if (IsIndex(artistCollectionModel.OperationResult))
+                {
+                    return View(artistCollectionModel);
+                }
             }
             catch (Exception exception)
             {
                 artistCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View(artistCollectionModel);
+            return View("OperationResult", new OperationResultViewModel(artistCollectionModel.OperationResult));
         }        
 
         // GET & POST: Artist/Search

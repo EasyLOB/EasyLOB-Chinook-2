@@ -36,14 +36,17 @@ namespace Chinook.Mvc
 
             try
             {
-                IsOperation(playlistCollectionModel.OperationResult);
+                if (IsIndex(playlistCollectionModel.OperationResult))
+                {
+                    return View(playlistCollectionModel);
+                }
             }
             catch (Exception exception)
             {
                 playlistCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View(playlistCollectionModel);
+            return View("OperationResult", new OperationResultViewModel(playlistCollectionModel.OperationResult));
         }        
 
         // GET & POST: Playlist/Search

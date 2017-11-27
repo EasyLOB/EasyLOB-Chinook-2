@@ -36,14 +36,17 @@ namespace Chinook.Mvc
 
             try
             {
-                IsOperation(customerDocumentCollectionModel.OperationResult);
+                if (IsIndex(customerDocumentCollectionModel.OperationResult))
+                {
+                    return View(customerDocumentCollectionModel);
+                }
             }
             catch (Exception exception)
             {
                 customerDocumentCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View(customerDocumentCollectionModel);
+            return View("OperationResult", new OperationResultViewModel(customerDocumentCollectionModel.OperationResult));
         }        
 
         // GET & POST: CustomerDocument/Search

@@ -36,14 +36,17 @@ namespace Chinook.Mvc
 
             try
             {
-                IsOperation(genreCollectionModel.OperationResult);
+                if (IsIndex(genreCollectionModel.OperationResult))
+                {
+                    return View(genreCollectionModel);
+                }
             }
             catch (Exception exception)
             {
                 genreCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View(genreCollectionModel);
+            return View("OperationResult", new OperationResultViewModel(genreCollectionModel.OperationResult));
         }        
 
         // GET & POST: Genre/Search

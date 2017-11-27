@@ -36,14 +36,17 @@ namespace Chinook.Mvc
 
             try
             {
-                IsOperation(albumCollectionModel.OperationResult);
+                if (IsIndex(albumCollectionModel.OperationResult))
+                {
+                    return View(albumCollectionModel);
+                }
             }
             catch (Exception exception)
             {
                 albumCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View(albumCollectionModel);
+            return View("OperationResult", new OperationResultViewModel(albumCollectionModel.OperationResult));
         }        
 
         // GET & POST: Album/Search

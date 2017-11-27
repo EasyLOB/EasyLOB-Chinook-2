@@ -36,14 +36,17 @@ namespace Chinook.Mvc
 
             try
             {
-                IsOperation(mediaTypeCollectionModel.OperationResult);
+                if (IsIndex(mediaTypeCollectionModel.OperationResult))
+                {
+                    return View(mediaTypeCollectionModel);
+                }
             }
             catch (Exception exception)
             {
                 mediaTypeCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View(mediaTypeCollectionModel);
+            return View("OperationResult", new OperationResultViewModel(mediaTypeCollectionModel.OperationResult));
         }        
 
         // GET & POST: MediaType/Search
