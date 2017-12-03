@@ -209,7 +209,7 @@ namespace Chinook.Shell
             // Album ClassDictionary.Associations = { "Artist" }
             where = (x => x.AlbumId == 1);
             orderBy = (o => o.OrderByDescending(x => x.Title));
-            collection = repository.Select(where, orderBy);
+            collection = repository.Search(where, orderBy);
             Console.WriteLine(collection.Count().ToString() + " Album(s) by " +
                 collection.FirstOrDefault().Artist.Name + ".");
 
@@ -219,7 +219,7 @@ namespace Chinook.Shell
             // The method 'OrderBy' must be called before the method 'Skip'.
             where = (x => x.AlbumId >= 1);
             //orderBy = (q => q.OrderByDescending(x => x.Title));
-            collection = repository.Select(where, orderBy, 0, 10);
+            collection = repository.Search(where, orderBy, 0, 10);
             Console.WriteLine(collection.Count().ToString() + " Album(s).");
 
             where = (x => x.AlbumId == 1);
@@ -231,7 +231,7 @@ namespace Chinook.Shell
             associationExpressions.Clear();
             associationExpressions.Add(x => x.Artist);
             associationExpressions.Add(x => x.Tracks);
-            collection = repository.Select(where, orderBy, null, null, associationExpressions);
+            collection = repository.Search(where, orderBy, null, null, associationExpressions);
             Console.WriteLine(collection.Count().ToString() + " Album(s) by " +
                 collection.FirstOrDefault().Artist.Name + " with " +
                 collection.FirstOrDefault().Tracks.Count().ToString() + " Track(s).");
@@ -257,7 +257,7 @@ namespace Chinook.Shell
 
             // Album ClassDictionary.Associations = { "Artist" }
             // Album ClassDictionary.OrderByExpression = "Title"
-            collection = repository.Select("AlbumId == @0", new object[] { 1 }, "Title descending");
+            collection = repository.Search("AlbumId == @0", new object[] { 1 }, "Title descending");
             Console.WriteLine(collection.Count().ToString() + " Album(s) by " +
                 collection.FirstOrDefault().Artist.Name + ".");
 
@@ -265,10 +265,10 @@ namespace Chinook.Shell
             // Album ClassDictionary.OrderByExpression = "Title"
             // The method 'Skip' is only supported for sorted input in LINQ to Entities.
             // The method 'OrderBy' must be called before the method 'Skip'.
-            collection = repository.Select("AlbumId >= @0", new object[] { 1 }, "Title descending", 0, 10);
+            collection = repository.Search("AlbumId >= @0", new object[] { 1 }, "Title descending", 0, 10);
             Console.WriteLine(collection.Count().ToString() + " Album(s).");
 
-            collection = repository.Select("AlbumId == @0", new object[] { 1 }, "Title descending", null, null, new List<string> { "Artist", "Tracks" });
+            collection = repository.Search("AlbumId == @0", new object[] { 1 }, "Title descending", null, null, new List<string> { "Artist", "Tracks" });
             Console.WriteLine(collection.Count().ToString() + " Album(s) by " +
                 collection.FirstOrDefault().Artist.Name + " with " +
                 collection.FirstOrDefault().Tracks.Count().ToString() + " Track(s).");

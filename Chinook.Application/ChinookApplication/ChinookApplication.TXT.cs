@@ -50,7 +50,7 @@ namespace Chinook.Application
                 using (asyncEngine.BeginWriteFile(filePath))
                 {
                     FileHelpersGenre fileHelpersGenre = new FileHelpersGenre();
-                    foreach (Genre genre in genreApplication.Select(operationResult, null, null, null, null, 10).MyToList<Genre>())
+                    foreach (Genre genre in genreApplication.Search(operationResult, null, null, null, null, 10).MyToList<Genre>())
                     {
                         fileHelpersGenre.GenreId = genre.GenreId;
                         fileHelpersGenre.Name = genre.Name;

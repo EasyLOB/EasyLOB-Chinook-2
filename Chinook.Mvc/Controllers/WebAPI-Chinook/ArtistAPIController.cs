@@ -56,7 +56,7 @@ namespace Chinook.WebApi
 
             try
             {
-                return Ok<IEnumerable<ArtistDTO>>(Application.Select(operationResult,
+                return Ok<IEnumerable<ArtistDTO>>(Application.Search(operationResult,
                     null, null, (null as int?), AppDefaults.SyncfusionRecordsBySearch));
                 //return Ok<IEnumerable<ArtistDTO>>(Application.SelectAll(operationResult));
             }

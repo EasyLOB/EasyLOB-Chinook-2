@@ -42,7 +42,7 @@ namespace Chinook.Shell
             IdentityGenericApplication<TEntity> application =
                 (IdentityGenericApplication<TEntity>)container.Resolve<IIdentityGenericApplication<TEntity>>();
             ZOperationResult operationResult = new ZOperationResult();
-            IEnumerable<TEntity> enumerable = application.SelectAll(operationResult);
+            IEnumerable<TEntity> enumerable = application.SearchAll(operationResult);
             Console.WriteLine(typeof(TEntity).Name + ": {0}", enumerable.Count());
         }
 
@@ -53,7 +53,7 @@ namespace Chinook.Shell
             IdentityGenericApplicationDTO<TEntityDTO, TEntity> application =
                 (IdentityGenericApplicationDTO<TEntityDTO, TEntity>)container.Resolve<IIdentityGenericApplicationDTO<TEntityDTO, TEntity>>();
             ZOperationResult operationResult = new ZOperationResult();
-            IEnumerable<TEntityDTO> enumerable = application.SelectAll(operationResult);
+            IEnumerable<TEntityDTO> enumerable = application.SearchAll(operationResult);
             Console.WriteLine(typeof(TEntity).Name + "DTO: {0}", enumerable.Count());
         }
     }

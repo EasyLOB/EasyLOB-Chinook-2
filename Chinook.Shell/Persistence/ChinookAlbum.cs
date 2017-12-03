@@ -37,7 +37,7 @@ namespace Chinook.Shell
             }
 
             {
-                IEnumerable<Album> albums = repository.Select(null, null, null, null, 20).ToList<Album>();
+                IEnumerable<Album> albums = repository.Search(null, null, null, null, 20).ToList<Album>();
                 int index = 0;
                 Console.WriteLine();
                 foreach (Album album in albums)

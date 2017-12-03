@@ -56,7 +56,7 @@ namespace Chinook.WebApi
 
             try
             {
-                return Ok<IEnumerable<CustomerDocumentDTO>>(Application.Select(operationResult,
+                return Ok<IEnumerable<CustomerDocumentDTO>>(Application.Search(operationResult,
                     null, null, (null as int?), AppDefaults.SyncfusionRecordsBySearch));
                 //return Ok<IEnumerable<CustomerDocumentDTO>>(Application.SelectAll(operationResult));
             }
