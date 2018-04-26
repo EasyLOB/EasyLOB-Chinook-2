@@ -267,10 +267,6 @@
       <Project>{9416c420-cd94-44df-9e0c-55dd7c0077aa}</Project>
       <Name>EasyLOB.Identity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\EasyLOB-2\EasyLOB.Library\EasyLOB.Library.Syncfusion\EasyLOB.Library.Syncfusion.csproj">
-      <Project>{8842fd16-08f0-434f-b07a-8e61a3ee07e1}</Project>
-      <Name>EasyLOB.Library.Syncfusion</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\EasyLOB-2\EasyLOB.Library\EasyLOB.Library.WebApi\EasyLOB.Library.WebApi.csproj">
       <Project>{42792bfa-9b57-485c-af50-c493b08190cb}</Project>
       <Name>EasyLOB.Library.WebApi</Name>

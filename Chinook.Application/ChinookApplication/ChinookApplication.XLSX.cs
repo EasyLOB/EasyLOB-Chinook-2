@@ -1,8 +1,8 @@
 ﻿using Chinook.Data;
 using EasyLOB;
+using EasyLOB.Application;
 using EasyLOB.Data;
 using EasyLOB.Library;
-using EasyLOB.Library.Syncfusion;
 using EasyLOB.Persistence;
 using Syncfusion.XlsIO;
 using System;
