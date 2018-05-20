@@ -38,7 +38,7 @@
             column.Field("MediaTypeId")
                 .AllowEditing(false)
                 .Type("number")
-                .EditType(EditingType.Numeric)
+                .EditType(EditingType.NumericEdit)
                 .Format(SyncfusionPatternResources.GridFormat_Integer)
                 .HeaderText(MediaTypeResources.PropertyMediaTypeId)
                 .IsIdentity(true)
@@ -49,7 +49,7 @@
                 .Add();
             column.Field("Name")
                 .Type("string")
-                .EditType(EditingType.String)
+                .EditType(EditingType.StringEdit)
                 .HeaderText(MediaTypeResources.PropertyName)
                 .Visible(MediaType.Profile.IsGridVisibleFor("Name"))
                 .Width(MediaType.Profile.GridWidthFor("Name"))

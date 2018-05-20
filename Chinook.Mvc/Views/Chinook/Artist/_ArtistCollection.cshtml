@@ -38,7 +38,7 @@
             column.Field("ArtistId")
                 .AllowEditing(false)
                 .Type("number")
-                .EditType(EditingType.Numeric)
+                .EditType(EditingType.NumericEdit)
                 .Format(SyncfusionPatternResources.GridFormat_Integer)
                 .HeaderText(ArtistResources.PropertyArtistId)
                 .IsIdentity(true)
@@ -49,7 +49,7 @@
                 .Add();
             column.Field("Name")
                 .Type("string")
-                .EditType(EditingType.String)
+                .EditType(EditingType.StringEdit)
                 .HeaderText(ArtistResources.PropertyName)
                 .Visible(Artist.Profile.IsGridVisibleFor("Name"))
                 .Width(Artist.Profile.GridWidthFor("Name"))

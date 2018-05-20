@@ -50,7 +50,7 @@
             column.Field("TrackId")
                 .AllowEditing(false)
                 .Type("number")
-                .EditType(EditingType.Numeric)
+                .EditType(EditingType.NumericEdit)
                 .Format(SyncfusionPatternResources.GridFormat_Integer)
                 .HeaderText(TrackResources.PropertyTrackId)
                 .IsIdentity(true)
@@ -61,14 +61,14 @@
                 .Add();
             column.Field("Name")
                 .Type("string")
-                .EditType(EditingType.String)
+                .EditType(EditingType.StringEdit)
                 .HeaderText(TrackResources.PropertyName)
                 .Visible(Track.Profile.IsGridVisibleFor("Name"))
                 .Width(Track.Profile.GridWidthFor("Name"))
                 .Add();
             column.Field("AlbumId")
                 .Type("number")
-                .EditType(EditingType.Numeric)
+                .EditType(EditingType.NumericEdit)
                 .Format(SyncfusionPatternResources.GridFormat_Integer)
                 .HeaderText(TrackResources.PropertyAlbumId)
                 .TextAlign(TextAlign.Right)
@@ -84,7 +84,7 @@
                 .Add();
             column.Field("MediaTypeId")
                 .Type("number")
-                .EditType(EditingType.Numeric)
+                .EditType(EditingType.NumericEdit)
                 .Format(SyncfusionPatternResources.GridFormat_Integer)
                 .HeaderText(TrackResources.PropertyMediaTypeId)
                 .TextAlign(TextAlign.Right)
@@ -100,7 +100,7 @@
                 .Add();
             column.Field("GenreId")
                 .Type("number")
-                .EditType(EditingType.Numeric)
+                .EditType(EditingType.NumericEdit)
                 .Format(SyncfusionPatternResources.GridFormat_Integer)
                 .HeaderText(TrackResources.PropertyGenreId)
                 .TextAlign(TextAlign.Right)
@@ -116,14 +116,14 @@
                 .Add();
             column.Field("Composer")
                 .Type("string")
-                .EditType(EditingType.String)
+                .EditType(EditingType.StringEdit)
                 .HeaderText(TrackResources.PropertyComposer)
                 .Visible(Track.Profile.IsGridVisibleFor("Composer"))
                 .Width(Track.Profile.GridWidthFor("Composer"))
                 .Add();
             column.Field("Milliseconds")
                 .Type("number")
-                .EditType(EditingType.Numeric)
+                .EditType(EditingType.NumericEdit)
                 .Format(SyncfusionPatternResources.GridFormat_Integer)
                 .HeaderText(TrackResources.PropertyMilliseconds)
                 .TextAlign(TextAlign.Right)
@@ -132,7 +132,7 @@
                 .Add();
             column.Field("Bytes")
                 .Type("number")
-                .EditType(EditingType.Numeric)
+                .EditType(EditingType.NumericEdit)
                 .Format(SyncfusionPatternResources.GridFormat_Integer)
                 .HeaderText(TrackResources.PropertyBytes)
                 .TextAlign(TextAlign.Right)
@@ -141,7 +141,7 @@
                 .Add();
             column.Field("UnitPrice")
                 .Type("number")
-                .EditType(EditingType.Numeric)
+                .EditType(EditingType.NumericEdit)
                 .Format(SyncfusionPatternResources.GridFormat_Float)
                 .HeaderText(TrackResources.PropertyUnitPrice)
                 .TextAlign(TextAlign.Right)
