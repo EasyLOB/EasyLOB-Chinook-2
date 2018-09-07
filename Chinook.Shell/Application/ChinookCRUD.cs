@@ -2,7 +2,6 @@
 using Chinook.Data;
 using EasyLOB;
 using EasyLOB.Library;
-using Microsoft.Practices.Unity;
 using System;
 
 namespace Chinook.Shell
@@ -13,11 +12,7 @@ namespace Chinook.Shell
         {
             Console.WriteLine("\nApplication Chinook CRUD Demo\n");
 
-            var container = new UnityContainer();
-            UnityHelper.RegisterMappings(container);
-
-            ChinookGenericApplication<Genre> application =
-                (ChinookGenericApplication<Genre>)container.Resolve<IChinookGenericApplication<Genre>>();
+            IChinookGenericApplication<Genre> application = DIHelper.GetService<IChinookGenericApplication<Genre>>();
             Console.WriteLine(application.GetType().FullName + " with " + application.UnitOfWork.DBMS.ToString() + "\n");
 
             ZOperationResult operationResult = new ZOperationResult();

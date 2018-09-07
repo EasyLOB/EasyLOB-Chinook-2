@@ -4,7 +4,6 @@ using EasyLOB;
 using EasyLOB.Data;
 using EasyLOB.Persistence;
 using EasyLOB.Security;
-using Microsoft.Practices.Unity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -161,10 +160,7 @@ namespace Chinook.Shell
         {
             Console.WriteLine("\nPersistence LINQ Entity Framework UnitOfWork Demo\n");
 
-            var container = new UnityContainer();
-            UnityHelper.RegisterMappings(container);
-
-            IAuthenticationManager authenticationManager = (IAuthenticationManager)container.Resolve<IAuthenticationManager>();
+            IAuthenticationManager authenticationManager = DIHelper.GetService<IAuthenticationManager>();
             IUnitOfWork unitOfWork = new ChinookUnitOfWorkEF(authenticationManager);
             unitOfWork.DatabaseLogger = ZDatabaseLogger.File;
 

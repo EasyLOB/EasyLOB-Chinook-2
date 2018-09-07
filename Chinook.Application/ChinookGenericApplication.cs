@@ -1,4 +1,5 @@
 ﻿using Chinook.Persistence;
+using EasyLOB;
 using EasyLOB.Application;
 using EasyLOB.Data;
 

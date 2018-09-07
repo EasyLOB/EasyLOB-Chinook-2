@@ -80,6 +80,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\EasyLOB-2\EasyLOB.Library\EasyLOB.Library.AspNet\EasyLOB.Library.AspNet.csproj">
+      <Project>{0fc5280d-8395-4689-ac53-0c053acde299}</Project>
+      <Name>EasyLOB.Library.AspNet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\EasyLOB-2\EasyLOB.Library\EasyLOB.Library\EasyLOB.Library.csproj">
       <Project>{55b7716b-36a3-442d-9e9e-9caab7db592e}</Project>
       <Name>EasyLOB.Library</Name>

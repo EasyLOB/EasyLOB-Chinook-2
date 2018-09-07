@@ -2,8 +2,8 @@
 using Chinook.Application;
 using Chinook.Persistence;
 using EasyLOB.Persistence;
-using Microsoft.Practices.Unity;
 using NHibernate;
+using Unity;
 
 namespace EasyLOB
 {

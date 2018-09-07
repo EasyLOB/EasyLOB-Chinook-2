@@ -3,7 +3,6 @@ using Chinook.Persistence;
 using EasyLOB;
 using EasyLOB.Data;
 using EasyLOB.Persistence;
-using Microsoft.Practices.Unity;
 using System;
 
 namespace Chinook.Shell
@@ -14,28 +13,25 @@ namespace Chinook.Shell
         {
             Console.WriteLine("\nPersistence Chinook GetById() Demo");
 
-            var container = new UnityContainer();
-            UnityHelper.RegisterMappings(container);
+            IUnitOfWork unitOfWork = DIHelper.GetService<IChinookUnitOfWork>();
 
-            IUnitOfWork unitOfWork = (IUnitOfWork)container.Resolve<IChinookUnitOfWork>();
-
-            GetById<Album>(container);
-            GetById<Artist>(container);
-            GetById<Customer>(container);
-            GetById<Employee>(container);
-            GetById<Genre>(container);
-            GetById<Invoice>(container);
-            GetById<InvoiceLine>(container);
-            GetById<MediaType>(container);
-            GetById<Playlist>(container);
-            GetById<PlaylistTrack>(container, new object[] { 1, 1 });
-            GetById<Track>(container);
+            GetById<Album>();
+            GetById<Artist>();
+            GetById<Customer>();
+            GetById<Employee>();
+            GetById<Genre>();
+            GetById<Invoice>();
+            GetById<InvoiceLine>();
+            GetById<MediaType>();
+            GetById<Playlist>();
+            GetById<PlaylistTrack>(new object[] { 1, 1 });
+            GetById<Track>();
         }
 
-        private static void GetById<TEntity>(UnityContainer container, object[] ids = null)
+        private static void GetById<TEntity>(object[] ids = null)
             where TEntity : ZDataBase
         {
-            IUnitOfWork unitOfWork = (IUnitOfWork)container.Resolve<IChinookUnitOfWork>();
+            IChinookUnitOfWork unitOfWork = DIHelper.GetService<IChinookUnitOfWork>();
             IGenericRepository<TEntity> repository = unitOfWork.GetRepository<TEntity>();
 
             TEntity entity;

@@ -3,10 +3,10 @@ using Chinook.Data;
 using EasyLOB;
 using EasyLOB.Data;
 using EasyLOB.Library;
-using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity;
 
 namespace Chinook.Shell
 {
@@ -16,59 +16,54 @@ namespace Chinook.Shell
         {
             Console.WriteLine("\nApplication Chinook Demo\n");
 
-            var container = new UnityContainer();
-            UnityHelper.RegisterMappings(container);
+            ApplicationChinookData<Album>();
+            ApplicationChinookDTO<AlbumDTO, Album>();
 
-            ApplicationChinookData<Album>(container);
-            ApplicationChinookDTO<AlbumDTO, Album>(container);
+            ApplicationChinookData<Artist>();
+            ApplicationChinookDTO<ArtistDTO, Artist>();
 
-            ApplicationChinookData<Artist>(container);
-            ApplicationChinookDTO<ArtistDTO, Artist>(container);
+            ApplicationChinookData<Customer>();
+            ApplicationChinookDTO<CustomerDTO, Customer>();
 
-            ApplicationChinookData<Customer>(container);
-            ApplicationChinookDTO<CustomerDTO, Customer>(container);
+            ApplicationChinookData<Employee>();
+            ApplicationChinookDTO<EmployeeDTO, Employee>();
 
-            ApplicationChinookData<Employee>(container);
-            ApplicationChinookDTO<EmployeeDTO, Employee>(container);
+            ApplicationChinookData<Genre>();
+            ApplicationChinookDTO<GenreDTO, Genre>();
 
-            ApplicationChinookData<Genre>(container);
-            ApplicationChinookDTO<GenreDTO, Genre>(container);
+            ApplicationChinookData<Invoice>();
+            ApplicationChinookDTO<InvoiceDTO, Invoice>();
 
-            ApplicationChinookData<Invoice>(container);
-            ApplicationChinookDTO<InvoiceDTO, Invoice>(container);
+            ApplicationChinookData<InvoiceLine>();
+            ApplicationChinookDTO<InvoiceLineDTO, InvoiceLine>();
 
-            ApplicationChinookData<InvoiceLine>(container);
-            ApplicationChinookDTO<InvoiceLineDTO, InvoiceLine>(container);
+            ApplicationChinookData<MediaType>();
+            ApplicationChinookDTO<MediaTypeDTO, MediaType>();
 
-            ApplicationChinookData<MediaType>(container);
-            ApplicationChinookDTO<MediaTypeDTO, MediaType>(container);
+            ApplicationChinookData<Playlist>();
+            ApplicationChinookDTO<PlaylistDTO, Playlist>();
 
-            ApplicationChinookData<Playlist>(container);
-            ApplicationChinookDTO<PlaylistDTO, Playlist>(container);
+            ApplicationChinookData<PlaylistTrack>();
+            ApplicationChinookDTO<PlaylistTrackDTO, PlaylistTrack>();
 
-            ApplicationChinookData<PlaylistTrack>(container);
-            ApplicationChinookDTO<PlaylistTrackDTO, PlaylistTrack>(container);
-
-            ApplicationChinookData<Track>(container);
-            ApplicationChinookDTO<TrackDTO, Track>(container);
+            ApplicationChinookData<Track>();
+            ApplicationChinookDTO<TrackDTO, Track>();
         }
 
-        private static void ApplicationChinookData<TEntity>(UnityContainer container)
+        private static void ApplicationChinookData<TEntity>()
             where TEntity : ZDataBase
         {
-            ChinookGenericApplication<TEntity> application =
-                (ChinookGenericApplication<TEntity>)container.Resolve<IChinookGenericApplication<TEntity>>();
+            IChinookGenericApplication<TEntity> application = DIHelper.GetService<IChinookGenericApplication<TEntity>>();
             ZOperationResult operationResult = new ZOperationResult();
             IEnumerable<TEntity> enumerable = application.SearchAll(operationResult);
             Console.WriteLine(typeof(TEntity).Name + ": {0}", enumerable.Count());
         }
 
-        private static void ApplicationChinookDTO<TEntityDTO, TEntity>(UnityContainer container)
+        private static void ApplicationChinookDTO<TEntityDTO, TEntity>()
             where TEntityDTO : ZDTOBase<TEntityDTO, TEntity>
             where TEntity : ZDataBase
         {
-            ChinookGenericApplicationDTO<TEntityDTO, TEntity> application =
-                (ChinookGenericApplicationDTO<TEntityDTO, TEntity>)container.Resolve<IChinookGenericApplicationDTO<TEntityDTO, TEntity>>();
+            IChinookGenericApplicationDTO<TEntityDTO, TEntity> application = DIHelper.GetService<IChinookGenericApplicationDTO<TEntityDTO, TEntity>>();
             ZOperationResult operationResult = new ZOperationResult();
             IEnumerable<TEntityDTO> enumerable = application.SearchAll(operationResult);
             Console.WriteLine(typeof(TEntity).Name + "DTO: {0}", enumerable.Count());

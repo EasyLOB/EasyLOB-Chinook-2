@@ -2,10 +2,10 @@
 using EasyLOB.Library;
 using EasyLOB.Resources;
 using EasyLOB.Log;
-using Microsoft.Practices.Unity;
 using System;
 using System.IO;
 using System.Reflection;
+using Unity;
 
 namespace Chinook.Console
 {

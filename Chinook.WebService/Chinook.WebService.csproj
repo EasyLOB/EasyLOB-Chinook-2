@@ -22,6 +22,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -73,9 +74,9 @@
       <Project>{1f89f104-c08b-4537-a9a8-5c51c53376f0}</Project>
       <Name>EasyLOB.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\EasyLOB-2\EasyLOB.Library\EasyLOB.Library.WebService\EasyLOB.Library.WebService.csproj">
-      <Project>{91c7a7c2-d027-4c69-a2b0-ca67c7e83a89}</Project>
-      <Name>EasyLOB.Library.WebService</Name>
+    <ProjectReference Include="..\..\EasyLOB-2\EasyLOB.Library\EasyLOB.Library.AspNet\EasyLOB.Library.AspNet.csproj">
+      <Project>{0fc5280d-8395-4689-ac53-0c053acde299}</Project>
+      <Name>EasyLOB.Library.AspNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\EasyLOB-2\EasyLOB.Library\EasyLOB.Library\EasyLOB.Library.csproj">
       <Project>{55b7716b-36a3-442d-9e9e-9caab7db592e}</Project>

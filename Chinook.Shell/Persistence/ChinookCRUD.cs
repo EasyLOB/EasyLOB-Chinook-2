@@ -3,7 +3,6 @@ using Chinook.Persistence;
 using EasyLOB;
 using EasyLOB.Library;
 using EasyLOB.Persistence;
-using Microsoft.Practices.Unity;
 using System;
 
 namespace Chinook.Shell
@@ -14,10 +13,7 @@ namespace Chinook.Shell
         {
             Console.WriteLine("\nPersistence Chinook CRUD Demo");
 
-            var container = new UnityContainer();
-            UnityHelper.RegisterMappings(container);
-
-            IUnitOfWork unitOfWork = (IUnitOfWork)container.Resolve<IChinookUnitOfWork>();
+            IUnitOfWork unitOfWork = DIHelper.GetService<IChinookUnitOfWork>();
             Console.WriteLine("\n" + unitOfWork.GetType().FullName + " with " + unitOfWork.DBMS.ToString() + "\n");
 
             IGenericRepository<Genre> repository = unitOfWork.GetRepository<Genre>();

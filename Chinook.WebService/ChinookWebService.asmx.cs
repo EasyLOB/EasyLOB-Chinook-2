@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using EasyLOB.Library;
-using EasyLOB.Library.WebService;
+using EasyLOB.Library.AspNet;
 using Chinook.Data;
 
 namespace Chinook.WebService

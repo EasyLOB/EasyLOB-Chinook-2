@@ -1,22 +1,29 @@
-﻿using EasyLOB.Application;
-using Microsoft.Practices.Unity;
+﻿using Unity;
+using Unity.Injection;
+using Unity.Lifetime;
 
 // UnityDependencyResolver :: ASP.NET MVC
 // UnityHierarchicalDependencyResolver :: ASP.NET Web API
 
 namespace EasyLOB
 {
-    public static class UnityHelper
+    public static partial class AppDIUnityHelper
     {
+        #region Fields
+
+        private static IUnityContainer Container;
+
+        #endregion Fields
+
         #region Properties
 
-        public static LifetimeManager AppLifetimeManager
+        private static LifetimeManager AppLifetimeManager
         {
             // A new object for every HttpRequest
             //get { return new HttpRequestLifetimeManager(); }
 
             // Just one Singleton for ALL connections leads to EF errors
-            get { return new ContainerControlledLifetimeManager(); }
+            //get { return new ContainerControlledLifetimeManager(); }
 
             // Unity.Mvc5
             // All components that implement IDisposable should be registered with the HierarchicalLifetimeManager
@@ -33,41 +40,29 @@ namespace EasyLOB
             //get { return new PerThreadLifetimeManager(); }
 
             // A new object for every Resolve()
-            //get { return new TransientLifetimeManager(); }
+            get { return new TransientLifetimeManager(); } // !!!
         }
-
-        //private static IUnityContainer _container;
-
-        //public static IUnityContainer Container
-        //{
-        //    get
-        //    {
-        //        if (_container == null)
-        //        {
-        //            _container = new UnityContainer();
-
-        //            RegisterMappings(_container);
-        //        }
-
-        //        return _container;
-        //    }
-        //}
 
         #endregion Properties
 
         #region Methods
 
-        public static void RegisterMappings(IUnityContainer container)
+        public static void Setup(IUnityContainer container)
         {
-            container.RegisterType(typeof(IDIManager), typeof(DIManager), UnityHelper.AppLifetimeManager,
-                new InjectionConstructor(container));
+            Container = container;
 
-            UnityHelperChinook.RegisterMappings(container);
+            Container.RegisterType<Authentication.AuthenticationController>(new InjectionConstructor());
+            Container.RegisterType(typeof(IDIManager), typeof(DIManager), AppLifetimeManager,
+                new InjectionConstructor(Container));
 
-            UnityHelperActivity.RegisterMappings(container);
-            UnityHelperAuditTrail.RegisterMappings(container);
-            UnityHelperIdentity.RegisterMappings(container);
-            UnityHelperLog.RegisterMappings(container);
+            SetupActivity();
+            SetupAuditTrail();
+            SetupExtensions();
+            SetupIdentity();
+            SetupLog();
+            SetupChinook();
+
+            DIHelper.Setup((IDIManager)Container.Resolve<IDIManager>());
         }
 
         #endregion Methods

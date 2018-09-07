@@ -1,7 +1,7 @@
 ﻿using EasyLOB.AuditTrail;
 using EasyLOB.AuditTrail.Application;
 using EasyLOB.AuditTrail.Persistence;
-using Microsoft.Practices.Unity;
+using Unity;
 
 namespace EasyLOB
 {

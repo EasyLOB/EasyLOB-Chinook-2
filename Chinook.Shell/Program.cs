@@ -1,5 +1,7 @@
-﻿using Hangfire;
+﻿using EasyLOB;
+using Hangfire;
 using System;
+using Unity;
 
 namespace Chinook.Shell
 {
@@ -7,10 +9,14 @@ namespace Chinook.Shell
     {
         private static void Main(string[] args)
         {
-
             bool exit = false;
 
+            // Unity
+
+            AppDIUnityHelper.Setup(new UnityContainer());
+
             // Hangfire
+
             //GlobalConfiguration.Configuration.UseSqlServerStorage("hangfire");
 
             while (!exit)

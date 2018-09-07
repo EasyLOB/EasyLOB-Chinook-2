@@ -2,7 +2,7 @@
 using EasyLOB.Activity.Application;
 using EasyLOB.Activity.Persistence;
 using EasyLOB.Security;
-using Microsoft.Practices.Unity;
+using Unity;
 
 namespace EasyLOB
 {

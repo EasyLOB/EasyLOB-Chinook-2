@@ -4,7 +4,7 @@ using EasyLOB.Extensions.Edm;
 using EasyLOB.Identity;
 using EasyLOB.Library;
 using EasyLOB.Library.App;
-using EasyLOB.Library.Web;
+using EasyLOB.Library.AspNet;
 using EasyLOB.Log;
 using EasyLOB.Resources;
 using EasyLOB.Security;

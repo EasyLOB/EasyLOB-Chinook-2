@@ -1,5 +1,7 @@
 ﻿using EasyLOB.Application;
-using Microsoft.Practices.Unity;
+using Unity;
+using Unity.Injection;
+using Unity.Lifetime;
 
 // UnityDependencyResolver :: ASP.NET MVC
 // UnityHierarchicalDependencyResolver :: ASP.NET Web API

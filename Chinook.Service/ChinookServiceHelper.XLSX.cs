@@ -2,7 +2,6 @@
 using EasyLOB;
 using EasyLOB.Extensions.Mail;
 using EasyLOB.Library;
-using Microsoft.Practices.Unity;
 using System;
 using System.IO;
 using System.Reflection;
@@ -26,8 +25,7 @@ namespace Chinook.Service
                 string fileDirectory = Path.Combine(Path.GetDirectoryName(exePath), ConfigurationHelper.AppSettings<string>("DirectoryExport"));
 
                 ZOperationResult operationResult = new ZOperationResult();
-                ChinookApplication application =
-                    (ChinookApplication)Container.Resolve<IChinookApplication>();
+                IChinookApplication application = DIHelper.GetService<IChinookApplication>();
 
                 // WorkSheet
 

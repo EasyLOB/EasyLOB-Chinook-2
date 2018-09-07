@@ -1,7 +1,7 @@
 ﻿using Chinook.Application;
 using Chinook.Data;
 using Chinook.Persistence;
-using Microsoft.Practices.Unity;
+using Unity;
 using Xunit;
 
 namespace Chinook.UnitTest.xUnit

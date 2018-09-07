@@ -1,8 +1,8 @@
 ﻿using EasyLOB.Identity;
 using EasyLOB.Identity.Application;
 using EasyLOB.Identity.Persistence;
-using Microsoft.Practices.Unity;
 using EasyLOB.Security;
+using Unity;
 
 namespace EasyLOB
 {

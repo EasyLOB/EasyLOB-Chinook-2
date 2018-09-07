@@ -1,5 +1,4 @@
-﻿using Microsoft.Practices.Unity;
-using Xunit;
+﻿using Xunit;
 
 namespace Chinook.UnitTest.xUnit
 {
@@ -15,7 +14,7 @@ namespace Chinook.UnitTest.xUnit
             bool result = false;
 
             // Assert
-            Assert.Equal(false, result);
+            Assert.False(result);
         }
 
         [Fact]
@@ -28,7 +27,7 @@ namespace Chinook.UnitTest.xUnit
             bool result = true;
 
             // Assert
-            Assert.Equal(true, result);
+            Assert.True(result);
         }
     }
 }

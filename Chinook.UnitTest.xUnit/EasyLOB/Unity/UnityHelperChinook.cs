@@ -1,6 +1,5 @@
 ﻿using Chinook.Application;
 using Chinook.Persistence;
-using Microsoft.Practices.Unity;
 
 namespace EasyLOB
 {

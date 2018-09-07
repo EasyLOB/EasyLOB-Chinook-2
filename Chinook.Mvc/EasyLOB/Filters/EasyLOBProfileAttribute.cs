@@ -1,10 +1,10 @@
-using EasyLOB.AuditTrail;
+﻿using EasyLOB.AuditTrail;
 using EasyLOB.Library.App;
 using EasyLOB.Security;
 using System;
 using System.Web.Mvc;
 
-namespace EasyLOB.Mvc
+namespace EasyLOB
 {
     public class EasyLOBProfileAttribute : ActionFilterAttribute
     {

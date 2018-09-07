@@ -26,7 +26,6 @@ namespace Chinook.Shell
                 Console.WriteLine("<B> Chinook LINQ Entity Framework UnitOfWork Demo");
                 Console.WriteLine("<C> Chinook LINQ NHibernate Demo");
                 Console.WriteLine("<D> Chinook LINQ NHibernate Framework UnitOfWork Demo");
-                Console.WriteLine("<E> Security Demo");
                 Console.WriteLine("\n(*) NoSQL Databases MongoDb, RavenDB and Redis DO NOT SUPPORT TRANSACTION");
                 Console.Write("\nChoose an option... ");
 
@@ -89,10 +88,6 @@ namespace Chinook.Shell
 
                     case ('D'):
                         PersistenceChinookLINQNHibernateUnitOfWorkDemo();
-                        break;
-
-                    case ('E'):
-                        PersistenceIdentityDemo();
                         break;
                 }
 

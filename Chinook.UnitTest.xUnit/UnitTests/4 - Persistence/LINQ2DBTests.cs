@@ -1,7 +1,8 @@
 ﻿using Chinook.Data;
 using Chinook.Persistence;
 using EasyLOB.Persistence;
-using Microsoft.Practices.Unity;
+using Unity;
+using Unity.Resolution;
 using Xunit;
 
 namespace Chinook.UnitTest.xUnit
@@ -20,7 +21,7 @@ namespace Chinook.UnitTest.xUnit
                 // Act
                 ResolverOverride[] overrides = new ResolverOverride[]
                 {
-                new ParameterOverride("unitOfWork", container.Resolve<IChinookUnitOfWork>())
+                    new ParameterOverride("unitOfWork", container.Resolve<IChinookUnitOfWork>())
                 };
                 var result = container.Resolve<IChinookGenericRepository<Album>>(overrides);
 

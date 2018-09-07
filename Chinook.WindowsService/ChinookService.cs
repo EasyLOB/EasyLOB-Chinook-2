@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Timers;
-using EasyLOB.Library;
+using EasyLOB;
 
 // Create Windows Service in Visual Studio [C#]
 // http://www.csharp-examples.net/create-windows-service

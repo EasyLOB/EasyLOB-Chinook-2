@@ -1,7 +1,8 @@
 ﻿using Chinook.Data;
 using Chinook.Persistence;
 using EasyLOB.Persistence;
-using Microsoft.Practices.Unity;
+using Unity;
+using Unity.Resolution;
 using Xunit;
 
 namespace Chinook.UnitTest.xUnit

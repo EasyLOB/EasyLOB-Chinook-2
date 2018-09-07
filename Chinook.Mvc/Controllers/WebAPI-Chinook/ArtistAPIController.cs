@@ -2,7 +2,7 @@
 using Chinook.Application;
 using Chinook.Data;
 using EasyLOB;
-using EasyLOB.Library.WebApi;
+using EasyLOB.Library.AspNet;
 using EasyLOB.Mvc;
 using EasyLOB.WebApi;
 using System;

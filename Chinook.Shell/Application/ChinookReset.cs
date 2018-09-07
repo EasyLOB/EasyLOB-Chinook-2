@@ -2,7 +2,6 @@
 using Chinook.Persistence;
 using EasyLOB;
 using EasyLOB.Library;
-using Microsoft.Practices.Unity;
 using System;
 
 namespace Chinook.Shell
@@ -13,12 +12,9 @@ namespace Chinook.Shell
         {
             Console.WriteLine("\nApplication Chinook RESET");
 
-            var container = new UnityContainer();
-            UnityHelper.RegisterMappings(container);
-
             ZOperationResult operationResult = new ZOperationResult();
-            IChinookUnitOfWork unitOfWork = (IChinookUnitOfWork)container.Resolve<IChinookUnitOfWork>();
-            IChinookApplication application = (IChinookApplication)container.Resolve<IChinookApplication>();
+            IChinookUnitOfWork unitOfWork = DIHelper.GetService<IChinookUnitOfWork>();
+            IChinookApplication application = DIHelper.GetService<IChinookApplication>();
             application.Reset(operationResult, unitOfWork);
 
             if (!operationResult.Ok)

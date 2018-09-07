@@ -1,6 +1,5 @@
-﻿using EasyLOB.Library;
-using EasyLOB.Library.App;
-using EasyLOB.Library.Web;
+﻿using EasyLOB.Library.App;
+using EasyLOB.Library.AspNet;
 using EasyLOB.Security;
 using Newtonsoft.Json;
 using System;

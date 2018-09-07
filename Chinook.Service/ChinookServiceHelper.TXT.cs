@@ -1,8 +1,6 @@
 ﻿using Chinook.Application;
 using Chinook.Data;
 using EasyLOB;
-using EasyLOB.Library;
-using Microsoft.Practices.Unity;
 using System;
 using System.IO;
 using System.Reflection;
@@ -26,10 +24,8 @@ namespace Chinook.Service
                 string fileDirectory = Path.Combine(Path.GetDirectoryName(exePath), ConfigurationHelper.AppSettings<string>("DirectoryExport"));
 
                 ZOperationResult operationResult = new ZOperationResult();
-                ChinookApplication application =
-                    (ChinookApplication)Container.Resolve<IChinookApplication>();
-                ChinookGenericApplication<Genre> genreApplication =
-                    (ChinookGenericApplication<Genre>)Container.Resolve<IChinookGenericApplication<Genre>>();
+                IChinookApplication application = DIHelper.GetService<IChinookApplication>();
+                IChinookGenericApplication<Genre> genreApplication = DIHelper.GetService<IChinookGenericApplication<Genre>>();
 
                 // Clean Z-Export
 

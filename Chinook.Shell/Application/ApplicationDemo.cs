@@ -15,7 +15,6 @@ namespace Chinook.Shell
                 Console.WriteLine("<0> RETURN");
                 Console.WriteLine("<1> Chinook Demo");
                 Console.WriteLine("<2> Chinook CRUD Demo");
-                Console.WriteLine("<3> Identity Demo");
                 Console.Write("\nChoose an option... ");
 
                 ConsoleKeyInfo key = Console.ReadKey();
@@ -33,10 +32,6 @@ namespace Chinook.Shell
 
                     case ('2'):
                         ApplicationChinookCRUDDemo();
-                        break;
-
-                    case ('3'):
-                        ApplicationIdentityDemo();
                         break;
                 }
 

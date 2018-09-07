@@ -1,5 +1,4 @@
-﻿using Microsoft.Practices.Unity;
-using Xunit;
+﻿using Xunit;
 
 namespace Chinook.UnitTest.xUnit
 {

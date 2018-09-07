@@ -1,5 +1,5 @@
 ﻿using EasyLOB;
-using Microsoft.Practices.Unity;
+using Unity;
 
 // Install-package xunit.runner.visualstudio
 

@@ -3,7 +3,6 @@ using Chinook.Persistence;
 using EasyLOB;
 using EasyLOB.Library;
 using EasyLOB.Persistence;
-using Microsoft.Practices.Unity;
 using System;
 
 namespace Chinook.Shell
@@ -21,10 +20,7 @@ namespace Chinook.Shell
                 Console.WriteLine("\nPersistence Chinook Transaction Demo with Rollback");
             }
 
-            var container = new UnityContainer();
-            UnityHelper.RegisterMappings(container);
-
-            IUnitOfWork unitOfWork = (IUnitOfWork)container.Resolve<IChinookUnitOfWork>();
+            IChinookUnitOfWork unitOfWork = DIHelper.GetService<IChinookUnitOfWork>();
             IGenericRepository<Artist> repository = unitOfWork.GetRepository<Artist>();
             ZOperationResult operationResult = new ZOperationResult();
 

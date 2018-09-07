@@ -1,8 +1,8 @@
 ﻿using EasyLOB;
 using EasyLOB.Log;
 using EasyLOB.Resources;
-using Microsoft.Practices.Unity;
 using System;
+using Unity;
 
 namespace Chinook.Service
 {
@@ -20,11 +20,7 @@ namespace Chinook.Service
 
         static ChinookServiceHelper()
         {
-            // Unity
-
-            UnityHelper.RegisterMappings(Container);
-
-            LogManager = (ILogManager)Container.Resolve<ILogManager>();
+            LogManager = DIHelper.GetService<ILogManager>();
         }
 
         private static string GetLog(string activity, string description)

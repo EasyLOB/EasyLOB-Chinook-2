@@ -3,7 +3,6 @@ using Chinook.Persistence;
 using EasyLOB;
 using EasyLOB.Data;
 using EasyLOB.Persistence;
-using Microsoft.Practices.Unity;
 using System;
 using System.Linq;
 
@@ -15,10 +14,7 @@ namespace Chinook.Shell
         {
             Console.WriteLine("\nPersistence Chinook Demo");
 
-            var container = new UnityContainer();
-            UnityHelper.RegisterMappings(container);
-
-            IUnitOfWork unitOfWork = (IUnitOfWork)container.Resolve<IChinookUnitOfWork>();
+            IUnitOfWork unitOfWork = DIHelper.GetService<IChinookUnitOfWork>();
             Console.WriteLine("\n" + unitOfWork.GetType().FullName + " with " + unitOfWork.DBMS.ToString() + "\n");
 
             PersistenceChinookData<Album>(unitOfWork);
