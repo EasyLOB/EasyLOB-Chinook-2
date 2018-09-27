@@ -13,7 +13,7 @@ namespace Chinook.Mvc
         {
             try
             {
-                if (IsTask("SimpleAJAX", OperationResult))
+                if (IsTask(OperationResult, "SimpleAJAX"))
                 {
                     TaskSimpleViewModel viewModel =
                         new TaskSimpleViewModel("ChinookTasks", "SimpleAJAX", ChinookPresentationResources.TaskSimpleAJAX,
@@ -38,7 +38,7 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsTask("SimpleAJAX", viewModel.OperationResult))
+                if (IsTask(viewModel.OperationResult, "SimpleAJAX"))
                 {
                     if (IsValid(viewModel.OperationResult, ""))
                     {

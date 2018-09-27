@@ -15,7 +15,7 @@ namespace Chinook.Mvc
         {
             try
             {
-                if (IsTask("Reset", OperationResult))
+                if (IsTask(OperationResult, "Reset"))
                 {
                     TaskViewModel viewModel =
                         new TaskViewModel("ChinookTasks", "Reset", ChinookApplicationResources.TaskReset);
@@ -39,7 +39,7 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsTask("Reset", viewModel.OperationResult))
+                if (IsTask(viewModel.OperationResult, "Reset"))
                 {
                     if (IsValid(viewModel.OperationResult, ""))
                     {

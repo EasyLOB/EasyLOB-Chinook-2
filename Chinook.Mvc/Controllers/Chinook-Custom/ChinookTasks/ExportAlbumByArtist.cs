@@ -15,7 +15,7 @@ namespace Chinook.Mvc
         {
             try
             {
-                if (IsTask("ExportAlbumByArtist", OperationResult))
+                if (IsTask(OperationResult, "ExportAlbumByArtist"))
                 {
                     TaskViewModel viewModel =
                         new TaskViewModel("ChinookTasks", "ExportAlbumByArtist", ChinookApplicationResources.TaskExportAlbumByArtist);
@@ -39,7 +39,7 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsTask("ExportAlbumByArtist", viewModel.OperationResult))
+                if (IsTask(viewModel.OperationResult, "ExportAlbumByArtist"))
                 {
                     if (IsValid(viewModel.OperationResult, viewModel))
                     {

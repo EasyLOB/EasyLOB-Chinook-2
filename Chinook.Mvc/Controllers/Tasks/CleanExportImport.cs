@@ -11,7 +11,7 @@ namespace EasyLOB.Mvc
         [HttpGet]
         public ActionResult CleanExportImport()
         {
-            //if (IsTask("CleanExportImport", OperationResult))
+            //if (IsTask(OperationResult, "CleanExportImport"))
             //{
                 TaskViewModel viewModel = new TaskViewModel("Tasks", "CleanExportImport", PresentationResources.TaskCleanExportImport);
 
@@ -29,7 +29,7 @@ namespace EasyLOB.Mvc
 
             try
             {
-                //if (IsTask("CleanExportImport", viewModel.OperationResult))
+                //if (IsTask(viewModel.OperationResult, "CleanExportImport"))
                 //{
                 //    if (ValidateModelState())
                 //    {

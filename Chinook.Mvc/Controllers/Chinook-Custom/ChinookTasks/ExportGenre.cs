@@ -16,7 +16,7 @@ namespace Chinook.Mvc
         {
             try
             {
-                if (IsTask("ExportGenre", OperationResult))
+                if (IsTask(OperationResult, "ExportGenre"))
                 {
                     TaskViewModel viewModel =
                         new TaskViewModel("ChinookTasks", "ExportGenre", ChinookApplicationResources.TaskExportGenre);
@@ -40,7 +40,7 @@ namespace Chinook.Mvc
 
             try
             {
-                if (IsTask("ExportGenre", viewModel.OperationResult))
+                if (IsTask(viewModel.OperationResult, "ExportGenre"))
                 {
                     if (IsValid(viewModel.OperationResult, viewModel))
                     {
