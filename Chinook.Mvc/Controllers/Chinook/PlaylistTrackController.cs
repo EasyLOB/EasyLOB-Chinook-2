@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 playlistTrackCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultViewModel(playlistTrackCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultModel(playlistTrackCollectionModel.OperationResult));
         }        
 
         // GET & POST: PlaylistTrack/Search

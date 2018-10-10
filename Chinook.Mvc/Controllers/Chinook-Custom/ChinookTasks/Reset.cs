@@ -15,12 +15,12 @@ namespace Chinook.Mvc
         {
             try
             {
-                if (IsTask(OperationResult, "Reset"))
+                if (IsTask("Reset", OperationResult))
                 {
-                    TaskViewModel viewModel =
-                        new TaskViewModel("ChinookTasks", "Reset", ChinookApplicationResources.TaskReset);
+                    TaskModel taskModel =
+                        new TaskModel("ChinookTasks", "Reset", ChinookApplicationResources.TaskReset);
 
-                    return View("Task", viewModel);
+                    return View("Task", taskModel);
                 }
             }
             catch (Exception exception)
@@ -28,34 +28,34 @@ namespace Chinook.Mvc
                 OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultViewModel(OperationResult));
+            return View("OperationResult", new OperationResultModel(OperationResult));
         }
 
         // POST: Tasks/Reset
         [HttpPost]
-        public ActionResult Reset(TaskViewModel viewModel)
+        public ActionResult Reset(TaskModel taskModel)
         {
-            viewModel.OperationResult.Clear();
+            taskModel.OperationResult.Clear();
 
             try
             {
-                if (IsTask(viewModel.OperationResult, "Reset"))
+                if (IsTask("Reset", taskModel.OperationResult))
                 {
-                    if (IsValid(viewModel.OperationResult, ""))
+                    if (IsValid(taskModel.OperationResult, ""))
                     {
                         IChinookUnitOfWork unitOfWork = DependencyResolver.Current.GetService<IChinookUnitOfWork>();
-                        Application.Reset(viewModel.OperationResult, unitOfWork);
+                        Application.Reset(taskModel.OperationResult, unitOfWork);
 
-                        viewModel.OperationResult.StatusMessage = ChinookApplicationResources.TaskReset + " Ok";
+                        taskModel.OperationResult.StatusMessage = ChinookApplicationResources.TaskReset + " Ok";
                     }
                 }
             }
             catch (Exception exception)
             {
-                viewModel.OperationResult.ParseException(exception);
+                taskModel.OperationResult.ParseException(exception);
             }
 
-            return View("Task", viewModel);
+            return View("Task", taskModel);
         }
     }
 }

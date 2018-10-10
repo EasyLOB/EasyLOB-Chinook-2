@@ -2,7 +2,6 @@
 using EasyLOB.AuditTrail;
 using EasyLOB.Extensions.Edm;
 using EasyLOB.Identity;
-using EasyLOB.Library;
 using EasyLOB.Library.App;
 using EasyLOB.Library.AspNet;
 using EasyLOB.Log;
@@ -157,9 +156,9 @@ namespace EasyLOB.Mvc
 
             ViewBag.Status = result.ToString();
 
-            TaskViewModel viewModel = new TaskViewModel("Tasks", "Status", PresentationResources.TaskStatus);
+            TaskModel taskModel = new TaskModel("Tasks", "Status", PresentationResources.TaskStatus);
 
-            return View(viewModel);
+            return View(taskModel);
         }
 
         #endregion Methods

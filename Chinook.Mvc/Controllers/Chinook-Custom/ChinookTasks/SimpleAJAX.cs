@@ -13,13 +13,13 @@ namespace Chinook.Mvc
         {
             try
             {
-                if (IsTask(OperationResult, "SimpleAJAX"))
+                if (IsTask("SimpleAJAX", OperationResult))
                 {
-                    TaskSimpleViewModel viewModel =
-                        new TaskSimpleViewModel("ChinookTasks", "SimpleAJAX", ChinookPresentationResources.TaskSimpleAJAX,
+                    TaskSimpleModel simpleModel =
+                        new TaskSimpleModel("ChinookTasks", "SimpleAJAX", ChinookPresentationResources.TaskSimpleAJAX,
                             false, null, 123.45, null, "ABC");
 
-                    return View(viewModel);
+                    return View(simpleModel);
                 }
             }
             catch (Exception exception)
@@ -27,43 +27,43 @@ namespace Chinook.Mvc
                 OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultViewModel(OperationResult));
+            return View("OperationResult", new OperationResultModel(OperationResult));
         }
 
         // POST: Tasks/SimpleAJAX
         [HttpPost]
-        public ActionResult SimpleAJAX(TaskSimpleViewModel viewModel)
+        public ActionResult SimpleAJAX(TaskSimpleModel taskSimpleModel)
         {
-            viewModel.OperationResult.Clear();
+            taskSimpleModel.OperationResult.Clear();
 
             try
             {
-                if (IsTask(viewModel.OperationResult, "SimpleAJAX"))
+                if (IsTask("SimpleAJAX", taskSimpleModel.OperationResult))
                 {
-                    if (IsValid(viewModel.OperationResult, ""))
+                    if (IsValid(taskSimpleModel.OperationResult, ""))
                     {
-                        if (viewModel.XBoolean)
+                        if (taskSimpleModel.XBoolean)
                         {
                             throw new Exception("My exception");
                         }
 
-                        viewModel.OperationResult.StatusCode = "0";
-                        viewModel.OperationResult.StatusMessage = "My status message";
+                        taskSimpleModel.OperationResult.StatusCode = "0";
+                        taskSimpleModel.OperationResult.StatusMessage = "My status message";
                     }
                 }
             }
             catch (Exception exception)
             {
-                viewModel.OperationResult.ErrorCode = "0";
-                viewModel.OperationResult.ErrorMessage = "My error message";
+                taskSimpleModel.OperationResult.ErrorCode = "0";
+                taskSimpleModel.OperationResult.ErrorMessage = "My error message";
 
-                viewModel.OperationResult.ParseException(exception);
+                taskSimpleModel.OperationResult.ParseException(exception);
             }
             finally
             {
             }
 
-            return JsonResultOperationResult(viewModel.OperationResult);
+            return JsonResultOperationResult(taskSimpleModel.OperationResult);
         }
     }
 }

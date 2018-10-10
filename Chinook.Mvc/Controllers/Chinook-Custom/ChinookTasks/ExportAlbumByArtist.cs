@@ -15,12 +15,12 @@ namespace Chinook.Mvc
         {
             try
             {
-                if (IsTask(OperationResult, "ExportAlbumByArtist"))
+                if (IsTask("ExportAlbumByArtist", OperationResult))
                 {
-                    TaskViewModel viewModel =
-                        new TaskViewModel("ChinookTasks", "ExportAlbumByArtist", ChinookApplicationResources.TaskExportAlbumByArtist);
+                    TaskModel taskModel =
+                        new TaskModel("ChinookTasks", "ExportAlbumByArtist", ChinookApplicationResources.TaskExportAlbumByArtist);
 
-                    return View("ExportAlbumByArtist", viewModel);
+                    return View("ExportAlbumByArtist", taskModel);
                 }
             }
             catch (Exception exception)
@@ -28,26 +28,26 @@ namespace Chinook.Mvc
                 OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultViewModel(OperationResult));
+            return View("OperationResult", new OperationResultModel(OperationResult));
         }
 
         // POST: Tasks/ExportAlbumByArtist
         [HttpPost]
-        public ActionResult ExportAlbumByArtist(TaskViewModel viewModel)
+        public ActionResult ExportAlbumByArtist(TaskModel taskModel)
         {
-            viewModel.OperationResult.Clear();
+            taskModel.OperationResult.Clear();
 
             try
             {
-                if (IsTask(viewModel.OperationResult, "ExportAlbumByArtist"))
+                if (IsTask("ExportAlbumByArtist", taskModel.OperationResult))
                 {
-                    if (IsValid(viewModel.OperationResult, viewModel))
+                    if (IsValid(taskModel.OperationResult, taskModel))
                     {
                         string templateDirectory = Server.MapPath(ConfigurationHelper.AppSettings<string>("Directory.Template"));
                         string fileDirectory = Server.MapPath(ConfigurationHelper.AppSettings<string>("Directory.Export"));
                         string filePath;
 
-                        if (Application.ExportAlbumByArtistXLSX(viewModel.OperationResult, templateDirectory, fileDirectory, out filePath))
+                        if (Application.ExportAlbumByArtistXLSX(taskModel.OperationResult, templateDirectory, fileDirectory, out filePath))
                         {
                             return JsonResultSuccess(filePath);
                         }
@@ -56,10 +56,10 @@ namespace Chinook.Mvc
             }
             catch (Exception exception)
             {
-                viewModel.OperationResult.ParseException(exception);
+                taskModel.OperationResult.ParseException(exception);
             }
 
-            return JsonResultOperationResult(viewModel.OperationResult);
+            return JsonResultOperationResult(taskModel.OperationResult);
         }
     }
 }

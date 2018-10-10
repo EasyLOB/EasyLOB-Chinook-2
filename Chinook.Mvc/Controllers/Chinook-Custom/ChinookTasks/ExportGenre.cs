@@ -16,12 +16,12 @@ namespace Chinook.Mvc
         {
             try
             {
-                if (IsTask(OperationResult, "ExportGenre"))
+                if (IsTask("ExportGenre", OperationResult))
                 {
-                    TaskViewModel viewModel =
-                        new TaskViewModel("ChinookTasks", "ExportGenre", ChinookApplicationResources.TaskExportGenre);
+                    TaskModel taskModel =
+                        new TaskModel("ChinookTasks", "ExportGenre", ChinookApplicationResources.TaskExportGenre);
 
-                    return View("Task", viewModel);
+                    return View("Task", taskModel);
                 }
             }
             catch (Exception exception)
@@ -29,25 +29,25 @@ namespace Chinook.Mvc
                 OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultViewModel(OperationResult));
+            return View("OperationResult", new OperationResultModel(OperationResult));
         }
 
         // POST: Tasks/ExportGenre
         [HttpPost]
-        public ActionResult ExportGenre(TaskViewModel viewModel)
+        public ActionResult ExportGenre(TaskModel taskModel)
         {
-            viewModel.OperationResult.Clear();
+            taskModel.OperationResult.Clear();
 
             try
             {
-                if (IsTask(viewModel.OperationResult, "ExportGenre"))
+                if (IsTask("ExportGenre", taskModel.OperationResult))
                 {
-                    if (IsValid(viewModel.OperationResult, viewModel))
+                    if (IsValid(taskModel.OperationResult, taskModel))
                     {
                         string fileDirectory = Server.MapPath(ConfigurationHelper.AppSettings<string>("Directory.Export"));
                         string filePath;
 
-                        if (Application.ExportGenreXLSX(viewModel.OperationResult, fileDirectory, out filePath))
+                        if (Application.ExportGenreXLSX(taskModel.OperationResult, fileDirectory, out filePath))
                         {
                             byte[] file = System.IO.File.ReadAllBytes(filePath);
                             return File(file, LibraryHelper.GetContentType(ZFileTypes.ftXLSX), Path.GetFileName(filePath));
@@ -57,10 +57,10 @@ namespace Chinook.Mvc
             }
             catch (Exception exception)
             {
-                viewModel.OperationResult.ParseException(exception);
+                taskModel.OperationResult.ParseException(exception);
             }
 
-            return View("Task", viewModel);
+            return View("Task", taskModel);
         }
     }
 }

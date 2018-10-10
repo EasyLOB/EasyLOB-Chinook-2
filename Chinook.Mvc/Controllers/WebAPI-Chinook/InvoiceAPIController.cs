@@ -46,7 +46,7 @@ namespace Chinook.WebApi
                 operationResult.ParseException(exception);
             }
 
-            return new OperationResultActionResult(Request, operationResult);
+            return new ZActionResultApi(Request, operationResult);
         }
 
         // GET: api/invoiceapi
@@ -65,7 +65,7 @@ namespace Chinook.WebApi
                 operationResult.ParseException(exception);
             }
 
-            return new OperationResultActionResult(Request, operationResult);
+            return new ZActionResultApi(Request, operationResult);
         }
 
         // GET: api/invoiceapi/1
@@ -87,7 +87,7 @@ namespace Chinook.WebApi
                 operationResult.ParseException(exception);
             }
 
-            return new OperationResultActionResult(Request, operationResult);
+            return new ZActionResultApi(Request, operationResult);
         }
 
         // POST: api/invoiceapi
@@ -107,7 +107,7 @@ namespace Chinook.WebApi
                 operationResult.ParseException(exception);
             }
 
-            return new OperationResultActionResult(Request, operationResult);
+            return new ZActionResultApi(Request, operationResult);
         }
 
         // PUT: api/invoiceapi/1
@@ -128,7 +128,7 @@ namespace Chinook.WebApi
                 operationResult.ParseException(exception);
             }
 
-            return new OperationResultActionResult(Request, operationResult);
+            return new ZActionResultApi(Request, operationResult);
         }
 
         #endregion Methods REST

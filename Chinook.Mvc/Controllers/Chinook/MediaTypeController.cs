@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 mediaTypeCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultViewModel(mediaTypeCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultModel(mediaTypeCollectionModel.OperationResult));
         }        
 
         // GET & POST: MediaType/Search

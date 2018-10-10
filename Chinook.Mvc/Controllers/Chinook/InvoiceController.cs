@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 invoiceCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultViewModel(invoiceCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultModel(invoiceCollectionModel.OperationResult));
         }        
 
         // GET & POST: Invoice/Search

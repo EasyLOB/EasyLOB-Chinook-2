@@ -9,11 +9,11 @@ namespace EasyLOB.Mvc
         [HttpGet]
         public ActionResult CleanLocalStorage()
         {
-            //if (IsTask(OperationResult, "CleanLocalStorage"))
+            //if (IsTask("CleanLocalStorage", OperationResult))
             //{
-                TaskViewModel viewModel = new TaskViewModel("Tasks", "CleanLocalStorage", PresentationResources.TaskCleanLocalStorage);
+                TaskModel taskModel = new TaskModel("Tasks", "CleanLocalStorage", PresentationResources.TaskCleanLocalStorage);
 
-                return View(viewModel);
+                return View(taskModel);
             //}
 
             //return View("OperationResult", new OperationResultModel(OperationResult));

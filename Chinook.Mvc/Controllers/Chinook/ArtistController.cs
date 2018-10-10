@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 artistCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultViewModel(artistCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultModel(artistCollectionModel.OperationResult));
         }        
 
         // GET & POST: Artist/Search

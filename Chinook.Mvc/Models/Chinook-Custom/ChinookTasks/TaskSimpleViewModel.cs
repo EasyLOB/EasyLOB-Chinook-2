@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Chinook.Mvc
 {
-    public class TaskSimpleViewModel : TaskViewModel
+    public class TaskSimpleModel : TaskModel
     {
         #region Properties
 
@@ -25,7 +25,7 @@ namespace Chinook.Mvc
 
         #region Methods
 
-        public TaskSimpleViewModel()
+        public TaskSimpleModel()
         {
             XBoolean = false;
             XDateTime = null;
@@ -34,7 +34,7 @@ namespace Chinook.Mvc
             XString = "ABC";
         }
 
-        public TaskSimpleViewModel(string controller, string action, string task,
+        public TaskSimpleModel(string controller, string action, string task,
             bool xBoolean, DateTime? xDateTime, double xDouble, int? xInteger, string xString)
             : this()
         {
