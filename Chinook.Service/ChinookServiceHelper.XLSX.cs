@@ -47,12 +47,12 @@ Chinook";
                 }
                 else
                 {
-                    LogManager.LogOperationResult(operationResult);
+                    LogManager.OperationResult(new ZOperationResultLog("", "", "", operationResult));
                 }
             }
             catch (Exception exception)
             {
-                LogManager.LogException(exception);
+                LogManager.Exception(exception, "");
             }
             //finally
             //{

@@ -38,12 +38,12 @@ namespace Chinook.Service
                 if (!application.ExportGenreTXT(operationResult, fileDirectory, genreApplication,
                     out filePath))
                 {
-                    LogManager.LogOperationResult(operationResult);
+                    LogManager.OperationResult(new ZOperationResultLog("", "", "", operationResult));
                 }
             }
             catch (Exception exception)
             {
-                LogManager.LogException(exception);
+                LogManager.Exception(exception, "");
             }
 
             LogManager.Trace(GetLog("Export Genre", "Stop"));
