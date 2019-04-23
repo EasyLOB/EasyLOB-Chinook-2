@@ -4,7 +4,7 @@ using System.Web.Routing;
 
 namespace EasyLOB.Mvc
 {
-    public class EasyLOBChinookProfileAttribute : ActionFilterAttribute
+    public class ChinookProfileAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

@@ -49,7 +49,7 @@ namespace Chinook.Mvc
 
                         if (Application.ExportAlbumByArtistXLSX(taskModel.OperationResult, templateDirectory, fileDirectory, out filePath))
                         {
-                            return JsonResultSuccess(filePath);
+                            return JsonResultSuccess(taskModel.OperationResult, filePath);
                         }
                     }
                 }

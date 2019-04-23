@@ -325,9 +325,8 @@
     <Compile Include="EasyLOB\DIUnity\AppDIUnityHelperIdentity.cs" />
     <Compile Include="EasyLOB\DIUnity\AppDIUnityHelperLog.cs" />
     <Compile Include="EasyLOB\DIUnity\AppDIUnityHelperChinook.cs" />
-    <Compile Include="EasyLOB\Filters\EasyLOBChinookProfileAttribute.cs" />
+    <Compile Include="EasyLOB\Filters\ChinookProfileAttribute.cs" />
     <Compile Include="EasyLOB\Filters\EasyLOBMultiTenantAttribute.cs" />
-    <Compile Include="EasyLOB\Filters\EasyLOBMyLOBProfileAttribute.cs" />
     <Compile Include="EasyLOB\Filters\EasyLOBProfileAttribute.cs" />
     <Compile Include="EasyLOB\Identity\AppHelper.cs" />
     <Compile Include="EasyLOB\MVC\AppDefaults.cs" />
