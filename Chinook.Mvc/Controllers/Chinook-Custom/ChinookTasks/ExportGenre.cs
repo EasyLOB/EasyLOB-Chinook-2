@@ -29,7 +29,7 @@ namespace Chinook.Mvc
                 OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultViewModel(OperationResult));
+            return View("OperationResult", new OperationResultModel(OperationResult));
         }
 
         // POST: Tasks/ExportGenre

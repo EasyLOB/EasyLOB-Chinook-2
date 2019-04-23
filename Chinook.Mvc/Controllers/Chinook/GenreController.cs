@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 genreCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultViewModel(genreCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultModel(genreCollectionModel.OperationResult));
         }        
 
         // GET & POST: Genre/Search

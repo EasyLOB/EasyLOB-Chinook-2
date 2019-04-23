@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 albumCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultViewModel(albumCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultModel(albumCollectionModel.OperationResult));
         }        
 
         // GET & POST: Album/Search
