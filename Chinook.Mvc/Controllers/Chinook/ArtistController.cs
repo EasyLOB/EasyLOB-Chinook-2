@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 artistCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultModel(artistCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultViewModel(artistCollectionModel.OperationResult));
         }        
 
         // GET & POST: Artist/Search
@@ -127,7 +127,7 @@ namespace Chinook.Mvc
                         {
                             if (artistItemModel.IsSave)
                             {
-                                artistItemModel.OperationResult.StatusMessage =
+                                artistItemModel.OperationResult.InformationMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(artistItemModel.OperationResult,
                                     Url.Action("Update", "Artist", new { ArtistId = artistDTO.ArtistId }, Request.Url.Scheme));
@@ -330,7 +330,7 @@ namespace Chinook.Mvc
 
             if (!operationResult.Ok)
             {
-                throw new InvalidOperationException(operationResult.Text);
+                throw operationResult.Exception;
             }
 
             return Json(JsonConvert.SerializeObject(dataResult), JsonRequestBehavior.AllowGet);

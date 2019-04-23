@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 mediaTypeCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultModel(mediaTypeCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultViewModel(mediaTypeCollectionModel.OperationResult));
         }        
 
         // GET & POST: MediaType/Search
@@ -127,7 +127,7 @@ namespace Chinook.Mvc
                         {
                             if (mediaTypeItemModel.IsSave)
                             {
-                                mediaTypeItemModel.OperationResult.StatusMessage =
+                                mediaTypeItemModel.OperationResult.InformationMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(mediaTypeItemModel.OperationResult,
                                     Url.Action("Update", "MediaType", new { MediaTypeId = mediaTypeDTO.MediaTypeId }, Request.Url.Scheme));
@@ -330,7 +330,7 @@ namespace Chinook.Mvc
 
             if (!operationResult.Ok)
             {
-                throw new InvalidOperationException(operationResult.Text);
+                throw operationResult.Exception;
             }
 
             return Json(JsonConvert.SerializeObject(dataResult), JsonRequestBehavior.AllowGet);

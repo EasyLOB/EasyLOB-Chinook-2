@@ -46,7 +46,7 @@ namespace Chinook.Mvc
 
                             if (CustomerDocumentItemModel.IsSave)
                             {
-                                CustomerDocumentItemModel.OperationResult.StatusMessage =
+                                CustomerDocumentItemModel.OperationResult.InformationMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(CustomerDocumentItemModel.OperationResult,
                                     Url.Action("Update", "CustomerDocument", new { Id = CustomerDocumentDTO.CustomerDocumentId }, Request.Url.Scheme));

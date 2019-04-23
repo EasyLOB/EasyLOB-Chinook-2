@@ -28,7 +28,7 @@ namespace Chinook.Mvc
                 OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultModel(OperationResult));
+            return View("OperationResult", new OperationResultViewModel(OperationResult));
         }
 
         // POST: Tasks/ExportAlbumByArtist

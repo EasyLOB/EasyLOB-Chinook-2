@@ -126,7 +126,7 @@ namespace Chinook.Application
                         }
                     }
 
-                    operationResult.StatusMessage = String.Format("{0} Genres imported", genres);
+                    operationResult.InformationMessage = String.Format("{0} Genres imported", genres);
                 }
             }
             catch (Exception exception)
@@ -198,7 +198,7 @@ namespace Chinook.Application
 
             if (operationResult.Ok)
             {
-                operationResult.StatusMessage = String.Format("{0} Genres imported", genres);
+                operationResult.InformationMessage = String.Format("{0} Genres imported", genres);
             }
 
             return operationResult.Ok;

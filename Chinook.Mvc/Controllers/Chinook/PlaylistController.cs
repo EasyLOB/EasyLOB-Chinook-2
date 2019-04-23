@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 playlistCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultModel(playlistCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultViewModel(playlistCollectionModel.OperationResult));
         }        
 
         // GET & POST: Playlist/Search
@@ -127,7 +127,7 @@ namespace Chinook.Mvc
                         {
                             if (playlistItemModel.IsSave)
                             {
-                                playlistItemModel.OperationResult.StatusMessage =
+                                playlistItemModel.OperationResult.InformationMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(playlistItemModel.OperationResult,
                                     Url.Action("Update", "Playlist", new { PlaylistId = playlistDTO.PlaylistId }, Request.Url.Scheme));
@@ -330,7 +330,7 @@ namespace Chinook.Mvc
 
             if (!operationResult.Ok)
             {
-                throw new InvalidOperationException(operationResult.Text);
+                throw operationResult.Exception;
             }
 
             return Json(JsonConvert.SerializeObject(dataResult), JsonRequestBehavior.AllowGet);

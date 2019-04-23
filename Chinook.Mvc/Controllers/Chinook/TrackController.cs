@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 trackCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultModel(trackCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultViewModel(trackCollectionModel.OperationResult));
         }        
 
         // GET & POST: Track/Search
@@ -127,7 +127,7 @@ namespace Chinook.Mvc
                         {
                             if (trackItemModel.IsSave)
                             {
-                                trackItemModel.OperationResult.StatusMessage =
+                                trackItemModel.OperationResult.InformationMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(trackItemModel.OperationResult,
                                     Url.Action("Update", "Track", new { TrackId = trackDTO.TrackId }, Request.Url.Scheme));
@@ -330,7 +330,7 @@ namespace Chinook.Mvc
 
             if (!operationResult.Ok)
             {
-                throw new InvalidOperationException(operationResult.Text);
+                throw operationResult.Exception;
             }
 
             return Json(JsonConvert.SerializeObject(dataResult), JsonRequestBehavior.AllowGet);

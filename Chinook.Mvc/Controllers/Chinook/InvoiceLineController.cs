@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 invoiceLineCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultModel(invoiceLineCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultViewModel(invoiceLineCollectionModel.OperationResult));
         }        
 
         // GET & POST: InvoiceLine/Search
@@ -127,7 +127,7 @@ namespace Chinook.Mvc
                         {
                             if (invoiceLineItemModel.IsSave)
                             {
-                                invoiceLineItemModel.OperationResult.StatusMessage =
+                                invoiceLineItemModel.OperationResult.InformationMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(invoiceLineItemModel.OperationResult,
                                     Url.Action("Update", "InvoiceLine", new { InvoiceLineId = invoiceLineDTO.InvoiceLineId }, Request.Url.Scheme));
@@ -330,7 +330,7 @@ namespace Chinook.Mvc
 
             if (!operationResult.Ok)
             {
-                throw new InvalidOperationException(operationResult.Text);
+                throw operationResult.Exception;
             }
 
             return Json(JsonConvert.SerializeObject(dataResult), JsonRequestBehavior.AllowGet);

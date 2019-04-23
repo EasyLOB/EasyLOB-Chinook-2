@@ -45,7 +45,7 @@ namespace Chinook.Mvc
                 genreCollectionModel.OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultModel(genreCollectionModel.OperationResult));
+            return View("OperationResult", new OperationResultViewModel(genreCollectionModel.OperationResult));
         }        
 
         // GET & POST: Genre/Search
@@ -127,7 +127,7 @@ namespace Chinook.Mvc
                         {
                             if (genreItemModel.IsSave)
                             {
-                                genreItemModel.OperationResult.StatusMessage =
+                                genreItemModel.OperationResult.InformationMessage =
                                     EasyLOB.Resources.PresentationResources.CreateToUpdate;
                                 return JsonResultSuccess(genreItemModel.OperationResult,
                                     Url.Action("Update", "Genre", new { GenreId = genreDTO.GenreId }, Request.Url.Scheme));
@@ -330,7 +330,7 @@ namespace Chinook.Mvc
 
             if (!operationResult.Ok)
             {
-                throw new InvalidOperationException(operationResult.Text);
+                throw operationResult.Exception;
             }
 
             return Json(JsonConvert.SerializeObject(dataResult), JsonRequestBehavior.AllowGet);

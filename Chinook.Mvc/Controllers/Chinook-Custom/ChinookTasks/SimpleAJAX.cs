@@ -27,7 +27,7 @@ namespace Chinook.Mvc
                 OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultModel(OperationResult));
+            return View("OperationResult", new OperationResultViewModel(OperationResult));
         }
 
         // POST: Tasks/SimpleAJAX
@@ -47,8 +47,8 @@ namespace Chinook.Mvc
                             throw new Exception("My exception");
                         }
 
-                        taskSimpleModel.OperationResult.StatusCode = "0";
-                        taskSimpleModel.OperationResult.StatusMessage = "My status message";
+                        taskSimpleModel.OperationResult.InformationCode = "0";
+                        taskSimpleModel.OperationResult.InformationMessage = "My status message";
                     }
                 }
             }

@@ -28,7 +28,7 @@ namespace Chinook.Mvc
                 OperationResult.ParseException(exception);
             }
 
-            return View("OperationResult", new OperationResultModel(OperationResult));
+            return View("OperationResult", new OperationResultViewModel(OperationResult));
         }
 
         // POST: Tasks/Reset
@@ -46,7 +46,7 @@ namespace Chinook.Mvc
                         IChinookUnitOfWork unitOfWork = DependencyResolver.Current.GetService<IChinookUnitOfWork>();
                         Application.Reset(taskModel.OperationResult, unitOfWork);
 
-                        taskModel.OperationResult.StatusMessage = ChinookApplicationResources.TaskReset + " Ok";
+                        taskModel.OperationResult.InformationMessage = ChinookApplicationResources.TaskReset + " Ok";
                     }
                 }
             }
