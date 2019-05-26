@@ -27,7 +27,7 @@ namespace Chinook
                 {
                     try
                     {
-                        string filePath = Path.Combine(MultiTenantHelper.WebDirectory(ConfigurationHelper.AppSettings<string>("Directory.Configuration")),
+                        string filePath = Path.Combine(WebHelper.WebDirectory(ConfigurationHelper.AppSettings<string>("Directory.Configuration")),
                             "JSON/ChinookMultiTenant.json");
                         string json = File.ReadAllText(filePath);
                         tenants = JsonConvert.DeserializeObject<List<ChinookTenant>>(json);
